@@ -24,6 +24,37 @@
 <body <?php body_class(); ?>>
     <header class="main_header">
         <div class="container">
-            Header
+            <div class="aside_header">
+                <div class="logo">
+                    <a href="<?php bloginfo('url'); ?>">
+                        <img src="<?php echo get_template_directory_uri() ?>/public/images/icon/logo.png" alt="<?php bloginfo('title'); ?> " />
+                    </a>
+                </div>
+                <nav class="primary_menu" id="primary_menu">
+                    <ul class="menu">
+                        <li class="menu_item">
+                            <a href="">Trang chủ</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="">Menu A</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="">Menu B</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="">Menu C</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="">Menu D</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="">Menu E</a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="">Liên hệ</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
