@@ -1,0 +1,180 @@
+.main_footer {
+
+    display: flex;
+    flex-direction: column;
+
+    .footer01 {
+        background: #fbfbfb;
+        border-top: 1px solid #e4e4e4;
+        padding: 50px 0px 0px;
+
+        .content {
+            display: flex;
+            flex-direction: row;
+
+            .colum_a {
+                display: flex;
+                flex-direction: column;
+                width: 300px;
+                padding-bottom: 30px;
+
+                .logo {
+                    margin-bottom: 1em;
+
+                    a {
+                        display: block;
+
+                        img {
+                            height: 60px;
+                            max-width: 100%;
+                        }
+                    }
+                }
+
+                .description {
+                    margin-bottom: 1em;
+                    color:#8b8b8b;
+                    p {
+                        line-height: 26px;
+                    }
+                }
+
+                .social {
+                    display: block;
+
+                    li {
+                        float: left;
+                        border: 1px solid #d3d3d3;
+
+                        a {
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            @include tran_slow_03();
+
+                            &::before {
+                                content: '';
+                                display: block;
+                                height: 48px;
+                                width: 48px;
+                                border: 1px;
+                                background-position: center;
+                                background-size: 24px;
+                                background-repeat: no-repeat;
+                            }
+                        }
+
+                        &.sc_fb {
+                            a {
+                                &::before {
+                                    background-image: url(public/images/icon/fb1.png);
+                                }
+                            }
+
+                            @include hofo() {
+                                a {
+                                    background: #3c5b9b;
+
+                                    &::before {
+                                        background-image: url(public/images/icon/fb.png);
+                                    }
+                                }
+                            }
+                        }
+
+                        &.sc_tw {
+                            a {
+                                &::before {
+                                    background-image: url(public/images/icon/tw1.png);
+                                }
+                            }
+
+                            @include hofo() {
+                                a {
+                                    background: #03A9F4;
+
+                                    &::before {
+                                        background-image: url(public/images/icon/tw.png);
+                                    }
+                                }
+                            }
+                        }
+
+                        &.sc_yt {
+                            a {
+                                &::before {
+                                    background-image: url(public/images/icon/yt1.png);
+                                }
+                            }
+
+                            @include hofo() {
+                                a {
+                                    background: #ff3431;
+
+                                    &::before {
+                                        background-image: url(public/images/icon/yt.png);
+                                    }
+                                }
+                            }
+                        }
+
+                        &.sc_in {
+                            a {
+                                &::before {
+                                    background-image: url(public/images/icon/in1.png);
+                                }
+                            }
+
+                            @include hofo() {
+                                a {
+                                    background: #C536A4;
+
+                                    &::before {
+                                        background-image: url(public/images/icon/in.png);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &:after {
+                        @include clear_fix();
+                    }
+                }
+            }
+
+            .colum_b {
+                width: calc(100% - 300px);
+            }
+        }
+    }
+
+    .footer02 {
+        background: #fff;
+        border-top: 1px solid #e4e8ea;
+        padding: 30px 0px;
+    }
+
+    .footer03 {
+        padding: 30px 0px;
+        border-top: 1px solid #e4e8ea;
+    }
+
+    .coppy_right {
+        background: $colBH;
+        padding: 5px 0;
+
+        .coppy {
+            line-height: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            color: #fff;
+
+            a {
+                color: #e4e8ea;
+            }
+        }
+    }
+}

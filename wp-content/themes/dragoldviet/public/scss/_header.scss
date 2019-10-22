@@ -1,0 +1,71 @@
+//======HEADER=========
+.main_header {
+    border-bottom: 1px solid $colBorder;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    .aside_header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 80px;
+
+        .logo {
+            width: 300px;
+
+            a {
+                text-decoration: none;
+                outline: none;
+                display: block;
+
+                img {
+                    height: 50px;
+                    max-width: 100%;
+                }
+            }
+        }
+
+        .primary_menu {
+            width: calc(100% - 200px);
+
+            .menu {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+
+                .menu_item {
+                    margin-right: 10px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        outline: none;
+                        padding: 10px 15px;
+                        color: #1f1f1f;
+                        font-size: px2em(14);
+                        text-transform: uppercase;
+                        @include borderRadius(4px);
+                        @include tran_slow_03();
+
+                        @include hofo() {
+                            background: $colB;
+                            color: #fff;
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            background: $colB;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

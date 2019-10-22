@@ -36,19 +36,19 @@
                             <a href="">Trang chủ</a>
                         </li>
                         <li class="menu_item">
-                            <a href="">Menu A</a>
+                            <a href="">ITEM MENU 1</a>
                         </li>
                         <li class="menu_item">
-                            <a href="">Menu B</a>
+                            <a href="">ITEM MENU 2</a>
                         </li>
                         <li class="menu_item">
-                            <a href="">Menu C</a>
+                            <a href="">ITEM MENU 3</a>
                         </li>
                         <li class="menu_item">
-                            <a href="">Menu D</a>
+                            <a href="">ITEM MENU 3</a>
                         </li>
                         <li class="menu_item">
-                            <a href="">Menu E</a>
+                            <a href="">ITEM MENU 4</a>
                         </li>
                         <li class="menu_item">
                             <a href="">Liên hệ</a>
@@ -58,3 +58,5 @@
             </div>
         </div>
     </header>
+    <!-- https://trendytravel.dttheme.com/ -->
+    <!-- https://preview.themeforest.net/item/travel-agency-bootstrap-template/full_screen_preview/19812795?_ga=2.206349971.1266930009.1571730979-1812674523.1562290836 -->

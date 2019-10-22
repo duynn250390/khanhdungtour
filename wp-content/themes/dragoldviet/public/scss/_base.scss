@@ -31,17 +31,25 @@ body {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
 }
-*a{
-    color:#333;
+
+*a {
+    color: #333;
     text-decoration: none;
     outline: none;
 }
+// https://coolors.co/browser/latest/3
 // $colMain:#8e6e7b;
-$colA:#ff1313;
-$colAH:#b60000;
-$colB:#f9d303;
-$colBH:#d6b500;
-$colBorder:#ccc;
+$colA:#FFC857;
+$colAH:#FFAD0A;
+$colB:#B9314F;
+$colBH:#BA1639;
+$colC:#0CA4A5;
+$colCH:#087A7A;
+$colD:#DBB68F;
+$colDH:#A08568;
+$colE:#BB7E5D;
+$colEH:#8C5E46;
+$colBorder:#fdfdfd;
 
 .container {
     display: block;
