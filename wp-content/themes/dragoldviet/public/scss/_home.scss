@@ -1,0 +1,38 @@
+.warap {}
+
+.container {
+    max-width: 1200px;
+    min-width: 320px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @include maxWidth(1170px) {
+        max-width: 1024px;
+    }
+
+    @include maxWidth(1024px) {
+        max-width: 960px;
+    }
+
+    @include maxWidth(980px) {
+        max-width: 720px;
+    }
+
+    @include maxWidth(768px) {
+        max-width: 540px;
+    }
+
+    @include maxWidth(480px) {
+        max-width: 100%;
+    }
+}
+
+.main_header {
+    .container {
+        min-height: 300px;
+        background: #eee;
+    }
+}

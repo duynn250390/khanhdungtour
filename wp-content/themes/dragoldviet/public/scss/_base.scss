@@ -118,7 +118,7 @@ section {
 
 body {
     line-height: 1;
-    // font-family: 'Noto Sans', 'Malgun Gothic', dotum, gulim, verdana, sans-serif;
+    font-family: 'Noto Sans', 'Malgun Gothic', dotum, gulim, verdana, sans-serif;
     font-size: 14px;
     font-weight: 400;
 }
@@ -219,20 +219,25 @@ $col01:#393939;
 $col02:#f5c400;
 $colM6:#f5c400;
 $colT:#878787;
+
 .container {
     display: block;
     margin: 0 auto;
     max-width: 1200px;
     width: 100%;
+
     @include maxWidth(1200px) {
         max-width: 1024px;
     }
+
     @include maxWidth(1024px) {
         max-width: 980px;
     }
+
     @include maxWidth(980px) {
         max-width: 768px;
     }
+
     @include maxWidth(768px) {
         max-width: 100%;
         padding-left: 10px;
@@ -258,29 +263,36 @@ $colT:#878787;
 
 .heading_title {
     display: block;
+
     h2 {
         font-size: 2.8em;
     }
+
     h3 {
         font-size: 2.4em;
     }
+
     h4 {
         font-size: 2em;
     }
+
     h5 {
         font-size: 1.6em;
     }
+
     h6 {
         font-size: 1.2em;
     }
 }
 
 $base-font-size: 14;
+
 @function px2em($pxsize) {
     @return ($pxsize/$base-font-size)+em;
 }
 
 @mixin hofo() {
+
     &:hover,
     &:focus {
         @content;
@@ -602,7 +614,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 @mixin btn01val($var1,
-$var2) {
+    $var2) {
     padding: $var1 $var2;
     border: 1px solid $colM6;
     background: #fff;
@@ -612,6 +624,7 @@ $var2) {
     outline: none;
     @include borderRadius(6px);
     @include tran_slow_03();
+
     @include hofo() {
         border: 1px solid transparent;
         background: $colM0;
@@ -629,6 +642,7 @@ $var2) {
     outline: none;
     @include borderRadius(6px);
     @include tran_slow_03();
+
     @include hofo() {
         border: 1px solid transparent;
         background: $colMain;
@@ -637,7 +651,7 @@ $var2) {
 }
 
 @mixin btn02val($var1,
-$var2) {
+    $var2) {
     padding: $var1 $var2;
     border: 1px solid transparent;
     background: $colM0;
@@ -647,6 +661,7 @@ $var2) {
     @include tran_slow_03();
     text-decoration: none;
     outline: none;
+
     @include hofo() {
         background: $colM2;
         color: #fff;
@@ -663,6 +678,7 @@ $var2) {
     outline: none;
     @include borderRadius(6px);
     @include tran_slow_03();
+
     @include hofo() {
         background: $colM2;
         color: #fff;
@@ -670,7 +686,7 @@ $var2) {
 }
 
 @mixin btn03val($var1,
-$var2) {
+    $var2) {
     padding: $var1 $var2;
     border: 1px solid transparent;
     background: $colM2;
@@ -680,6 +696,7 @@ $var2) {
     outline: none;
     @include borderRadius(6px);
     @include tran_slow_03();
+
     @include hofo() {
         background: $colM0;
         color: #fff;
@@ -696,6 +713,7 @@ $var2) {
     outline: none;
     @include borderRadius(6px);
     @include tran_slow_03();
+
     @include hofo() {
         background: $colM0;
         color: #fff;
@@ -755,7 +773,7 @@ $var2) {
 }
 
 @mixin calc($property,
-$expression) {
+    $expression) {
     #{$property}: -moz-calc(#{$expression});
     #{$property}: -webkit-calc(#{$expression});
     #{$property}: calc(#{$expression});

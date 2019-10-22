@@ -5,12 +5,9 @@
     "tasks": [
         {
             "type": "gulp",
-            "script": "default",
+            "script": "sass",
             "path": "wp-content/themes/dragoldviet/",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
+            "problemMatcher": []
+        }
     ]
 }
