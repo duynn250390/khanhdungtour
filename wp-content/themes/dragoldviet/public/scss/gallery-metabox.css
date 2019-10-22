@@ -1,0 +1,8 @@
+.gallery-metabox-list{
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);	
+	grid-gap: 20px;
+}
+.gallery-metabox-list li{
+	grid-column: 4 span;
+}
