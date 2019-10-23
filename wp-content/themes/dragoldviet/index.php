@@ -111,9 +111,53 @@ get_header();
             </div>
         </div>
     </section>
-    <section class="content_home content">
+    <section class="content_home content_service content">
         <div class="container">
-            Content
+            <div class="service_mycom">
+                <div class="heading_main">
+                    <h2>
+                        <span class="fist_spa">Dịch vụ của</span>
+                        <span class="secnd_spa">Khánh dung tour</span>
+                    </h2>
+                </div>
+                <div class="description">
+                    <p>KHÁNH DUNG TOUR chuyên tổ chức các chương trình du lịch trong và ngoài nước, chương trình sự kiện, hội nghị hội
+                        thảo, teambuilding, từ đơn giản đến phức tạp. Với cách tổ chức chuyên nghiệp, chất lượng dịch vụ đặt lên hàng đầu.
+                        KHÁNH DUNG TOUR luôn mang đến cho Quý khách hàng những sản phẩm tuyệt vời nhất. Hãy luôn đồng hành cùng KHÁNH DUNG TOUR !!!</p>
+                </div>
+                <div class="list_service">
+                    <div class="item_list">
+                        <a href="">
+                            <figure class="thumb_item">
+                                <img src="<?php echo get_template_directory_uri() ?>/public/images/icon_web/du-lich-mien-bac.jpg" alt="du-lich-mien-bac" />
+                            </figure>
+                            <h3>
+                                Du lịch miền bắc
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="item_list">
+                        <a href="">
+                        <figure class="thumb_item">
+                                <img src="<?php echo get_template_directory_uri() ?>/public/images/icon_web/du-lich-mien-trung.jpg" alt="du-lich-mien-bac" />
+                            </figure>
+                            <h3>
+                                Du lịch miền Trung
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="item_list">
+                        <a href="">
+                        <figure class="thumb_item">
+                                <img src="<?php echo get_template_directory_uri() ?>/public/images/icon_web/du-lich-mien-nam.jpg" alt="du-lich-mien-bac" />
+                            </figure>
+                            <h3>
+                                Du lịch miền Nam
+                            </h3>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>
