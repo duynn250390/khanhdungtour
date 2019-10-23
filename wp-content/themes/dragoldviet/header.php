@@ -32,7 +32,7 @@
                 </div>
                 <nav class="primary_menu" id="primary_menu">
                     <ul class="menu">
-                        <li class="menu_item">
+                        <li class="menu_item active">
                             <a href="">Trang chủ</a>
                         </li>
                         <li class="menu_item">

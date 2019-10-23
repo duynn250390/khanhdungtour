@@ -1,5 +1,28 @@
-$(document).ready(function() {
-    // $('.box_slide_feedback').slick({
+$(document).ready(function () {
+    $('#main_slideshow').slick({
+        dots: false,
+        infinite: false,
+        autoplay: true,
+        speed: 500,
+        arrows: false,
+        fade: true,
+        cssEase: 'linear',
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        nextArrow: '<button class="slick-arrow slick-next"></button>',
+        prevArrow: '<button class="slick-arrow slick-prev"></button>',
+    });
+    $('#show_event').slick({
+        dots: false,
+        infinite: false,
+        autoplay: true,
+        speed: 700,
+        arrows: false,
+        // fade: true,
+        // cssEase: 'linear',
+        slidesToShow: 3,
+        slidesToScroll: 1,
+    });
     //     dots: false,
     //     infinite: false,
     //     autoplay: true,
@@ -52,3 +75,12 @@ $(document).ready(function() {
 // $(document).on('click', '#checkSize', function() {
 //     alert(1);
 // });
+
+// ACTIVE TABS
+$(document).on('click', '.item_tab', function () {
+    getID = $(this).attr('data-tab');
+    $('.item_tab').removeClass('active');
+    $(this).addClass('active');
+    $('.content_form ').removeClass('active');
+    $('#tabs_' + getID).addClass('active');
+});

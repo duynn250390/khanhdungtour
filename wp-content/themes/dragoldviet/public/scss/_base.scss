@@ -12,7 +12,8 @@
 
 body {
     line-height: 1;
-    font-family: 'NanumSquare', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    // font-family: 'Roboto', sans-serif;
     font-weight: 400;
     letter-spacing: -0.04em;
     word-break: keep-all;
@@ -49,7 +50,7 @@ $colD:#DBB68F;
 $colDH:#A08568;
 $colE:#BB7E5D;
 $colEH:#8C5E46;
-$colBorder:#fdfdfd;
+$colBorder:#e8e8e8;
 
 .container {
     display: block;
@@ -577,13 +578,13 @@ input[type=range]:focus::-ms-fill-upper {
     -ms-transform: translate(0, 15px);
     -o-transform: translate(0, 15px);
     transform: translate(0, 15px);
-    -webkit-transition: -webkit-transform 0.25s ease-out;
-    -o-transition: -webkit-transform 0.25s ease-out;
+    -webkit-transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out, -o-transform 0.25s ease-out;
+    -o-transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out, -o-transform 0.25s ease-out;
     transition: -webkit-transform 0.25s ease-out;
     transition: transform 0.25s ease-out;
     transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out, -o-transform 0.25s ease-out;
-    -moz-transition: -webkit-transform 0.25s ease-out;
-    -ms-transition: -webkit-transform 0.25s ease-out;
+    -moz-transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out, -o-transform 0.25s ease-out;
+    -ms-transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out, -o-transform 0.25s ease-out;
 }
 
 @mixin activemodals {
