@@ -76,19 +76,17 @@
 }
 
 .content_home {
-    padding: 2em 0;
+    padding: 4em 0;
+
+    @include maxWidth(1024px) {
+        padding: 3em 0;
+    }
+
+    @include maxWidth(768px) {
+        padding: 2em 0;
+    }
 
     &.content_event {
-        padding: 4em 0;
-
-        @include maxWidth(1024px) {
-            padding: 3em 0;
-        }
-
-        @include maxWidth(768px) {
-            padding: 2em 0;
-        }
-
         .show_event {
             border: 1px solid $colBorder;
 
