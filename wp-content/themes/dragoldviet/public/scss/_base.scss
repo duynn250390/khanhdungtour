@@ -11,6 +11,7 @@
 }
 
 body {
+    color: #8b8b8b;
     line-height: 1;
     font-family: 'Open Sans', sans-serif;
     // font-family: 'Roboto', sans-serif;
@@ -33,15 +34,20 @@ body {
     overflow-x: hidden;
 }
 
+p {
+    line-height: 26px;
+}
+
 *a {
     color: #333;
     text-decoration: none;
     outline: none;
 }
+
 // https://coolors.co/browser/latest/3
 // $colMain:#8e6e7b;
-$colA:#FFC857;
-$colAH:#FFAD0A;
+$colA:#fdb40f;
+$colAH:#e4a20c;
 $colB:#B9314F;
 $colBH:#BA1639;
 $colC:#0CA4A5;

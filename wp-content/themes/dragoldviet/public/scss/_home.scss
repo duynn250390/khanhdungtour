@@ -35,6 +35,7 @@
 }
 
 .btn {
+    display: inline-flex;
     height: 40px;
     text-decoration: none;
     outline: none;
@@ -42,6 +43,11 @@
     padding: 0 4em;
     font-size: px2em(14);
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     @include tran_slow_03();
 
     @include hofo() {
@@ -67,6 +73,7 @@
 
     &.btn03 {
         background: $colC;
+        color: #fff;
 
         @include hofo() {
             background: $colCH;
@@ -128,6 +135,7 @@
 
     &.content_service {
         border-top: 1px solid $colBorder;
+        background: #f6f6f6;
 
         .service_mycom {
 
@@ -146,6 +154,8 @@
             }
 
             .list_service {
+                margin-top: 4em;
+
                 &:after {
                     @include clear_fix();
                 }
@@ -154,6 +164,48 @@
                     float: left;
                     width: 33.333333%;
                     padding-right: 1.5em;
+                    @include tran_slow_03();
+
+                    @include maxWidth(768px) {
+                        width: 100%;
+                        margin-bottom: 2em;
+                        padding-right: 0;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    &:nth-child(1) {
+                        .heading_service {
+                            background: $colA;
+                            min-height: 100px;
+                        }
+
+                        .destopn_service {
+                            border-bottom: 5px solid $colA;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        .heading_service {
+                            background: $colB;
+                        }
+
+                        .destopn_service {
+                            border-bottom: 5px solid $colB;
+                        }
+                    }
+
+                    &:nth-child(3) {
+                        .heading_service {
+                            background: $colC;
+                        }
+
+                        .destopn_service {
+                            border-bottom: 5px solid $colC;
+                        }
+                    }
 
                     &:last-child {
                         padding-right: 0;
@@ -163,14 +215,63 @@
                         display: flex;
                         flex-direction: column;
 
+                        .heading_service {
+                            min-height: 100px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            text-transform: uppercase;
+                            font-size: px2em(18);
+                            color: #fff;
+                        }
+
                         .thumb_item {
-                            height: 300px;
+                            height: 255px;
+                            overflow: hidden;
 
                             img {
                                 width: 100%;
                                 height: 100%;
                                 object-fit: cover;
                                 max-width: 100%;
+                                @include tran_slow_05();
+                            }
+                        }
+
+                        .destopn_service {
+                            min-height: 200px;
+                            background: #fff;
+                            border-left: 1px solid $colBorder;
+                            border-right: 1px solid $colBorder;
+                            text-align: center;
+                            padding: 2em;
+
+                            .des {
+                                color: #8b8b8b;
+                            }
+
+                            .btn {
+                                // display: inline-flex;
+                                height: 36px;
+                                padding: 0 2em;
+                                align-items: center;
+                                margin-top: 1em;
+                                @include borderRadius(4px);
+                            }
+                        }
+                    }
+
+                    @include hofo() {
+                        a {
+                            .thumb_item {
+                                img {
+                                    transform: scale(1.2);
+                                    -webkit-transform: scale(1.2);
+                                    -moz-transform: scale(1.2);
+                                    -ms-transform: scale(1.2);
+                                    -o-transform: scale(1.2);
+                                }
                             }
                         }
                     }

@@ -128,36 +128,53 @@ get_header();
                 <div class="list_service">
                     <div class="item_list">
                         <a href="">
+                            <div class="heading_service">
+                                Du lịch miền bắc
+                            </div>
                             <figure class="thumb_item">
                                 <img src="<?php echo get_template_directory_uri() ?>/public/images/icon_web/du-lich-mien-bac.jpg" alt="du-lich-mien-bac" />
                             </figure>
-                            <h3>
-                                Du lịch miền bắc
-                            </h3>
+                            <div class="destopn_service">
+                                <p class="des">Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit and seltd tasm cursus nunc.</p>
+                                <span class=" btn btn01">Chi tiết</span>
+                            </div>
                         </a>
                     </div>
                     <div class="item_list">
                         <a href="">
-                        <figure class="thumb_item">
+                            <div class="heading_service">
+                                Du lịch miền Trung
+                            </div>
+                            <figure class="thumb_item">
                                 <img src="<?php echo get_template_directory_uri() ?>/public/images/icon_web/du-lich-mien-trung.jpg" alt="du-lich-mien-bac" />
                             </figure>
-                            <h3>
-                                Du lịch miền Trung
-                            </h3>
+                            <div class="destopn_service">
+                                <p class="des">Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit and seltd tasm cursus nunc.</p>
+                                <span class=" btn btn02">Chi tiết</span>
+                            </div>
                         </a>
                     </div>
                     <div class="item_list">
                         <a href="">
-                        <figure class="thumb_item">
+                            <div class="heading_service">
+                                Du lịch miền Nam
+                            </div>
+                            <figure class="thumb_item">
                                 <img src="<?php echo get_template_directory_uri() ?>/public/images/icon_web/du-lich-mien-nam.jpg" alt="du-lich-mien-bac" />
                             </figure>
-                            <h3>
-                                Du lịch miền Nam
-                            </h3>
+                            <div class="destopn_service">
+                                <p class="des">Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit and seltd tasm cursus nunc.</p>
+                                <span class=" btn btn03">Chi tiết</span>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section  class="content content_home content_list_tour">
+        <div class="container">
+            dsd
         </div>
     </section>
 </div>
