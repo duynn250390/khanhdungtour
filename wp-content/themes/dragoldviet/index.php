@@ -82,7 +82,7 @@ get_header();
     </section>
     <section class="content_home content content_event">
         <div class="container">
-            <div class="show_event" id="show_event">
+            <div class="show_event " id="show_event">
                 <div class="listEvent">
                     <a href="">
                         <img src="<?php echo get_template_directory_uri() ?>/public/images/share/1.png" alt="slideshow" />
@@ -125,7 +125,7 @@ get_header();
                         thảo, teambuilding, từ đơn giản đến phức tạp. Với cách tổ chức chuyên nghiệp, chất lượng dịch vụ đặt lên hàng đầu.
                         KHÁNH DUNG TOUR luôn mang đến cho Quý khách hàng những sản phẩm tuyệt vời nhất. Hãy luôn đồng hành cùng KHÁNH DUNG TOUR !!!</p>
                 </div>
-                <div class="list_service">
+                <div class="list_service row">
                     <div class="item_list">
                         <a href="">
                             <div class="heading_service">
@@ -172,9 +172,290 @@ get_header();
             </div>
         </div>
     </section>
-    <section  class="content content_home content_list_tour">
+    <section class="content content_home content_list_tour">
         <div class="container">
-            dsd
+            <div class="box_warap_content ">
+                <div class="heading_wrapper">
+                    <h2 class="main_title"><span><strong>Tour</strong> nổi bật</span></h2>
+                    <p class="main_des"><span>Homes highly rated for thoughtful design</span></p>
+                </div>
+                <div class="list_tour row">
+                    <div class="item_list_tour">
+                        <figure class="tour_thumb">
+                            <a href="">
+                                <div class="image">
+                                    <img src="<?php echo get_template_directory_uri() ?>/public/images/product/icon_tour/01.jpg" alt="slideshow" />
+                                </div>
+                            </a>
+                        </figure>
+                        <figcaption class="content_tour">
+                            <h5 class="title">Tour Bà Nà Hill Đón Nắng Vàng</h5>
+                            <ul class="list_info">
+                                <li class="local">Đà nẵng</li>
+                                <li class="date">2 ngày 1 đêm</li>
+                                <li class="fa_co">
+                                    <ul class="local_start_end">
+                                        <li class="local_start">Quảng Nam</li>
+                                        <li class="local_end">Quảng Nam</li>
+                                    </ul>
+                                </li>
+                                <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                            </ul>
+                            <div class="read_more">
+                                <a href="#" class="btn_read_more">Chi tiết</a>
+                            </div>
+                        </figcaption>
+                    </div><!-- item_list_tour -->
+                    <div class="item_list_tour">
+                        <figure class="tour_thumb">
+                            <a href="">
+                                <div class="image">
+                                    <img src="<?php echo get_template_directory_uri() ?>/public/images/product/icon_tour/02.jpg" alt="slideshow" />
+                                </div>
+                            </a>
+                        </figure>
+                        <figcaption class="content_tour">
+                            <h5 class="title">Tour Bà Nà Hill Đón Nắng Vàng</h5>
+                            <ul class="list_info">
+                                <li class="local">Đà nẵng</li>
+                                <li class="date">2 ngày 1 đêm</li>
+                                <li class="fa_co">
+                                    <ul class="local_start_end">
+                                        <li class="local_start">Quảng Nam</li>
+                                        <li class="local_end">Quảng Nam</li>
+                                    </ul>
+                                </li>
+                                <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                            </ul>
+                            <div class="read_more">
+                                <a href="#" class="btn_read_more">Chi tiết</a>
+                            </div>
+                        </figcaption>
+                    </div><!-- item_list_tour -->
+                    <div class="item_list_tour">
+                        <figure class="tour_thumb">
+                            <a href="">
+                                <div class="image">
+                                    <img src="<?php echo get_template_directory_uri() ?>/public/images/product/icon_tour/03.jpg" alt="slideshow" />
+                                </div>
+                            </a>
+                        </figure>
+                        <figcaption class="content_tour">
+                            <h5 class="title">Tour Bà Nà Hill Đón Nắng Vàng</h5>
+                            <ul class="list_info">
+                                <li class="local">Đà nẵng</li>
+                                <li class="date">2 ngày 1 đêm</li>
+                                <li class="fa_co">
+                                    <ul class="local_start_end">
+                                        <li class="local_start">Quảng Nam</li>
+                                        <li class="local_end">Quảng Nam</li>
+                                    </ul>
+                                </li>
+                                <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                            </ul>
+                            <div class="read_more">
+                                <a href="#" class="btn_read_more">Chi tiết</a>
+                            </div>
+                        </figcaption>
+                    </div><!-- item_list_tour -->
+                    <div class="item_list_tour">
+                        <figure class="tour_thumb">
+                            <a href="">
+                                <div class="image">
+                                    <img src="<?php echo get_template_directory_uri() ?>/public/images/product/icon_tour/04.jpg" alt="slideshow" />
+                                </div>
+                            </a>
+                        </figure>
+                        <figcaption class="content_tour">
+                            <h5 class="title">Tour Bà Nà Hill Đón Nắng Vàng</h5>
+                            <ul class="list_info">
+                                <li class="local">Đà nẵng</li>
+                                <li class="date">2 ngày 1 đêm</li>
+                                <li class="fa_co">
+                                    <ul class="local_start_end">
+                                        <li class="local_start">Quảng Nam</li>
+                                        <li class="local_end">Quảng Nam</li>
+                                    </ul>
+                                </li>
+                                <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                            </ul>
+                            <div class="read_more">
+                                <a href="#" class="btn_read_more">Chi tiết</a>
+                            </div>
+                        </figcaption>
+                    </div><!-- item_list_tour -->
+                    <div class="item_list_tour">
+                        <figure class="tour_thumb">
+                            <a href="">
+                                <div class="image">
+                                    <img src="<?php echo get_template_directory_uri() ?>/public/images/product/icon_tour/05.jpg" alt="slideshow" />
+                                </div>
+                            </a>
+                        </figure>
+                        <figcaption class="content_tour">
+                            <h5 class="title">Tour Bà Nà Hill Đón Nắng Vàng</h5>
+                            <ul class="list_info">
+                                <li class="local">Đà nẵng</li>
+                                <li class="date">2 ngày 1 đêm</li>
+                                <li class="fa_co">
+                                    <ul class="local_start_end">
+                                        <li class="local_start">Quảng Nam</li>
+                                        <li class="local_end">Quảng Nam</li>
+                                    </ul>
+                                </li>
+                                <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                            </ul>
+                            <div class="read_more">
+                                <a href="#" class="btn_read_more">Chi tiết</a>
+                            </div>
+                        </figcaption>
+                    </div><!-- item_list_tour -->
+                    <div class="item_list_tour">
+                        <figure class="tour_thumb">
+                            <a href="">
+                                <div class="image">
+                                    <img src="<?php echo get_template_directory_uri() ?>/public/images/product/icon_tour/01.jpg" alt="slideshow" />
+                                </div>
+                            </a>
+                        </figure>
+                        <figcaption class="content_tour">
+                            <h5 class="title">Tour Bà Nà Hill Đón Nắng Vàng</h5>
+                            <ul class="list_info">
+                                <li class="local">Đà nẵng</li>
+                                <li class="date">2 ngày 1 đêm</li>
+                                <li class="fa_co">
+                                    <ul class="local_start_end">
+                                        <li class="local_start">Quảng Nam</li>
+                                        <li class="local_end">Quảng Nam</li>
+                                    </ul>
+                                </li>
+                                <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                            </ul>
+                            <div class="read_more">
+                                <a href="#" class="btn_read_more">Chi tiết</a>
+                            </div>
+                        </figcaption>
+                    </div><!-- item_list_tour -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content content_home content_news">
+        <div class="gradiend_bg gradient_top "></div>
+        <div class="gradiend_bg gradient_bot"></div>
+        <div class="bg_gra">
+            <div class="ovelay"></div>
+            <div class="container ">
+                <div class="news_container ">
+                    <div class="heading_wrapper">
+                        <h2 class="main_title"><span><strong>Sổ tay</strong> du lịch</span></h2>
+                    </div>
+                    <div class="list_news row" id="list_news">
+                        <div class="item_news">
+                            <article class="post_news">
+                                <figure class="thumb_news">
+                                    <a href="">
+                                        <img src="<?php echo get_template_directory_uri() ?>/public/images/news/1.jpg" alt="slideshow" />
+                                    </a>
+                                </figure>
+                                <div class="content">
+                                    <ul class="info_news">
+                                        <li class="cate"><a href="">Sổ tay du lịch</a></li>
+                                        <li class="date">25/03/2019</li>
+                                    </ul>
+                                    <h4 class="title"><a href="">Trải nghiệm du lịch Sapa ngày mưa</a></h4>
+                                    <div class="read_more"><a href="" class="btn_read">Chi tiết</a></div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="item_news">
+                            <article class="post_news">
+                                <figure class="thumb_news">
+                                    <a href="">
+                                        <img src="<?php echo get_template_directory_uri() ?>/public/images/news/1.jpg" alt="slideshow" />
+                                    </a>
+                                </figure>
+                                <div class="content">
+                                    <ul class="info_news">
+                                        <li class="cate"><a href="">Sổ tay du lịch</a></li>
+                                        <li class="date">25/03/2019</li>
+                                    </ul>
+                                    <h4 class="title"><a href="">Trải nghiệm du lịch Sapa ngày mưa</a></h4>
+                                    <div class="read_more"><a href="" class="btn_read">Chi tiết</a></div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="item_news">
+                            <article class="post_news">
+                                <figure class="thumb_news">
+                                    <a href="">
+                                        <img src="<?php echo get_template_directory_uri() ?>/public/images/news/2.jpg" alt="slideshow" />
+                                    </a>
+                                </figure>
+                                <div class="content">
+                                    <ul class="info_news">
+                                        <li class="cate"><a href="">Sổ tay du lịch</a></li>
+                                        <li class="date">25/03/2019</li>
+                                    </ul>
+                                    <h4 class="title"><a href="">Trải nghiệm du lịch Sapa ngày mưa</a></h4>
+                                    <div class="read_more"><a href="" class="btn_read">Chi tiết</a></div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="item_news">
+                            <article class="post_news">
+                                <figure class="thumb_news">
+                                    <a href="">
+                                        <img src="<?php echo get_template_directory_uri() ?>/public/images/news/3.jpg" alt="slideshow" />
+                                    </a>
+                                </figure>
+                                <div class="content">
+                                    <ul class="info_news">
+                                        <li class="cate"><a href="">Sổ tay du lịch</a></li>
+                                        <li class="date">25/03/2019</li>
+                                    </ul>
+                                    <h4 class="title"><a href="">Trải nghiệm du lịch Sapa ngày mưa</a></h4>
+                                    <div class="read_more"><a href="" class="btn_read">Chi tiết</a></div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="item_news">
+                            <article class="post_news">
+                                <figure class="thumb_news">
+                                    <a href="">
+                                        <img src="<?php echo get_template_directory_uri() ?>/public/images/news/1.jpg" alt="slideshow" />
+                                    </a>
+                                </figure>
+                                <div class="content">
+                                    <ul class="info_news">
+                                        <li class="cate"><a href="">Sổ tay du lịch</a></li>
+                                        <li class="date">25/03/2019</li>
+                                    </ul>
+                                    <h4 class="title"><a href="">Trải nghiệm du lịch Sapa ngày mưa</a></h4>
+                                    <div class="read_more"><a href="" class="btn_read">Chi tiết</a></div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="item_news">
+                            <article class="post_news">
+                                <figure class="thumb_news">
+                                    <a href="">
+                                        <img src="<?php echo get_template_directory_uri() ?>/public/images/news/2.jpg" alt="slideshow" />
+                                    </a>
+                                </figure>
+                                <div class="content">
+                                    <ul class="info_news">
+                                        <li class="cate"><a href="">Sổ tay du lịch</a></li>
+                                        <li class="date">25/03/2019</li>
+                                    </ul>
+                                    <h4 class="title"><a href="">Trải nghiệm du lịch Sapa ngày mưa</a></h4>
+                                    <div class="read_more"><a href="" class="btn_read">Chi tiết</a></div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>

@@ -1,4 +1,30 @@
 $(document).ready(function () {
+    $('#list_news').slick({
+        dots: true,
+        infinite: false,
+        autoplay: true,
+        speed: 500,
+        arrows: false,
+        // fade: true,
+        // cssEase: 'linear',
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        nextArrow: '<button class="slick-arrow slick-next"></button>',
+        prevArrow: '<button class="slick-arrow slick-prev"></button>',
+        responsive: [{
+            breakpoint: 980,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+        }]
+    });
     $('#main_slideshow').slick({
         dots: false,
         infinite: false,
@@ -13,7 +39,7 @@ $(document).ready(function () {
         prevArrow: '<button class="slick-arrow slick-prev"></button>',
     });
     $('#show_event').slick({
-        dots: false,
+        dots: true,
         infinite: false,
         autoplay: true,
         speed: 700,
@@ -22,6 +48,19 @@ $(document).ready(function () {
         // cssEase: 'linear',
         slidesToShow: 3,
         slidesToScroll: 1,
+        responsive: [{
+            breakpoint: 10240,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+            }
+        }, {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+        }]
     });
     //     dots: false,
     //     infinite: false,
@@ -83,4 +122,30 @@ $(document).on('click', '.item_tab', function () {
     $(this).addClass('active');
     $('.content_form ').removeClass('active');
     $('#tabs_' + getID).addClass('active');
+});
+
+$(document).on('click', '#bullet_span', function () {
+    CONTROL_MODAL = {
+        Body: $('body'),
+        main_header: $('.main_header'),
+        data: $('#primary_menu'),
+    }
+    CONTROL_MODAL.main_header.append('<div class="menu_ovelay"></div>');
+    $('.menu_ovelay').css({
+        'z-index': 9,
+    });
+    var MENU_HTML = CONTROL_MODAL.data.html();
+    console.log(MENU_HTML);
+    $('.menu_respo').html(MENU_HTML);
+    CONTROL_MODAL.Body.addClass('open_menu');
+    $('.menu_respo').css({
+        'z-index': 10,
+        'left': '0',
+    });
+});
+$(document).on('click', '.menu_ovelay', function () {
+    $(".menu_ovelay").remove();
+    $('.menu_respo').css({
+        'left': '-280px',
+    });
 });
