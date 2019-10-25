@@ -6,10 +6,16 @@
     left: 0;
     right: 0;
     z-index: 9991;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.83);
 
     .menu_respontive {
         .bullet_span {
+            display: none;
+
+            @include maxWidth(1024px) {
+                display: block;
+            }
+
             &::before {
                 display: block;
                 height: 40px;
@@ -23,6 +29,12 @@
                 top: 20px;
                 left: 10px;
                 cursor: pointer;
+
+                @include maxWidth(480px) {
+                    height: 30px;
+                    width: 30px;
+                    top: 25px;
+                }
             }
 
             @include hofo() {

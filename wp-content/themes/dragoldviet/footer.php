@@ -143,7 +143,7 @@
     </section>
     <section class="coppy_right">
         <div class="container">
-            <div class="coppy">© 2019 - Khahdungtour.com - by <a href=""> NgocDuy</a></div>
+            <div class="coppy">© 2019 - khanhdungtour.com. All rights reserved. - by <a href="https://www.facebook.com/ngocduycit"> NgocDuy</a></div>
         </div>
     </section>
 </footer>

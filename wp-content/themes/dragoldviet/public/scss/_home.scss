@@ -135,6 +135,10 @@
                 // border: 1px solid $colBorder;
                 position: relative;
 
+                @include maxWidth(768px) {
+                    padding: 0;
+                }
+
                 &:after {
                     content: '';
                     background: $colBorder;
@@ -202,7 +206,7 @@
                     @include maxWidth(768px) {
                         width: 100%;
                         margin-bottom: 2em;
-                        padding-right: 0;
+                        padding: 0;
 
                         &:last-child {
                             margin-bottom: 0;
@@ -391,6 +395,10 @@
     .heading_wrapper {
         margin-bottom: 2em;
 
+        @include maxWidth(480px) {
+            margin-bottom: 3em;
+        }
+
         .main_title {
             font-size: px2em(28);
             color: #1a2b48;
@@ -428,6 +436,7 @@
 
                 @include maxWidth(480px) {
                     width: 100%;
+                    padding: 0;
                 }
 
                 .tour_thumb {
@@ -583,6 +592,14 @@
     position: relative;
     padding: 4em 0;
 
+    @include maxWidth(980px) {
+        padding: 2em 0;
+    }
+
+    @include maxWidth(480px) {
+        padding: 0;
+    }
+
     .list_news {
         position: relative;
 
@@ -617,6 +634,10 @@
 
         .item_news {
             padding: 0 10px;
+
+            @include maxWidth(480px) {
+                padding: 0;
+            }
 
             .post_news {
                 display: flex;
@@ -790,6 +811,7 @@
     z-index: 99;
     background: #fff;
     @include tran_slow_03();
+
     .nav_menu,
     .menu {
         display: grid;
