@@ -130,9 +130,9 @@ add_action('init', 'mien_taxonomy', 0);
 function tinh_taxonomy()
 {
     $labels = array(
-        'name' => 'Điểm đến',
-        'singular' => 'Tỉnh',
-        'menu_name' => 'Tỉnh'
+        'name' => 'Địa điểm du lịch',
+        'singular' => 'Địa điểm du lịch',
+        'menu_name' => 'Địa điểm du lịch'
     );
     $args = array(
         'labels'                     => $labels,
@@ -148,25 +148,25 @@ function tinh_taxonomy()
 add_action('init', 'tinh_taxonomy', 2);
 
 
-function diem_du_lich_taxonomy()
-{
-    $labels = array(
-        'name' => 'Điểm du lịch',
-        'singular' => 'Điểm du lịch',
-        'menu_name' => 'Điểm du lịch'
-    );
-    $args = array(
-        'labels'                     => $labels,
-        'hierarchical'               => true,
-        'public'                     => true,
-        'show_ui'                    => true,
-        'show_admin_column'          => true,
-        'show_in_nav_menus'          => true,
-        'show_tagcloud'              => true,
-    );
-    register_taxonomy('diem-du-lich', array('post_tours'), $args);
-}
-add_action('init', 'diem_du_lich_taxonomy', 2);
+// function diem_du_lich_taxonomy()
+// {
+//     $labels = array(
+//         'name' => 'Điểm du lịch',
+//         'singular' => 'Điểm du lịch',
+//         'menu_name' => 'Điểm du lịch'
+//     );
+//     $args = array(
+//         'labels'                     => $labels,
+//         'hierarchical'               => true,
+//         'public'                     => true,
+//         'show_ui'                    => true,
+//         'show_admin_column'          => true,
+//         'show_in_nav_menus'          => true,
+//         'show_tagcloud'              => true,
+//     );
+//     register_taxonomy('diem-du-lich', array('post_tours'), $args);
+// }
+// add_action('init', 'diem_du_lich_taxonomy', 2);
 
 
 function add_gallery_metabox($post_type)
@@ -247,6 +247,7 @@ function info_tour_metabox_output($post)
     $gia_tour = get_post_meta($post->ID, '_gia_tour', true);
     $thoi_gian_tour = get_post_meta($post->ID, '_thoi_gian_tour', true);
     $diem_xuat_phat = get_post_meta($post->ID, '_diem_xuat_phat', true);
+    $diem_den = get_post_meta($post->ID, '_diem_den', true);
     ?>
     <div class="box_info_meta_box">
         <div class="item_list">
@@ -257,16 +258,33 @@ function info_tour_metabox_output($post)
             <lable for="thoi_gian_tour">Thời gian Tour</lable>
             <input name="thoi_gian_tour" class="code" id="thoi_gian_tour" type="text" value="<?php echo $thoi_gian_tour ?>">
         </div>
-        <div class="item_list">
+        <!-- <div class="item_list">
             <lable for="diem_xuat_phat">Điểm xuất phát</lable>
             <?php
                 $terms = get_terms(array(
                     'taxonomy' => 'tinh',
                     'hide_empty' => false,
-                    // 'term_taxonomy_id' => 36,
                     'parent' => 0,
                 ));
                 echo '<select  name="diem_xuat_phat" id="diem_xuat_phat" class="code">';
+                echo '<option value="0">--Điểm xuất phát--</option>';
+                foreach ($terms as $term) { ?>
+                <option value="<?php echo $term->name ?>" <?php if ($diem_xuat_phat == $term->name) {
+                                                                                                                    echo 'selected';
+                                                                                                                } ?>><?php echo $term->name ?></option>
+            <?php }
+                echo '</select>'; ?>
+        </div>
+        <div class="item_list"></div>
+        <div class="item_list">
+            <lable for="diem_den">Điểm đến</lable>
+            <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'tinh',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                ));
+                echo '<select  name="diem_den" id="diem_den" class="code">';
                 echo '<option value="0">--Điểm xuất phát--</option>';
                 foreach ($terms as $term) { ?>
                 <option value="<?php echo $term->name ?>" data_id_tinh="<?php echo $term->term_id; ?>" <?php if ($diem_xuat_phat == $term->name) {
@@ -275,6 +293,53 @@ function info_tour_metabox_output($post)
             <?php }
                 echo '</select>'; ?>
         </div>
+        <div class="item_list">
+            <lable for="diem_den">Điểm đến</lable>
+            <select name="diem_den_chinh" id="diem_den_chinh" class="code">
+                <option value="0">--Điểm đến--</option>
+            </select>
+        </div> -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // $('#diem_den').on('change', function() {
+                //     var id_tinh = $(this).find("option:selected").attr('data_id_tinh');
+                //     $.ajax({
+                //         type: "post", //Phương thức truyền post hoặc get
+                //         dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
+                //         url: '<?php echo admin_url('admin-ajax.php'); ?>', //Đường dẫn chứa hàm xử lý dữ liệu. Mặc định của WP như vậy
+                //         data: {
+                //             action: "get_diem_den_cua_tinh", //Tên action
+                //             'id_tinh': id_tinh
+                //         },
+                //         context: this,
+                //         beforeSend: function() {
+                //             //Làm gì đó trước khi gửi dữ liệu vào xử lý
+                //         },
+                //         success: function(response) {
+                //             //Làm gì đó khi dữ liệu đã được xử lý
+                //             if (response.success) {
+                //                 // alert(response.data);
+                //                 var data = response.data;
+                //                 console.log(data);
+
+                //                 // var html = "<option value='0'>--Phường/xã--</option>";
+                //                 // data.forEach(function(item) {
+                //                 //     // html += "<option value='" + item.name + "' data_id_huyen ='" + item.term_id + "'>" + item.name + "</option>";
+                //                 // });
+                //                 $('#diem_den_chinh').html(data);
+                //             } else {
+                //                 alert('Đã có lỗi xảy ra');
+                //             }
+                //         },
+                //         error: function(jqXHR, textStatus, errorThrown) {
+                //             //Làm gì đó khi có lỗi xảy ra
+                //             console.log('The following error occured: ' + textStatus, errorThrown);
+                //         }
+                //     })
+                //     return false;
+                // });
+            });
+        </script>
     </div>
 <?php
 }
@@ -292,7 +357,64 @@ function info_tour_save($post_id)
         $diem_xuat_phat = sanitize_text_field($_POST['diem_xuat_phat']);
         update_post_meta($post_id, '_diem_xuat_phat', $diem_xuat_phat);
     }
+    if (isset($_POST['diem_den'])) {
+        $diem_den = sanitize_text_field($_POST['diem_den']);
+        update_post_meta($post_id, '_diem_den', $diem_den);
+    }
 }
 add_action('save_post', 'info_tour_save');
 // =========================MANAGE TOURS END=============================
 // ======================================================================
+
+// =========================SET GET VIEW START=============================
+// ======================================================================
+function setpostview($postID)
+{
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if ($count == '') {
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+    } else {
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+
+function getpostviews($postID)
+{
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if ($count == '') {
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, '0');
+        return "0 View";
+    }
+    return '<i class="fa fa-eye" aria-hidden="true"></i> ' . $count;
+}
+// =========================SET GET VIEW  END=============================
+// ======================================================================
+
+
+// =========================FUNCTION AJAX START===========================
+// =======================================================================
+// add_action('wp_ajax_get_diem_den_cua_tinh', 'get_diem_den_cua_tinh_init');
+// add_action('wp_ajax_nopriv_get_diem_den_cua_tinh', 'get_diem_den_cua_tinh_init');
+// function get_diem_den_cua_tinh_init()
+// {
+//     $term_id  = (isset($_POST['id_tinh'])) ? esc_attr($_POST['id_tinh']) : '';
+//     $taxonomy_name = 'tinh';
+//     $html = '';
+//     ob_start(); //bắt đầu bộ nhớ đệm
+//     $termchildren = get_term_children($term_id, $taxonomy_name);
+//     foreach ($termchildren as $child) {
+//         $term = get_term_by('id', $child, $taxonomy_name);
+//         $html .= '<option value="1">'.$term->name.'</option>' ;
+//     }
+//     wp_reset_query();
+//     wp_send_json_success($html); // trả về giá trị dạng json
+//     die(); //bắt buộc phải có khi kết thúc
+// }
+// =========================FUNCTION AJAX END=============================
+// =======================================================================
