@@ -50,3 +50,221 @@ function remove_admin_bar()
 {
     show_admin_bar(false);
 }
+
+// =========================MANAGE TOURS START=============================
+// ========================================================================
+function manager_tours()
+{
+    /*
+ * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
+ */
+    $label = array(
+        'name' => 'Quản lý Tour', //Tên post type dạng số nhiều
+        'singular_name' => 'tours' //Tên post type dạng số ít
+    );
+    /*
+ * Biến $args là những tham số quan trọng trong Post Type
+ */
+    $args = array(
+        'labels' => $label, //Gọi các label trong biến $label ở trên
+        'description' => 'Quản lý sản phẩm', //Mô tả của post type
+        'supports' => array(
+            'title',
+            'editor',
+            // 'excerpt',
+            // 'author',
+            'thumbnail',
+            // 'comments',
+            // 'trackbacks',
+            'revisions',
+            'custom-fields'
+        ), //Các tính năng được hỗ trợ trong post type
+        'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'rewrite' => array(
+            // 'slug'                  => 'references',
+            'with_front'            => false,
+            'pages'                 => true,
+            'feeds'                 => true,
+        ),
+        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
+        'public' => true, //Kích hoạt post type
+        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
+        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
+        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
+        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
+        'menu_position' => 5, //Thứ tự vị trí hiển thị trong menu (tay trái)
+        'menu_icon' => 'dashicons-cart', //Đường dẫn tới icon sẽ hiển thị
+        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
+        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
+        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
+        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
+        'capability_type' => 'post' //
+    );
+    register_post_type('post_tours', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
+}
+/* Kích hoạt hàm tạo custom post type */
+add_action('init', 'manager_tours');
+
+
+function mien_taxonomy()
+{
+    $labels = array(
+        'name' => 'Vùng miền',
+        'singular' => 'Vùng miền',
+        'menu_name' => 'Vùng miền'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('mien', array('post_tours'), $args);
+}
+add_action('init', 'mien_taxonomy', 0);
+
+
+function tinh_taxonomy()
+{
+    $labels = array(
+        'name' => 'Tỉnh',
+        'singular' => 'Tỉnh',
+        'menu_name' => 'Tỉnh'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('tinh', array('post_tours'), $args);
+}
+add_action('init', 'tinh_taxonomy', 2);
+
+
+function diem_du_lich_taxonomy()
+{
+    $labels = array(
+        'name' => 'Điểm du lịch',
+        'singular' => 'Điểm du lịch',
+        'menu_name' => 'Điểm du lịch'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('diem-du-lich', array('post_tours'), $args);
+}
+add_action('init', 'diem_du_lich_taxonomy', 2);
+
+
+function add_gallery_metabox($post_type)
+{
+    $types = array('post_tours');
+    if (in_array($post_type, $types)) {
+        add_meta_box(
+            'gallery-metabox',
+            'Thêm hình ảnh tour',
+            'gallery_meta_callback',
+            $post_type,
+            'normal',
+            'high'
+        );
+    }
+}
+add_action('add_meta_boxes', 'add_gallery_metabox');
+
+function gallery_meta_callback($post)
+{
+    wp_nonce_field(basename(__FILE__), 'gallery_meta_nonce');
+    $ids = get_post_meta($post->ID, 'tdc_gallery_id', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <td>
+                <a class="gallery-add button" href="#" data-uploader-title="Thêm hình ảnh" data-uploader-button-text="Thêm nhiều hình ảnh">Thêm nhiều hình ảnh</a>
+                <ul id="gallery-metabox-list">
+                    <?php if ($ids) : foreach ($ids as $key => $value) : $image = wp_get_attachment_image_src($value); ?>
+                            <li>
+                                <input type="hidden" name="tdc_gallery_id[<?php echo $key; ?>]" value="<?php echo $value; ?>">
+                                <img class="image-preview" src="<?php echo $image[0]; ?>">
+                                <div class="box_change">
+                                    <a class="change-image button button-small" href="#" data-uploader-title="Đổi hình" data-uploader-button-text="Đổi hình">Đổi hình</a>
+                                    <a class="remove-image  button button-small" href="#">Xóa</a>
+                                </div>
+                            </li>
+                    <?php endforeach;
+                        endif; ?>
+                </ul>
+            </td>
+        </tr>
+    </table>
+<?php }
+function gallery_meta_save($post_id)
+{
+    if (!isset($_POST['gallery_meta_nonce']) || !wp_verify_nonce($_POST['gallery_meta_nonce'], basename(__FILE__))) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['tdc_gallery_id'])) {
+        update_post_meta($post_id, 'tdc_gallery_id', $_POST['tdc_gallery_id']);
+    } else {
+        delete_post_meta($post_id, 'tdc_gallery_id');
+    }
+}
+add_action('save_post', 'gallery_meta_save');
+
+function gallery_enqueue_hook($hook)
+{
+    wp_enqueue_script('gallery-metabox', get_template_directory_uri() . '/public/js/gallery-metabox.js', array('jquery', 'jquery-ui-sortable'));
+    wp_enqueue_style('gallery-metabox', get_template_directory_uri() . '/public/css/gallery_metabox.css');
+}
+add_action('admin_enqueue_scripts', 'gallery_enqueue_hook');
+
+function info_tour_metabox()
+{
+    $id = 'info_tour_metabox_input';
+    $title = 'Thông tin tour';
+    $callback = 'info_tour_metabox_output';
+    $screen = 'post_tours';
+    add_meta_box($id, $title, $callback, $screen);
+}
+add_action('add_meta_boxes', 'info_tour_metabox');
+
+function info_tour_metabox_output($post)
+{
+    $gia_tour = get_post_meta($post->ID, '_gia_tour', true);
+    ?>
+    <div class="box_info_meta_box">
+        <div class="item_list">
+            <lable for="gia_tour">Giá tour</lable>
+            <input name="gia_tour" class="code" id="gia_tour" type="text" value="<?php echo $gia_tour ?>">
+        </div>
+        <div class="item_list">
+            <lable for="gio_gian_tour">Thời gian Tour</lable>
+            <input name="gio_gian_tour" class="code" id="gio_gian_tour" type="text" value="<?php echo $gia_tour ?>">
+        </div>
+        <div class="item_list">
+            <lable for="diem_xuat_phat">Điểm xuất phát</lable>
+            <select name="diem_xuat_phat" id="diem_xuat_phat" class="code">
+                <option value="1">Đà Nẵng</option>
+                <option value="1">Quảng Nam</option>
+                <option value="1">Quảng Ngãi</option>
+            </select>
+        </div>
+    </div>
+<?php
+}
+// =========================MANAGE TOURS END=============================
+// ======================================================================
