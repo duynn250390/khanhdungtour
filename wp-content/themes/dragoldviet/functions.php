@@ -130,7 +130,7 @@ add_action('init', 'mien_taxonomy', 0);
 function tinh_taxonomy()
 {
     $labels = array(
-        'name' => 'Tỉnh',
+        'name' => 'Điểm đến',
         'singular' => 'Tỉnh',
         'menu_name' => 'Tỉnh'
     );
@@ -245,6 +245,8 @@ add_action('add_meta_boxes', 'info_tour_metabox');
 function info_tour_metabox_output($post)
 {
     $gia_tour = get_post_meta($post->ID, '_gia_tour', true);
+    $thoi_gian_tour = get_post_meta($post->ID, '_thoi_gian_tour', true);
+    $diem_xuat_phat = get_post_meta($post->ID, '_diem_xuat_phat', true);
     ?>
     <div class="box_info_meta_box">
         <div class="item_list">
@@ -252,19 +254,45 @@ function info_tour_metabox_output($post)
             <input name="gia_tour" class="code" id="gia_tour" type="text" value="<?php echo $gia_tour ?>">
         </div>
         <div class="item_list">
-            <lable for="gio_gian_tour">Thời gian Tour</lable>
-            <input name="gio_gian_tour" class="code" id="gio_gian_tour" type="text" value="<?php echo $gia_tour ?>">
+            <lable for="thoi_gian_tour">Thời gian Tour</lable>
+            <input name="thoi_gian_tour" class="code" id="thoi_gian_tour" type="text" value="<?php echo $thoi_gian_tour ?>">
         </div>
         <div class="item_list">
             <lable for="diem_xuat_phat">Điểm xuất phát</lable>
-            <select name="diem_xuat_phat" id="diem_xuat_phat" class="code">
-                <option value="1">Đà Nẵng</option>
-                <option value="1">Quảng Nam</option>
-                <option value="1">Quảng Ngãi</option>
-            </select>
+            <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'tinh',
+                    'hide_empty' => false,
+                    // 'term_taxonomy_id' => 36,
+                    'parent' => 0,
+                ));
+                echo '<select  name="diem_xuat_phat" id="diem_xuat_phat" class="code">';
+                echo '<option value="0">--Điểm xuất phát--</option>';
+                foreach ($terms as $term) { ?>
+                <option value="<?php echo $term->name ?>" data_id_tinh="<?php echo $term->term_id; ?>" <?php if ($diem_xuat_phat == $term->name) {
+                                                                                                                    echo 'selected';
+                                                                                                                } ?>><?php echo $term->name ?></option>
+            <?php }
+                echo '</select>'; ?>
         </div>
     </div>
 <?php
 }
+function info_tour_save($post_id)
+{
+    if (isset($_POST['gia_tour'])) {
+        $gia_tour = sanitize_text_field($_POST['gia_tour']);
+        update_post_meta($post_id, '_gia_tour', $gia_tour);
+    }
+    if (isset($_POST['thoi_gian_tour'])) {
+        $thoi_gian_tour = sanitize_text_field($_POST['thoi_gian_tour']);
+        update_post_meta($post_id, '_thoi_gian_tour', $thoi_gian_tour);
+    }
+    if (isset($_POST['diem_xuat_phat'])) {
+        $diem_xuat_phat = sanitize_text_field($_POST['diem_xuat_phat']);
+        update_post_meta($post_id, '_diem_xuat_phat', $diem_xuat_phat);
+    }
+}
+add_action('save_post', 'info_tour_save');
 // =========================MANAGE TOURS END=============================
 // ======================================================================

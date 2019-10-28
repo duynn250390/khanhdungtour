@@ -129,7 +129,7 @@ $(document).on('click', '#bullet_span', function () {
     CONTROL_MODAL = {
         Body: $('body'),
         main_header: $('.main_header'),
-        data: $('#primary_menu'),
+        data: $('#menu-primary_menu'),
     }
     CONTROL_MODAL.main_header.append('<div class="menu_ovelay"></div>');
     $('.menu_ovelay').css({

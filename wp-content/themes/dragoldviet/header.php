@@ -34,7 +34,8 @@
                         <img src="<?php echo get_template_directory_uri() ?>/public/images/icon/logo.png" alt="<?php bloginfo('title'); ?> " />
                     </a>
                 </div>
-                <nav class="primary_menu" id="primary_menu">
+                <?php wp_nav_menu('global-nav'); ?>
+                <!-- <nav class="primary_menu" id="primary_menu">
                     <ul class="menu">
                         <li class="menu_item active">
                             <a href="">Trang chủ</a>
@@ -58,7 +59,7 @@
                             <a href="">Liên hệ</a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
             </div>
         </div>
     </header>

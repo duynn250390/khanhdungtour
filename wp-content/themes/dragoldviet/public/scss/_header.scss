@@ -72,7 +72,7 @@
             }
         }
 
-        .primary_menu {
+        .primary_menu ,.menu-primary_menu-container{
             width: calc(100% - 200px);
 
             @include maxWidth(1024px) {
@@ -84,7 +84,7 @@
                 flex-direction: row;
                 justify-content: flex-end;
 
-                .menu_item {
+                .menu_item,.menu-item {
                     margin-right: 1em;
 
                     &:last-child {
