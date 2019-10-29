@@ -318,5 +318,83 @@
     background: $colA;
     color: #333;
     padding: 0.5em;
-    margin-top:1em;
+    margin-top: 1em;
+
+    .call_now {}
+
+    .hotline {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        justify-content: center;
+
+        li {
+            font-size: px2em(28);
+            font-weight: 600;
+            padding-right: 0.5em;
+            color: #000;
+        }
+    }
+
+    .chat {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        justify-content: center;
+
+        .chat_item {
+            display: flex;
+
+            margin-right: 1em;
+
+            a {
+                display: block;
+                text-decoration: none;
+                outline: none;
+                padding: 1em 2em;
+                @include borderRadius(4px);
+                color: #fff;
+            }
+
+            &:last-child {
+                a {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .chat_facebook {
+            a {
+                background: #21569a;
+            }
+        }
+
+        .chat_zalo {
+            a {
+                background: #00abff;
+            }
+        }
+    }
+
+    .control_boot_tours {
+        display: flex;
+        justify-content: flex-end;
+
+        .btn_book {
+            display: block;
+            @include borderRadius(4px);
+            color: #fff;
+            background: $colB;
+            padding: 0.6em 2em;
+            @include tran_slow_03();
+
+            @include hofo() {
+                background: $colBH;
+            }
+        }
+    }
 }

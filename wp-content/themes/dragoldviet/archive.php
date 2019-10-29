@@ -34,13 +34,13 @@ get_header();
                         <div class="info_item">
                             <div class="info_group">
                                 <label>Xuất phát:</label>
-                                <span><?php  echo get_post_meta(get_the_ID(), '_diem_xuat_phat', TRUE); ?></span>
+                                <span><?php echo get_post_meta(get_the_ID(), '_diem_xuat_phat', TRUE); ?></span>
                             </div>
                             <div class="info_group">
                                 <label>Điểm đến:</label>
-                                <span><?php  echo get_post_meta(get_the_ID(), '_diem_den', TRUE); ?></span>
+                                <span><?php echo get_post_meta(get_the_ID(), '_diem_den', TRUE); ?></span>
                             </div>
-                           
+
                         </div>
                         <div class="info_item">
                             <div class="info_group">
@@ -49,18 +49,30 @@ get_header();
                             </div>
                             <div class="info_group">
                                 <label>Thời gian:</label>
-                                <span><?php  echo get_post_meta(get_the_ID(), '_thoi_gian_tour', TRUE); ?></span>
+                                <span><?php echo get_post_meta(get_the_ID(), '_thoi_gian_tour', TRUE); ?></span>
                             </div>
                         </div>
                         <div class="info_item">
                             <div class="info_group full">
                                 <label>Giá từ:</label>
-                                <span class="money"><?php  echo get_post_meta(get_the_ID(), '_gia_tour', TRUE); ?> VND</span>
+                                <span class="money"><?php echo get_post_meta(get_the_ID(), '_gia_tour', TRUE); ?> VND</span>
                             </div>
                         </div>
                     </div>
                     <div class="contact_tour">
-                        Mọi chi tiết vui lòng liên hệ !
+                        <div class="call_now">Gọi ngay</div>
+                        <ul class="hotline">
+                            <li>0869906080</li>
+                            <li>-</li>
+                            <li>0906 434 432</li>
+                        </ul>
+                        <ul class="chat">
+                            <li class="chat_facebook chat_item"><a href="www.m.me/KhanhDungTour">Hổ trợ qua Facebook</a></li>
+                            <li class="chat_zalo chat_item"><a href="https://zalo.me/0869906070">Hổ trợ qua Zalo</a></li>
+                        </ul>
+                        <p>để được tư vấn chi tiết về tour !</p>
+                        <p>Chúc quý khách có những trải nghiệm thú vị cùng khanhdungtour</p>
+                        <div class="control_boot_tours"><a href="" class="btn_book">Đặt tour</a></div>
                     </div>
                 </div>
             </div>
