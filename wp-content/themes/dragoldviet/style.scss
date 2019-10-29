@@ -25,14 +25,16 @@ Use it to make something cool, have fun, and share what you've learned with othe
 @import 'public/scss/animate';
 /* Add style slideshow slick */
 @import 'public/scss/slick';
-
 /*  page*/
 @import 'public/scss/header';
 /* Index page*/
 @import 'public/scss/home';
 /* Single page*/
+@import 'public/scss/single';
 /* Content page*/
+@import 'public/scss/content';
 /* Sidebar page*/
+@import 'public/scss/sidebar';
 /* Sidebar page*/
 /* Footer page*/
 @import 'public/scss/footer';

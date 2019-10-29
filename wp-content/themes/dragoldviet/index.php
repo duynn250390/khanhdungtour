@@ -189,7 +189,7 @@ get_header();
                 <div class="list_tour row">
                     <?php
                     $args = array(
-                        'post_type' => 'post_tours',
+                        'post_type' => 'tours',
                         'showposts' => 6,
                         'order'    => 'DESC'
                     );

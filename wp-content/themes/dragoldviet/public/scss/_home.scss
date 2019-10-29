@@ -389,7 +389,7 @@
                         font-weight: 600;
                         font-size: px2em(16);
                         color: #333;
-                        line-height: 1.2;
+                        line-height: 1.4;
                     }
                     .list_info {
                         display: flex;
@@ -610,7 +610,7 @@
                     .title {
                         margin-bottom: 1em;
                         a {
-                            line-height: 1.5em;
+                            line-height: 1.4;
                             font-size: px2em(16);
                             // font-weight: 600;
                             text-decoration: none;
@@ -658,6 +658,7 @@
                 font-size: px2em(14);
                 color: #000;
                 margin-bottom: 1em;
+                line-height: 1.4;
             }
             .list_bo {
                 display: flex;

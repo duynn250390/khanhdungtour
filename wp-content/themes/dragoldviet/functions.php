@@ -100,7 +100,7 @@ function manager_tours()
         'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
         'capability_type' => 'post' //
     );
-    register_post_type('post_tours', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
+    register_post_type('tours', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
 }
 /* Kích hoạt hàm tạo custom post type */
 add_action('init', 'manager_tours');
@@ -122,7 +122,7 @@ function mien_taxonomy()
         'show_in_nav_menus'          => true,
         'show_tagcloud'              => true,
     );
-    register_taxonomy('mien', array('post_tours'), $args);
+    register_taxonomy('mien', array('tours'), $args);
 }
 add_action('init', 'mien_taxonomy', 0);
 
@@ -143,7 +143,7 @@ function tinh_taxonomy()
         'show_in_nav_menus'          => true,
         'show_tagcloud'              => true,
     );
-    register_taxonomy('tinh', array('post_tours'), $args);
+    register_taxonomy('tinh', array('tours'), $args);
 }
 add_action('init', 'tinh_taxonomy', 2);
 
@@ -164,14 +164,14 @@ add_action('init', 'tinh_taxonomy', 2);
 //         'show_in_nav_menus'          => true,
 //         'show_tagcloud'              => true,
 //     );
-//     register_taxonomy('diem-du-lich', array('post_tours'), $args);
+//     register_taxonomy('diem-du-lich', array('tours'), $args);
 // }
 // add_action('init', 'diem_du_lich_taxonomy', 2);
 
 
 function add_gallery_metabox($post_type)
 {
-    $types = array('post_tours');
+    $types = array('tours');
     if (in_array($post_type, $types)) {
         add_meta_box(
             'gallery-metabox',
@@ -237,7 +237,7 @@ function info_tour_metabox()
     $id = 'info_tour_metabox_input';
     $title = 'Thông tin tour';
     $callback = 'info_tour_metabox_output';
-    $screen = 'post_tours';
+    $screen = 'tours';
     add_meta_box($id, $title, $callback, $screen);
 }
 add_action('add_meta_boxes', 'info_tour_metabox');
