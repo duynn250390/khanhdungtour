@@ -71,7 +71,7 @@
 </script>
 <aside class="wiget wiget-searc-tours">
     <header>
-        <h1 class="widget-title">Cùng địa điểm</h1>
+        <h1 class="widget-title">Gợi ý tour du lịch</h1>
     </header>
     <section class="body_widget">
         <ul class="tour_links">
@@ -79,19 +79,11 @@
             $ten_tinh =  get_post_meta(get_the_ID(), '_diem_den', TRUE);
 
             $category = get_term_by('name', $ten_tinh, 'tinh');
-            $thisID = get_the_ID();
             $args = array(
                 'post_type' => 'tours',
                 'showposts' => 5,
-                'post_not_in' => array($thisID),
                 'orderby' => 'rand',
                 'order'    => 'DESC',
-                'tax_query' => array(
-                    'taxonomy' => 'tinh',
-                    // 'field' => $ten_tinh,
-                    'terms' => $category->term_id,
-
-                )
             );
             $the_query = new WP_Query($args);
             if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post();
@@ -120,7 +112,3 @@
         </ul>
     </section>
 </aside>
-
-<?php if (is_active_sidebar('block-after-content')) : ?>
-    <?php dynamic_sidebar('block-after-content'); ?>
-<?php endif; ?>
