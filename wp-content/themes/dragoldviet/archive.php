@@ -124,6 +124,9 @@ get_header();
             endif;
             ?>
             <div class="read_more row">
+                <div class="heading">
+                    <span>Tour gợi ý</span>
+                </div>
                 <div class="box_tour_more">
                     <?php
                     $category_detail =  get_the_category($post->ID);

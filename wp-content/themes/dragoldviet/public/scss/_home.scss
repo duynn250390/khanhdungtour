@@ -88,14 +88,12 @@
 }
 
 .content_home {
-    padding: 4em 0;
+    padding-top: 0;
 
     @include maxWidth(1024px) {
-        padding: 3em 0;
     }
 
     @include maxWidth(768px) {
-        padding: 2em 0;
     }
 
     &.content_event {
@@ -455,7 +453,7 @@
                 }
 
                 .content_tour {
-                    margin-top: 1.5em;
+                    margin-top: 0.5em;
 
                     .title {
                         font-weight: 600;
@@ -589,15 +587,11 @@
 
 .news_container {
     position: relative;
-    padding: 4em 0;
+    padding: 0;
 
-    @include maxWidth(980px) {
-        padding: 2em 0;
-    }
+    @include maxWidth(980px) {}
 
-    @include maxWidth(480px) {
-        padding: 0;
-    }
+    @include maxWidth(480px) {}
 
     .list_news {
         position: relative;

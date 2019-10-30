@@ -283,7 +283,7 @@ get_header();
                                 </div>
                             <?php endwhile;
                             else : ?>
-                            <p>Không có tin nào !</p>
+                            <p>Đang cập nhật.. !</p>
                         <?php endif;
                         wp_reset_postdata(); ?>
                     </div>

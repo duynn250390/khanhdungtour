@@ -82,7 +82,7 @@
         flex-direction: row;
 
         .box_left {
-            width: 70%;
+            width: 75%;
             @include tran_slow_03();
 
             @include maxWidth(1024px) {
@@ -93,7 +93,7 @@
         }
 
         .box_right {
-            width: 30%;
+            width: 25%;
             @include tran_slow_03();
 
             @include maxWidth(1024px) {
@@ -231,6 +231,30 @@
     margin-top: 3em;
     margin-bottom: 3em;
 
+    .heading {
+        display: block;
+        margin-top:2em;
+        margin-bottom: 2em;
+        span {
+            font-size: px2em(24);
+            position: relative;
+            display: flex;
+            flex-direction: row;
+
+            &::before {
+                margin-right: 0.2em;
+                content: '';
+                background-image: url(public/images/icon/destination.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90%;
+                height: 24px;
+                width: 24px;
+                display: block;
+            }
+        }
+    }
+
     .box_tour_more {
         display: flex;
         flex-direction: row;
@@ -239,6 +263,7 @@
         .item_tour_more {
             width: 33.3333333%;
             padding: 0 0.5em;
+            margin-bottom: 2em;
             @include tran_slow_03();
 
             @include maxWidth(480px) {
@@ -527,7 +552,7 @@
                 background: #21569a;
 
                 &::before {
-                    margin-left: 0.5em;
+                    margin-right: 0.5em;
                     content: '';
                     height: 40px;
                     width: 40px;
@@ -545,7 +570,7 @@
                 background: #00abff;
 
                 &::before {
-                    margin-left: 0.5em;
+                    margin-right: 0.5em;
                     content: '';
                     height: 40px;
                     width: 40px;

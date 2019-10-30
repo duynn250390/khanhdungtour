@@ -258,7 +258,7 @@ function info_tour_metabox_output($post)
             <lable for="thoi_gian_tour">Thời gian Tour</lable>
             <input name="thoi_gian_tour" class="code" id="thoi_gian_tour" type="text" value="<?php echo $thoi_gian_tour ?>">
         </div>
-        <!-- <div class="item_list">
+        <div class="item_list">
             <lable for="diem_xuat_phat">Điểm xuất phát</lable>
             <?php
                 $terms = get_terms(array(
@@ -270,12 +270,11 @@ function info_tour_metabox_output($post)
                 echo '<option value="0">--Điểm xuất phát--</option>';
                 foreach ($terms as $term) { ?>
                 <option value="<?php echo $term->name ?>" <?php if ($diem_xuat_phat == $term->name) {
-                                                                                                                    echo 'selected';
-                                                                                                                } ?>><?php echo $term->name ?></option>
+                                                                        echo 'selected';
+                                                                    } ?>><?php echo $term->name ?></option>
             <?php }
                 echo '</select>'; ?>
         </div>
-        <div class="item_list"></div>
         <div class="item_list">
             <lable for="diem_den">Điểm đến</lable>
             <?php
@@ -294,11 +293,25 @@ function info_tour_metabox_output($post)
                 echo '</select>'; ?>
         </div>
         <div class="item_list">
+            <?php
+                $termID = 36;
+                $taxonomyName = "tinh";
+                $termchildren = get_term_children($termID, $taxonomyName);
+
+                echo '<ul>';
+                foreach ($termchildren as $child) {
+                    $term = get_term_by('id', $child, $taxonomyName);
+                    echo '<li><a href="' . get_term_link($term->name, $taxonomyName) . '">' . $term->name . '</a></li>';
+                }
+                echo '</ul>';
+                ?>
+        </div>
+        <!-- <div class="item_list">
             <lable for="diem_den">Điểm đến</lable>
             <select name="diem_den_chinh" id="diem_den_chinh" class="code">
                 <option value="0">--Điểm đến--</option>
             </select>
-        </div> -->
+        </div>  -->
         <script type="text/javascript">
             $(document).ready(function() {
                 // $('#diem_den').on('change', function() {
@@ -399,23 +412,23 @@ function getpostviews($postID)
 
 // =========================FUNCTION AJAX START===========================
 // =======================================================================
-// add_action('wp_ajax_get_diem_den_cua_tinh', 'get_diem_den_cua_tinh_init');
-// add_action('wp_ajax_nopriv_get_diem_den_cua_tinh', 'get_diem_den_cua_tinh_init');
-// function get_diem_den_cua_tinh_init()
-// {
-//     $term_id  = (isset($_POST['id_tinh'])) ? esc_attr($_POST['id_tinh']) : '';
-//     $taxonomy_name = 'tinh';
-//     $html = '';
-//     ob_start(); //bắt đầu bộ nhớ đệm
-//     $termchildren = get_term_children($term_id, $taxonomy_name);
-//     foreach ($termchildren as $child) {
-//         $term = get_term_by('id', $child, $taxonomy_name);
-//         $html .= '<option value="1">'.$term->name.'</option>' ;
-//     }
-//     wp_reset_query();
-//     wp_send_json_success($html); // trả về giá trị dạng json
-//     die(); //bắt buộc phải có khi kết thúc
-// }
+add_action('wp_ajax_get_diem_du_lich', 'get_diem_du_lich_init');
+add_action('wp_ajax_nopriv_get_diem_du_lich', 'get_diem_du_lich_init');
+function get_diem_du_lich_init()
+{
+    $id_dia_diem  = (isset($_POST['id_dia_diem'])) ? esc_attr($_POST['id_dia_diem']) : '';
+    $taxonomy_name = 'tinh';
+    $html = '';
+    ob_start(); //bắt đầu bộ nhớ đệm
+    $termchildren = get_term_children($id_dia_diem, $taxonomy_name);
+    foreach ($termchildren as $child) {
+        $term = get_term_by('id', $child, $taxonomy_name);
+        $html .= '<option value="'.$term->name.'">'.$term->name.'</option>' ;
+    }
+    wp_reset_query();
+    wp_send_json_success($html); // trả về giá trị dạng json
+    die(); //bắt buộc phải có khi kết thúc
+}
 // =========================FUNCTION AJAX END=============================
 // =======================================================================
 
