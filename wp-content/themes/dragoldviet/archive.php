@@ -47,7 +47,7 @@ get_header();
                                 <div class="info_item">
                                     <div class="info_group">
                                         <label>Phương tiện:</label>
-                                        <span>Máy bay</span>
+                                        <span><?php echo get_post_meta(get_the_ID(), '_phuong_tien_di_chuyen', TRUE); ?></span>
                                     </div>
                                     <div class="info_group">
                                         <label>Thời gian:</label>
@@ -117,7 +117,7 @@ get_header();
                                 </ul>
                             </div>
                         </div>
-                        <div class="box_right sidebar"><?php get_sidebar(); ?></div>
+                        <div class="box_right sidebar"><?php get_sidebar('tours'); ?></div>
                     </div>
             <?php
                 endwhile;

@@ -90,11 +90,9 @@
 .content_home {
     padding-top: 0;
 
-    @include maxWidth(1024px) {
-    }
+    @include maxWidth(1024px) {}
 
-    @include maxWidth(768px) {
-    }
+    @include maxWidth(768px) {}
 
     &.content_event {
         .show_event {
@@ -171,6 +169,15 @@
     &.content_service {
         border-top: 1px solid $colBorder;
         background: #f6f6f6;
+        padding: 4em 0;
+
+        @include maxWidth(1024px) {
+            padding: 3em 0;
+        }
+
+        @include maxWidth(768px) {
+            padding: 2em 0;
+        }
 
         .service_mycom {
             .heading_main {
@@ -374,6 +381,17 @@
                 color: inherit;
                 opacity: 0.8;
             }
+        }
+    }
+    &.content_list_tour{
+        padding-top: 4em;
+
+        @include maxWidth(1024px) {
+            padding-top: 3em;
+        }
+
+        @include maxWidth(768px) {
+            padding-top: 2em;
         }
     }
 }

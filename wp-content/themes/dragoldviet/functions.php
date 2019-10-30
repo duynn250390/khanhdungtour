@@ -248,6 +248,7 @@ function info_tour_metabox_output($post)
     $thoi_gian_tour = get_post_meta($post->ID, '_thoi_gian_tour', true);
     $diem_xuat_phat = get_post_meta($post->ID, '_diem_xuat_phat', true);
     $diem_den = get_post_meta($post->ID, '_diem_den', true);
+    $phuong_tien_di_chuyen = get_post_meta($post->ID, '_phuong_tien_di_chuyen', true);
     ?>
     <div class="box_info_meta_box">
         <div class="item_list">
@@ -293,18 +294,18 @@ function info_tour_metabox_output($post)
                 echo '</select>'; ?>
         </div>
         <div class="item_list">
-            <?php
-                $termID = 36;
-                $taxonomyName = "tinh";
-                $termchildren = get_term_children($termID, $taxonomyName);
-
-                echo '<ul>';
-                foreach ($termchildren as $child) {
-                    $term = get_term_by('id', $child, $taxonomyName);
-                    echo '<li><a href="' . get_term_link($term->name, $taxonomyName) . '">' . $term->name . '</a></li>';
-                }
-                echo '</ul>';
-                ?>
+            <lable for="phuong_tien">Phương tiện di chuyển</lable>
+            <select name="phuong_tien_di_chuyen" id="phuong_tien" class="code">
+                <option value="Xe máy" <?php if (isset($phuong_tien_di_chuyen) && $phuong_tien_di_chuyen == 'Xe máy') {
+                                                echo 'selected';
+                                            } ?>>Xe máy</option>
+                <option value="Ô tô" <?php if (isset($phuong_tien_di_chuyen) && $phuong_tien_di_chuyen == 'Ô tô') {
+                                                echo 'selected';
+                                            } ?>>Ô tô</option>
+                <option value="Máy bay" <?php if (isset($phuong_tien_di_chuyen) && $phuong_tien_di_chuyen == 'Máy bay') {
+                                                echo 'selected';
+                                            } ?>>Máy bay</option>
+            </select>
         </div>
         <!-- <div class="item_list">
             <lable for="diem_den">Điểm đến</lable>
@@ -374,6 +375,10 @@ function info_tour_save($post_id)
         $diem_den = sanitize_text_field($_POST['diem_den']);
         update_post_meta($post_id, '_diem_den', $diem_den);
     }
+    if (isset($_POST['phuong_tien_di_chuyen'])) {
+        $phuong_tien_di_chuyen = sanitize_text_field($_POST['phuong_tien_di_chuyen']);
+        update_post_meta($post_id, '_phuong_tien_di_chuyen', $phuong_tien_di_chuyen);
+    }
 }
 add_action('save_post', 'info_tour_save');
 // =========================MANAGE TOURS END=============================
@@ -423,7 +428,7 @@ function get_diem_du_lich_init()
     $termchildren = get_term_children($id_dia_diem, $taxonomy_name);
     foreach ($termchildren as $child) {
         $term = get_term_by('id', $child, $taxonomy_name);
-        $html .= '<option value="'.$term->name.'">'.$term->name.'</option>' ;
+        $html .= '<option value="' . $term->name . '">' . $term->name . '</option>';
     }
     wp_reset_query();
     wp_send_json_success($html); // trả về giá trị dạng json
