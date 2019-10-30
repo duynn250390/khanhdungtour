@@ -25,7 +25,7 @@
                 <div class="group_form">
                     <label for="dia_danh_du_lich">Điểm du lịch</label>
                     <div class="control_in in_one">
-                        <select class="diem_du_lich" id="diem_du_lich" name="diem_du_lich">
+                        <select disabled class="diem_du_lich" id="diem_du_lich" name="diem_du_lich">
                             <option value="0">--Điểm du lịch--</option>
                         </select>
                         <!-- <input type="text" id="dia_danh_du_lich" name="dia_danh_du_lich" placeholder="Nhập điểm du lịch..." /> -->
@@ -55,6 +55,7 @@
                 success: function(response) {
                     if (response.success) {
                         var data = response.data;
+                        $('.diem_du_lich').removeAttr('disabled');
                         $('#diem_du_lich').html(data);
                     } else {
                         alert('Đã có lỗi xảy ra');
