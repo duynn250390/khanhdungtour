@@ -3,12 +3,13 @@
         <h1 class="widget-title">Tìm kiếm tour</h1>
     </header>
     <section class="body_widget">
-        <form action="post">
+        <form role="search" method="get" class="search-form" action="<?php echo home_url('/'); ?>">
+            <input name="post-type" type="hidden" value="tours">
             <div class="fomr_search">
                 <div class="group_form">
                     <label for="txt_diem_den">Điểm đến</label>
                     <div class="control_in in_chu">
-                        <select class="diem_den" id="txt_diem_den" name="txt_diem_den">
+                        <select class="diem-den" id="txt_diem_den" name="diem-den">
                             <?php
                             $terms = get_terms(array(
                                 'taxonomy' => 'tinh',
@@ -24,11 +25,8 @@
                 </div>
                 <div class="group_form">
                     <label for="dia_danh_du_lich">Điểm du lịch</label>
-                    <div class="control_in in_one">
-                        <select class="diem_du_lich" id="diem_du_lich" name="diem_du_lich">
-                            <option value="0">--Điểm du lịch--</option>
-                        </select>
-                        <!-- <input type="text" id="dia_danh_du_lich" name="dia_danh_du_lich" placeholder="Nhập điểm du lịch..." /> -->
+                    <div class="control_in in_three">
+                        <input name="s" type="text" id="dia_danh_du_lich" name="dia_danh_du_lich" placeholder="Nhập nội dung cần tìm..." />
                     </div>
                 </div>
                 <div class="group_form">

@@ -72,7 +72,8 @@
             }
         }
 
-        .primary_menu ,.menu-primary_menu-container{
+        .primary_menu,
+        .menu-primary_menu-container {
             width: calc(100% - 200px);
 
             @include maxWidth(1024px) {
@@ -84,8 +85,10 @@
                 flex-direction: row;
                 justify-content: flex-end;
 
-                .menu_item,.menu-item {
+                .menu_item,
+                .menu-item {
                     margin-right: 1em;
+                    position: relative;
 
                     &:last-child {
                         margin-right: 0;
@@ -96,20 +99,58 @@
                         outline: none;
                         color: #1f1f1f;
                         font-size: px2em(14);
+                        padding: 1em 0;
                         text-transform: uppercase;
                         @include borderRadius(4px);
                         @include tran_slow_03();
 
                         @include hofo() {
                             color: $colA;
+
+                            .sub-menu {
+                                display: block;
+                            }
                         }
                     }
 
-                    &.active {
+                    .sub-menu {
+                        position: absolute;
+                        width: 220px;
+                        top: 1.2em;
+                        background: $colA;
+                        display: none;
+
+                        li {
+                            a {
+                                display: block;
+                                padding: 1em;
+                                font-size: px2em(14);
+                                @include tran_slow_03();
+
+                                @include hofo() {
+                                    color: $colAH;
+                                }
+                            }
+                        }
+                    }
+
+                    &.active,
+                    &.current-menu-item {
                         a {
                             color: $colA;
                         }
                     }
+
+                    a {
+                        @include hofo() {
+                            background: #000;
+
+                            ~.sub-menu {
+                                display: block;
+                            }
+                        }
+                    }
+
                 }
             }
         }

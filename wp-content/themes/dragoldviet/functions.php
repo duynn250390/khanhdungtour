@@ -81,7 +81,7 @@ function manager_tours()
         ), //Các tính năng được hỗ trợ trong post type
         'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
         'rewrite' => array(
-            // 'slug'                  => 'references',
+            'slug'                  => 'references',
             'with_front'            => false,
             'pages'                 => true,
             'feeds'                 => true,
@@ -249,6 +249,7 @@ function info_tour_metabox_output($post)
     $diem_xuat_phat = get_post_meta($post->ID, '_diem_xuat_phat', true);
     $diem_den = get_post_meta($post->ID, '_diem_den', true);
     $phuong_tien_di_chuyen = get_post_meta($post->ID, '_phuong_tien_di_chuyen', true);
+    $vung_mien = get_post_meta($post->ID, '_vung_mien', true);
     ?>
     <div class="box_info_meta_box">
         <div class="item_list">
@@ -285,9 +286,9 @@ function info_tour_metabox_output($post)
                     'parent' => 0,
                 ));
                 echo '<select  name="diem_den" id="diem_den" class="code">';
-                echo '<option value="0">--Điểm xuất phát--</option>';
+                echo '<option value="0">--Điểm đến--</option>';
                 foreach ($terms as $term) { ?>
-                <option value="<?php echo $term->name ?>" data_id_tinh="<?php echo $term->term_id; ?>" <?php if ($diem_xuat_phat == $term->name) {
+                <option value="<?php echo $term->name ?>" data_id_tinh="<?php echo $term->term_id; ?>" <?php if ($diem_den == $term->name) {
                                                                                                                     echo 'selected';
                                                                                                                 } ?>><?php echo $term->name ?></option>
             <?php }
@@ -306,6 +307,23 @@ function info_tour_metabox_output($post)
                                                 echo 'selected';
                                             } ?>>Máy bay</option>
             </select>
+        </div>
+        <div class="item_list">
+            <lable for="diem_den">Chọn vùng miền</lable>
+            <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'mien',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                ));
+                echo '<select  name="vung_mien" id="vung_mien" class="code">';
+                echo '<option value="0">--Vùng miền--</option>';
+                foreach ($terms as $term) { ?>
+                <option value="<?php echo $term->name ?>" <?php if ($vung_mien == $term->name) {
+                                                                        echo 'selected';
+                                                                    } ?>><?php echo $term->name ?></option>
+            <?php }
+                echo '</select>'; ?>
         </div>
         <!-- <div class="item_list">
             <lable for="diem_den">Điểm đến</lable>
@@ -378,6 +396,10 @@ function info_tour_save($post_id)
     if (isset($_POST['phuong_tien_di_chuyen'])) {
         $phuong_tien_di_chuyen = sanitize_text_field($_POST['phuong_tien_di_chuyen']);
         update_post_meta($post_id, '_phuong_tien_di_chuyen', $phuong_tien_di_chuyen);
+    }
+    if (isset($_POST['vung_mien'])) {
+        $vung_mien = sanitize_text_field($_POST['vung_mien']);
+        update_post_meta($post_id, '_vung_mien', $vung_mien);
     }
 }
 add_action('save_post', 'info_tour_save');

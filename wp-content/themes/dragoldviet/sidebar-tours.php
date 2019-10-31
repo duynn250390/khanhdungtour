@@ -3,12 +3,13 @@
         <h1 class="widget-title">Tìm kiếm tour</h1>
     </header>
     <section class="body_widget">
-        <form action="post">
+        <form role="search" method="get" class="search-form" action="<?php echo home_url('/'); ?>">
+            <input name="post-type" type="hidden" value="tours">
             <div class="fomr_search">
                 <div class="group_form">
-                    <label for="txt_diem_den">Điểm đến</label>
+                    <label for="txt_diem_den">Bạn muốn du lịch đến</label>
                     <div class="control_in in_chu">
-                        <select class="diem_den" id="txt_diem_den" name="txt_diem_den">
+                        <select class="diem-den" id="txt_diem_den" name="diem-den">
                             <?php
                             $terms = get_terms(array(
                                 'taxonomy' => 'tinh',
@@ -24,13 +25,10 @@
                 </div>
                 <div class="group_form">
                     <label for="dia_danh_du_lich">Điểm du lịch</label>
-                    <div class="control_in in_one">
-                        <select disabled class="diem_du_lich" id="diem_du_lich" name="diem_du_lich">
-                            <option value="0">--Điểm du lịch--</option>
-                        </select>
-                        <!-- <input type="text" id="dia_danh_du_lich" name="dia_danh_du_lich" placeholder="Nhập điểm du lịch..." /> -->
+                    <div class="control_in in_three">
+                        <input name="s" type="text" id="dia_danh_du_lich" name="dia_danh_du_lich" placeholder="Nhập nội dung cần tìm..." />
                     </div>
-                </div>
+                </div> 
                 <div class="group_form">
                     <button type="submit" class="btn_submit_search">Tìm kiếm</button>
                 </div>
@@ -38,38 +36,6 @@
         </form>
     </section>
 </aside>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#txt_diem_den').on('change', function() {
-            var id_dia_diem = $(this).find("option:selected").attr('data_dia_diem');
-            $.ajax({
-                type: "post", //Phương thức truyền post hoặc get
-                dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
-                url: '<?php echo admin_url('admin-ajax.php'); ?>', //Đường dẫn chứa hàm xử lý dữ liệu. Mặc định của WP như vậy
-                data: {
-                    action: "get_diem_du_lich", //Tên action
-                    'id_dia_diem': id_dia_diem
-                },
-                context: this,
-                beforeSend: function() {},
-                success: function(response) {
-                    if (response.success) {
-                        var data = response.data;
-                        $('.diem_du_lich').removeAttr('disabled');
-                        $('#diem_du_lich').html(data);
-                    } else {
-                        alert('Đã có lỗi xảy ra');
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log('The following error occured: ' + textStatus, errorThrown);
-                }
-            })
-            return false;
-        });
-
-    });
-</script>
 <aside class="wiget wiget-searc-tours">
     <header>
         <h1 class="widget-title">Cùng địa điểm</h1>
