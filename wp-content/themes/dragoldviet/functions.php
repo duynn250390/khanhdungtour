@@ -81,7 +81,7 @@ function manager_tours()
         ), //Các tính năng được hỗ trợ trong post type
         'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
         'rewrite' => array(
-            'slug'                  => 'references',
+            'slug'                  => 'tours',
             'with_front'            => false,
             'pages'                 => true,
             'feeds'                 => true,
@@ -98,7 +98,8 @@ function manager_tours()
         'has_archive' => true, //Cho phép lưu trữ (month, date, year)
         'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
         'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
-        'capability_type' => 'post' //
+        'capability_type' => 'post', //
+        'has_archive' => 'tours'
     );
     register_post_type('tours', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
 }
