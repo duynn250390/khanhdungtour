@@ -11,7 +11,7 @@
 get_header();
 ?>
 <div class="warap">
-    <section class="content_search">
+    <section class="breakcrumm_ss">
         <div class="container">
             <div id="breadcrumbs" class="breadcrumbs search">
                 <div class="list">
@@ -19,6 +19,11 @@ get_header();
                     <span class="breadcrumb_last" aria-current="page">Kết quả tìm kiếm </span>
                 </div>
             </div>
+        </div>
+    </section>
+    <section class="content_search">
+        <div class="container">
+
             <div class="sub_content_search">
                 <div class="content_left_search">
                     <?php

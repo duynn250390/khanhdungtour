@@ -288,7 +288,7 @@ get_header();
                                                 </li>
                                             </ul>
                                             <h4 class="title"><a href="<?php echo the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                            <div class="read_more"><a href="" class="btn_read">Chi tiết</a></div>
+                                            <div class="read_more"><a href="<?php echo the_permalink(); ?>" class="btn_read">Chi tiết</a></div>
                                         </div>
                                     </article>
                                 </div>

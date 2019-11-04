@@ -45,3 +45,64 @@
         }
     }
 }
+
+.box_news {
+    &.category {
+        .box_left {
+            display: flex;
+            flex-direction: column;
+
+            .list_item_post {
+                width: 100%;
+                margin-bottom: 1em;
+
+                .item_avatar_news {
+                    width: 26%;
+                    float: left;
+                    padding-right: 1em;
+
+                    a {
+                        text-decoration: none;
+                        outline: none;
+
+
+                        height: 200px;
+
+                        img {
+                            height: 100%;
+                            object-fit: cover;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .content_article {
+                    .heading_title_news {
+                        margin-bottom: 1em;
+
+                        .title {
+                            a {
+                                text-decoration: none;
+                                outline: none;
+                                font-size: px2em(20);
+                                font-weight: 600;
+                                line-height: 1.3;
+                            }
+                        }
+                    }
+                }
+
+                &:after {
+                    @include clear_fix();
+                }
+            }
+
+            .content_article {
+                float: left;
+                width: 74%;
+            }
+
+
+        }
+    }
+}
