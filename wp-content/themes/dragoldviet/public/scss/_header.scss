@@ -49,7 +49,10 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        height: 80px;
+
+        @include maxWidth(980px) {
+            padding: 15px 0;
+        }
 
         .logo {
             width: 300px;
@@ -94,41 +97,61 @@
                         margin-right: 0;
                     }
 
+                    @include hofo() {
+                        .sub-menu {
+                            display: block;
+                            z-index: 9999;
+                            -webkit-transition: all .3s ease-in;
+                            -moz-transition: all .3s ease-in;
+                            -ms-transition: all .3s ease-in;
+                            -o-transition: all .3s ease-in;
+                            transition: all .3s ease-in;
+                            visibility: visible;
+                            top: 100%;
+                        }
+                    }
+
                     a {
+                        letter-spacing: 0.2;
+                        padding: 30px 0;
+                        display: block;
                         text-decoration: none;
                         outline: none;
                         color: #1f1f1f;
                         font-size: px2em(14);
-                        padding: 1em 0;
                         text-transform: uppercase;
                         @include borderRadius(4px);
                         @include tran_slow_03();
-
-                        @include hofo() {
-                            color: $colA;
-
-                            .sub-menu {
-                                display: block;
-                            }
-                        }
                     }
 
                     .sub-menu {
                         position: absolute;
-                        width: 220px;
-                        top: 1.2em;
-                        background: $colA;
                         display: none;
+                        background-color: #fff;
+                        border-style: solid;
+                        border-width: 1px;
+                        border-color: #eee;
+                        border-radius: 0;
+                        min-width: 225px;
+                        left: -45%;
+                        visibility: hidden;
+                        top: 110%;
+                        z-index: -1;
+                        top: 110%;
 
                         li {
+                            margin: 0;
+
                             a {
                                 display: block;
                                 padding: 1em;
                                 font-size: px2em(14);
+                                color: #5d5d5d;
+                                border-bottom: 1px solid #ebebeb;
                                 @include tran_slow_03();
 
                                 @include hofo() {
-                                    color: $colAH;
+                                    color: $colA;
                                 }
                             }
                         }
@@ -143,8 +166,6 @@
 
                     a {
                         @include hofo() {
-                            background: #000;
-
                             ~.sub-menu {
                                 display: block;
                             }

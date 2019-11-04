@@ -1,4 +1,6 @@
 .breadcrumbs {
+    min-height: 60px;
+
     &.search {
         padding-top: 2em;
 
@@ -10,6 +12,7 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
+
                 &:after {
                     content: '';
                     display: block;
@@ -85,6 +88,26 @@
                     line-height: 1.3;
                     margin-bottom: 1em;
                 }
+            }
+        }
+    }
+}
+
+.content_search {
+    &.mien_local {
+        .sub_content_search {
+            .content_left_search {
+                padding-left: 1em;
+                padding-right: 0;
+                order: 2;
+                border-left: 1px solid #f7f7f7;
+            }
+
+            .content_right_search {
+                padding-left: 0;
+                padding-right: 1em;
+                order: 1;
+                border-left: none;
             }
         }
     }

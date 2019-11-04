@@ -67,7 +67,7 @@ function manager_tours()
  */
     $args = array(
         'labels' => $label, //Gọi các label trong biến $label ở trên
-        'description' => 'Quản lý sản phẩm', //Mô tả của post type
+        'description' => 'Quản lý Tour', //Mô tả của post type
         'supports' => array(
             'title',
             'editor',
@@ -79,7 +79,7 @@ function manager_tours()
             'revisions',
             'custom-fields'
         ), //Các tính năng được hỗ trợ trong post type
-        'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
+        // 'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
         'rewrite' => array(
             'slug'                  => 'tours',
             'with_front'            => false,
@@ -105,6 +105,27 @@ function manager_tours()
 }
 /* Kích hoạt hàm tạo custom post type */
 add_action('init', 'manager_tours');
+
+function loai_tour_taxonomy()
+{
+    $labels = array(
+        'name' => 'Loại Tour',
+        'singular' => 'Loại tour',
+        'menu_name' => 'Loại tour'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('loai_tour', array('tours'), $args);
+}
+add_action('init', 'loai_tour_taxonomy', 0);
+
 
 
 function mien_taxonomy()
@@ -251,6 +272,7 @@ function info_tour_metabox_output($post)
     $diem_den = get_post_meta($post->ID, '_diem_den', true);
     $phuong_tien_di_chuyen = get_post_meta($post->ID, '_phuong_tien_di_chuyen', true);
     $vung_mien = get_post_meta($post->ID, '_vung_mien', true);
+    $loai_tour = get_post_meta($post->ID, '_loai_tour', true);
     ?>
     <div class="box_info_meta_box">
         <div class="item_list">
@@ -309,6 +331,24 @@ function info_tour_metabox_output($post)
                                             } ?>>Máy bay</option>
             </select>
         </div>
+        <!-- <div class="item_list"></div>
+        <div class="item_list">
+            <lable for="loai_tour">Loại tour</lable>
+            <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'loai_tour',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                ));
+                echo '<select  name="loai_tour" id="loai_tour" class="code">';
+                echo '<option value="0">--Chọn loại tour--</option>';
+                foreach ($terms as $term) { ?>
+                <option value="<?php echo $term->name ?>" <?php if ($loai_tour == $term->name) {
+                                                                        echo 'selected';
+                                                                    } ?>><?php echo $term->name ?></option>
+            <?php }
+                echo '</select>'; ?>
+        </div>
         <div class="item_list">
             <lable for="diem_den">Chọn vùng miền</lable>
             <?php
@@ -325,7 +365,7 @@ function info_tour_metabox_output($post)
                                                                     } ?>><?php echo $term->name ?></option>
             <?php }
                 echo '</select>'; ?>
-        </div>
+        </div> -->
         <!-- <div class="item_list">
             <lable for="diem_den">Điểm đến</lable>
             <select name="diem_den_chinh" id="diem_den_chinh" class="code">
@@ -333,44 +373,48 @@ function info_tour_metabox_output($post)
             </select>
         </div>  -->
         <script type="text/javascript">
-            $(document).ready(function() {
-                // $('#diem_den').on('change', function() {
-                //     var id_tinh = $(this).find("option:selected").attr('data_id_tinh');
-                //     $.ajax({
-                //         type: "post", //Phương thức truyền post hoặc get
-                //         dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
-                //         url: '<?php echo admin_url('admin-ajax.php'); ?>', //Đường dẫn chứa hàm xử lý dữ liệu. Mặc định của WP như vậy
-                //         data: {
-                //             action: "get_diem_den_cua_tinh", //Tên action
-                //             'id_tinh': id_tinh
-                //         },
-                //         context: this,
-                //         beforeSend: function() {
-                //             //Làm gì đó trước khi gửi dữ liệu vào xử lý
-                //         },
-                //         success: function(response) {
-                //             //Làm gì đó khi dữ liệu đã được xử lý
-                //             if (response.success) {
-                //                 // alert(response.data);
-                //                 var data = response.data;
-                //                 console.log(data);
+            // $(document).ready(function() {
+            //     $('#loai_tourchecklist').on('change', function() {
+            //         var id_tinh = $(this).find("option:selected").attr('data_id_tinh');
+            //         $('#loai_tourchecklist li input').attr('checked','');
+            //     });
+            // $('#diem_den').on('change', function() {
+            //     var id_tinh = $(this).find("option:selected").attr('data_id_tinh');
+            //     $.ajax({
+            //         type: "post", //Phương thức truyền post hoặc get
+            //         dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
+            //         url: '<?php echo admin_url('admin-ajax.php'); ?>', //Đường dẫn chứa hàm xử lý dữ liệu. Mặc định của WP như vậy
+            //         data: {
+            //             action: "get_diem_den_cua_tinh", //Tên action
+            //             'id_tinh': id_tinh
+            //         },
+            //         context: this,
+            //         beforeSend: function() {
+            //             //Làm gì đó trước khi gửi dữ liệu vào xử lý
+            //         },
+            //         success: function(response) {
+            //             //Làm gì đó khi dữ liệu đã được xử lý
+            //             if (response.success) {
+            //                 // alert(response.data);
+            //                 var data = response.data;
+            //                 console.log(data);
 
-                //                 // var html = "<option value='0'>--Phường/xã--</option>";
-                //                 // data.forEach(function(item) {
-                //                 //     // html += "<option value='" + item.name + "' data_id_huyen ='" + item.term_id + "'>" + item.name + "</option>";
-                //                 // });
-                //                 $('#diem_den_chinh').html(data);
-                //             } else {
-                //                 alert('Đã có lỗi xảy ra');
-                //             }
-                //         },
-                //         error: function(jqXHR, textStatus, errorThrown) {
-                //             //Làm gì đó khi có lỗi xảy ra
-                //             console.log('The following error occured: ' + textStatus, errorThrown);
-                //         }
-                //     })
-                //     return false;
-                // });
+            //                 // var html = "<option value='0'>--Phường/xã--</option>";
+            //                 // data.forEach(function(item) {
+            //                 //     // html += "<option value='" + item.name + "' data_id_huyen ='" + item.term_id + "'>" + item.name + "</option>";
+            //                 // });
+            //                 $('#diem_den_chinh').html(data);
+            //             } else {
+            //                 alert('Đã có lỗi xảy ra');
+            //             }
+            //         },
+            //         error: function(jqXHR, textStatus, errorThrown) {
+            //             //Làm gì đó khi có lỗi xảy ra
+            //             console.log('The following error occured: ' + textStatus, errorThrown);
+            //         }
+            //     })
+            //     return false;
+            // });
             });
         </script>
     </div>
@@ -401,6 +445,10 @@ function info_tour_save($post_id)
     if (isset($_POST['vung_mien'])) {
         $vung_mien = sanitize_text_field($_POST['vung_mien']);
         update_post_meta($post_id, '_vung_mien', $vung_mien);
+    }
+    if (isset($_POST['loai_tour'])) {
+        $loai_tour = sanitize_text_field($_POST['loai_tour']);
+        update_post_meta($post_id, '_loai_tour', $loai_tour);
     }
 }
 add_action('save_post', 'info_tour_save');

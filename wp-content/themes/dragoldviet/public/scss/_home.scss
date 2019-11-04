@@ -383,7 +383,8 @@
             }
         }
     }
-    &.content_list_tour{
+
+    &.content_list_tour {
         padding-top: 4em;
 
         @include maxWidth(1024px) {
@@ -854,4 +855,11 @@
         padding-top: 1em;
         padding-bottom: 1em;
     }
+}
+
+.breakcrumm_ss {
+    background: #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

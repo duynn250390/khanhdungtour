@@ -145,7 +145,7 @@ get_header();
                 </div>
                 <div class="list_service row">
                     <div class="item_list">
-                        <a href="">
+                        <a href="<?php bloginfo('url') ?>/mien/du-lich-mien-bac/">
                             <div class="heading_service">
                                 Du lịch miền bắc
                             </div>
@@ -159,7 +159,7 @@ get_header();
                         </a>
                     </div>
                     <div class="item_list">
-                        <a href="">
+                    <a href="<?php bloginfo('url') ?>/mien/du-lich-mien-trung/">
                             <div class="heading_service">
                                 Du lịch miền Trung
                             </div>
@@ -173,7 +173,7 @@ get_header();
                         </a>
                     </div>
                     <div class="item_list">
-                        <a href="">
+                    <a href="<?php bloginfo('url') ?>/mien/du-lich-mien-nam/">
                             <div class="heading_service">
                                 Du lịch miền Nam
                             </div>

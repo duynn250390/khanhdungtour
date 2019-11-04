@@ -1,16 +1,18 @@
 <?php get_header(); ?>
 <div class="warap">
+    <section class="breakcrumm_ss">
+        <div class="container">
+            <div class="breadcrumbs">
+                <?php
+                if (function_exists('yoast_breadcrumb')) {
+                    yoast_breadcrumb('<p id="breadcrumbs">', '</p>');
+                }
+                ?>
+            </div>
+        </div>
+    </section>
     <div class="container">
         <div class="box_main box_news">
-            <div class="breadcrumb single_breadcrumb">
-                <div class="breadcrumbs">
-                    <?php
-                    if (function_exists('yoast_breadcrumb')) {
-                        yoast_breadcrumb('<p id="breadcrumbs">', '</p>');
-                    }
-                    ?>
-                </div>
-            </div>
             <div class="box_left">
                 <div class="list_tours_tours">
                     <?php
