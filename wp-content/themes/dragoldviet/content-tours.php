@@ -117,9 +117,15 @@
             <div class="box_tour_more">
                 <?php
                 $category_detail =  get_the_category($post->ID);
+                // if(count($category_detail)>0){
+                //     $cateID = $category_detail[0]->cat_ID;
+                //     return  $cateID;
+                // }else{
+                //     return '';
+                // }
                 $ID_Post = get_the_ID();
                 $args_my_query = array(
-                    'cat' => $category_detail[0]->cat_ID,
+                    // 'cat' => $cateID,
                     'post_type'    =>    'tours',
                     'post_status' => 'publish',
                     'posts_per_page' => '6',

@@ -126,8 +126,6 @@ function loai_tour_taxonomy()
 }
 add_action('init', 'loai_tour_taxonomy', 0);
 
-
-
 function mien_taxonomy()
 {
     $labels = array(
@@ -169,28 +167,25 @@ function tinh_taxonomy()
 }
 add_action('init', 'tinh_taxonomy', 2);
 
-
-// function diem_du_lich_taxonomy()
-// {
-//     $labels = array(
-//         'name' => 'Điểm du lịch',
-//         'singular' => 'Điểm du lịch',
-//         'menu_name' => 'Điểm du lịch'
-//     );
-//     $args = array(
-//         'labels'                     => $labels,
-//         'hierarchical'               => true,
-//         'public'                     => true,
-//         'show_ui'                    => true,
-//         'show_admin_column'          => true,
-//         'show_in_nav_menus'          => true,
-//         'show_tagcloud'              => true,
-//     );
-//     register_taxonomy('diem-du-lich', array('tours'), $args);
-// }
-// add_action('init', 'diem_du_lich_taxonomy', 2);
-
-
+function daytour_taxonomy()
+{
+    $labels = array(
+        'name' => 'Daily tour',
+        'singular' => 'Daily tour',
+        'menu_name' => 'Daily tour'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('daytour', array('tours'), $args);
+}
+add_action('init', 'daytour_taxonomy', 3);
 function add_gallery_metabox($post_type)
 {
     $types = array('tours');
