@@ -39,7 +39,7 @@ $(document).ready(function () {
         prevArrow: '<button class="slick-arrow slick-prev"></button>',
     });
     $('#dailytour').slick({
-        dots: false,
+        dots: true,
         infinite: false,
         autoplay: true,
         speed: 500,
@@ -50,7 +50,21 @@ $(document).ready(function () {
         slidesToScroll: 3,
         nextArrow: '<button class="slick-arrow slick-next"></button>',
         prevArrow: '<button class="slick-arrow slick-prev"></button>',
+        responsive: [{
+            breakpoint: 980,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+            }
+        }, {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+        }]
     });
+
     $('#slide_article').slick({
         dots: false,
         infinite: false,

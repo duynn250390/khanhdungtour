@@ -435,12 +435,16 @@
 .content_list_tour {
     .box_warap_content {
         .list_tour {
+            &.dailytour {
+                display: block;
+            }
+
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
 
             .item_list_tour {
-                // float: left;
+                float: left;
                 width: 33.33333333333%;
                 padding: 0 0.5em;
                 margin-bottom: 1em;

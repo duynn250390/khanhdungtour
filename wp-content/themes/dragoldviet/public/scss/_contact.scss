@@ -1,0 +1,151 @@
+.maps {
+    height: 520px;
+    width: 100%;
+    position: relative;
+
+    .ovelay {
+        position: absolute;
+        z-index: 9;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.breakcrumm_ss {
+    &.bc_contact {
+        margin-bottom: 0;
+    }
+}
+
+.content_page_main {
+    &.contact {
+        .content_box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 3em 0;
+
+            @include maxWidth(768px) {
+                flex-direction: column;
+            }
+
+            .box_item_contact {
+                width: 33.3333333333%;
+                background: #F5F5F5;
+                min-height: 300px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                @include tran_slow_03();
+
+                @include maxWidth(768px) {
+                    width: 100%;
+                }
+
+                .bulet {
+                    height: 70px;
+                    width: 70px;
+                    background: $colA;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    @include borderRadius(50%);
+                }
+
+                .title {
+                    padding: 2em 0;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    color: #000;
+                    font-size: px2em(16);
+                    position: relative;
+
+                    &:after {
+                        content: '';
+                        width: 50px;
+                        height: 1px;
+                        position: absolute;
+                        left: 0;
+                        background: $colA;
+                        right: 0;
+                        margin: auto;
+                        bottom: 0;
+                    }
+                }
+
+                .description {
+                    margin-top: 1em;
+                }
+
+                &:nth-child(1) {
+                    .bulet {
+                        &:after {
+                            content: '';
+                            height: 32px;
+                            width: 32px;
+                            background-image: url(public/images/icon/location-pin.png);
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            background-position: center;
+                            display: block;
+                        }
+                    }
+                }
+
+                &:nth-child(2) {
+                    background: $colA;
+
+                    .title {
+                        &:after {
+                            background: #fff;
+                        }
+                    }
+
+                    .description {
+                        color: #fff;
+                    }
+
+                    .bulet {
+                        background: #fff;
+
+                        &:after {
+                            content: '';
+                            height: 32px;
+                            width: 32px;
+                            background-image: url(public/images/icon/call.png);
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            background-position: center;
+                            display: block;
+                        }
+                    }
+                }
+
+                &:nth-child(3) {
+
+                    .bulet {
+                        &:after {
+                            content: '';
+                            height: 32px;
+                            width: 32px;
+                            background-image: url(public/images/icon/email.png);
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            background-position: center;
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
