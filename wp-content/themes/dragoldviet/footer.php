@@ -90,7 +90,7 @@
                                 <a href="" class="des_class">Giới thiệu</a>
                             </li>
                             <li class="list_li_bo">
-                                <a href="" class="des_class">Hướng dẫn C</a>
+                                <a href="" class="des_class">Chính sách - bảo mật</a>
                             </li>
                             <li class="list_li_bo">
                                 <a href="" class="des_class">Hướng dẫn Ab</a>

@@ -16,16 +16,16 @@
     }
 
     @include maxWidth(1024px) {
-        max-width: 960px;
-    }
-
-    @include maxWidth(980px) {
-        max-width: 720px;
-    }
-
-    @include maxWidth(768px) {
         max-width: 100%;
     }
+
+    // @include maxWidth(980px) {
+    //     max-width: 720px;
+    // }
+
+    // @include maxWidth(768px) {
+    //     max-width: 100%;
+    // }
 
     // @include maxWidth(480px) {
     //     max-width: 100%;
@@ -608,6 +608,88 @@
     }
 }
 
+.list_info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 0.5em;
+
+        &.local {
+            display: flex;
+
+            &::before {
+                content: '';
+                background-image: url(public/images/icon/local.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90%;
+                height: 18px;
+                margin-right: 5px;
+                width: 18px;
+                display: block;
+            }
+        }
+
+        &.date {
+            color: #212121;
+            font-weight: 600;
+
+            &::before {
+                content: '';
+                background-image: url(public/images/icon/bullet_time.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90%;
+                height: 18px;
+                width: 18px;
+                margin-right: 5px;
+                display: block;
+            }
+        }
+
+        &.fa_co {
+            &::before {
+                content: '';
+                background-image: url(public/images/icon/street.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90%;
+                height: 18px;
+                width: 18px;
+                margin-right: 5px;
+                display: block;
+            }
+
+            .local_start_end {
+                display: flex;
+                flex-direction: row;
+
+                .local_start {
+                    &:after {
+                        content: '-';
+                    }
+                }
+            }
+        }
+
+        &.price {
+            font-size: px2em(12);
+
+            span {
+                color: $colB;
+                font-weight: 600;
+                margin-left: 5px;
+                font-size: px2em(18);
+            }
+        }
+    }
+}
+
 .news_container {
     position: relative;
     padding: 0;
@@ -824,6 +906,9 @@
                         }
 
                         &.site {
+                            font-weight: 600;
+                            color: $colB;
+
                             &::before {
                                 background-image: url(public/images/icon/web.png);
                             }

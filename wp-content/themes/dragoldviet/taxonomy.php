@@ -26,7 +26,7 @@ $term_slug = $queried_object->slug;
                     <span class="breadcrumb_last" aria-current="page"><?php echo get_queried_object()->name; ?></span>
                 </div>
             </div>
-            <div class="sub_content_search">
+            <div class="sub_content_search taxonamy">
                 <div class="content_left_search">
                     <?php
                     get_sidebar('news');
@@ -49,8 +49,43 @@ $term_slug = $queried_object->slug;
                     if ($al_tax_post_qry->have_posts()) :
                         while ($al_tax_post_qry->have_posts()) :
                             $al_tax_post_qry->the_post();
+                            $post_id = $post->ID;
+                            $local_tour = get_post_meta(get_the_ID(), '_diem_xuat_phat', TRUE);
+                            $time_tour = get_post_meta(get_the_ID(), '_thoi_gian_tour', TRUE);
+                            $diem_den = get_post_meta(get_the_ID(), '_diem_den', TRUE);
+                            $gia_tour = get_post_meta(get_the_ID(), '_gia_tour', TRUE);
                             ?>
-                            <div class="main_info_tour">
+                            <div class="post_post">
+                                <article id="post-<?php the_ID(); ?>" class="post_item_cate_tour">
+                                    <figure class="img_thumb">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <a href="<?php echo get_permalink(); ?>">
+                                                <img src="<?php echo the_post_thumbnail_url('square_smallc_thumbnail'); ?>" alt="<?php echo get_the_title(); ?>">
+                                            </a>
+                                        <?php endif ?>
+                                    </figure>
+                                    <div class="tour_info">
+                                        <header class="head_box">
+                                            <h2 class="entry_title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                        </header>
+                                        <ul class="list_info">
+                                            <li class="local"><?php echo $diem_den; ?></li>
+                                            <li class="date"><?php echo $time_tour; ?></li>
+                                            <li class="fa_co">
+                                                <ul class="local_start_end">
+                                                    <li class="local_start"><?php echo $local_tour; ?></li>
+                                                    <li class="local_end"><?php echo $diem_den; ?></li>
+                                                </ul>
+                                            </li>
+                                            <li class="price">Già từ:<span><?php echo $gia_tour; ?> VND</span></li>
+                                        </ul>
+                                        <div class="read_more">
+                                            <a href="<?php echo the_permalink(); ?>" class="btn_read_more">Chi tiết</a>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- <div class="main_info_tour">
                                 <div class="slideshow_tour">
                                     <a href="<?php echo get_permalink($post->ID); ?>">
                                         <?php
@@ -67,7 +102,7 @@ $term_slug = $queried_object->slug;
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                     <?php
                         endwhile;
                     endif;

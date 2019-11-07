@@ -149,3 +149,93 @@
         }
     }
 }
+
+.contact_message {
+    .heading_contact {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2em;
+
+        h1 {
+            font-size: px2em(28);
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            font-size: px2em(14);
+            color: #888;
+            line-height: 1.4;
+        }
+    }
+
+    .form_contact,
+    .wpcf7-form {
+        background: $colB;
+        padding: 2em 1em;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        @include tran_slow_03();
+        @include maxWidth(480px){
+            padding: 0.5em 0;
+        }
+        .inputform {
+            @include tran_slow_03();
+            padding: 10px;
+
+            input,
+            button,
+            select,
+            textarea {
+                min-height: 40px;
+                font-size: px2em(14);
+
+            }
+
+            input,
+            select,
+            textarea {
+                border: 1px solid #fff;
+                outline: none;
+                padding: 5px 1em;
+                width: 100%;
+            }
+
+            textarea {
+                min-height: 100px;
+            }
+        }
+
+        .contact_submit {
+            display: flex;
+            justify-content: flex-end;
+
+            button,
+            .wpcf7-submit {
+                background: $colA;
+                border: none;
+                cursor: pointer;
+                width: auto;
+                @include tran_slow_03();
+
+                @include hofo() {
+                    background: $colAH;
+                }
+            }
+        }
+
+        .input_haft {
+            width: 50%;
+
+            @include maxWidth(480px) {
+                width: 100%;
+            }
+        }
+
+        .input_full {
+            width: 100%;
+        }
+    }
+}

@@ -37,13 +37,29 @@
     .content_left_search {
         width: 25%;
         padding-right: 1em;
+        @include tran_slow_03();
+
+        @include maxWidth(1024px) {
+            width: 30%;
+        }
+
+        @include maxWidth(980px) {
+            display: none;
+        }
     }
 
     .content_right_search {
         border-left: 1px solid #f7f7f7;
         width: 75%;
         padding-left: 1em;
-        ;
+
+        @include maxWidth(1024px) {
+            width: 70%;
+        }
+
+        @include maxWidth(980px) {
+            width: 100%;
+        }
     }
 }
 
@@ -107,6 +123,95 @@
                 padding-right: 1em;
                 order: 1;
                 border-left: none;
+            }
+
+            &.taxonamy {
+                .content_right_search {
+                    .post_post {
+                        margin-bottom: 10px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #e8e8e8;
+
+                        .post_item_cate_tour {
+                            display: flex;
+                            flex-direction: row;
+
+                            @include maxWidth(480px) {
+                                flex-direction: column;
+                            }
+
+                            .img_thumb {
+                                width: 40%;
+                                @include tran_slow_03();
+
+                                @include maxWidth(480px) {
+                                    width: 100%;
+                                }
+
+                                a {
+                                    width: 100%;
+                                    height: 240px;
+
+                                    img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
+                                }
+                            }
+
+                            .tour_info {
+                                width: 60%;
+                                padding-left: 1em;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-between;
+                                @include tran_slow_03();
+
+                                @include maxWidth(480px) {
+                                    width: 100%;
+                                    padding-left: 0;
+                                }
+
+                                .head_box {
+                                    .entry_title {
+                                        a {
+                                            font-size: px2em(16);
+                                            font-weight: 600;
+                                            color: #000;
+                                            letter-spacing: 0;
+                                            line-height: 1.3;
+                                            @include tran_slow_03();
+
+                                            @include hofo() {
+                                                color: $colBH;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .read_more {
+                                    border: none;
+                                    margin: 0;
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: flex-end;
+
+                                    a {
+                                        padding: 0.5em 1em;
+                                        background: $colB;
+                                        color: #fff;
+                                        @include tran_slow_03();
+
+                                        @include hofo() {
+                                            background: $colBH;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

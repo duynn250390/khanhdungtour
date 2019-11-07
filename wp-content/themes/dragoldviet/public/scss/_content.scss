@@ -5,6 +5,10 @@
         flex-direction: row;
         flex-wrap: wrap;
 
+        @include maxWidth(480px) {
+            padding-top: 0;
+        }
+
         .breadcrumb {
             width: 100%;
         }
@@ -12,6 +16,15 @@
         .box_left {
             width: 70%;
             padding-right: 1em;
+            @include tran_slow_03();
+
+            @include maxWidth(480px) {
+                padding-right: 0;
+            }
+
+            @include maxWidth(980px) {
+                width: 100%;
+            }
 
             .entry-header {
                 .title {
@@ -110,6 +123,11 @@
             border-left: 1px solid #f7f7f7;
             width: 30%;
             padding-left: 1em;
+            @include tran_slow_03();
+
+            @include maxWidth(980px) {
+                display: none;
+            }
 
             .wiget {
                 margin-bottom: 2em;

@@ -28,24 +28,47 @@
                         <div class="bulet"></div>
                         <h3 class="title">Địa chỉ</h3>
                         <div class="description ">
-                            <p>17 Đổng Lợi 3 - An Khê - Hải Châu - Đà Nẵng</p>
+                            <p><?php echo get_option('my_local'); ?></p>
                         </div>
                     </div>
                     <div class="box_item_contact">
                         <div class="bulet"></div>
                         <h3 class="title">Phone</h3>
                         <div class="description ">
-                            <p>0869906070</p>
+                            <p><?php echo get_option('my_hotline'); ?></p>
                         </div>
                     </div>
                     <div class="box_item_contact">
                         <div class="bulet"></div>
                         <h3 class="title">Email</h3>
                         <div class="description ">
-                            <p>cskh@khanhdungtour.com</p>
+                            <p> <?php bloginfo('admin_email'); ?></p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact_message">
+        <div class="container">
+            <div class="heading_contact">
+                <h1>Lắng nghe từ bạn</h1>
+                <p>Mỗi tin nhắn của bạn gửi đến Khánh Dung Tour sẽ luôn được lắng nghe và hồi đáp sớm nhất có thể </p>
+            </div>
+            <div class="form_contact">
+                <!-- <div class="inputform input_haft">
+                    <input type="text" placeholder="Họ tên"/>
+                </div>
+                <div class="inputform input_haft">
+                    <input type="email" placeholder="Email"/>
+                </div>
+                <div class="inputform input_full">
+                    <textarea>Nhập thông điệp muốn gửi</textarea>
+                </div>
+                <div class="inputform input_full contact_submit">
+                    <button>Gửi thông điệp</button>
+                </div> -->
+                <?php echo do_shortcode('[contact-form-7 id="297" title="Contact form 1"]'); ?>
             </div>
         </div>
     </section>
