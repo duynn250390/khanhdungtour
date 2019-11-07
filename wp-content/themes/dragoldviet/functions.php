@@ -38,6 +38,7 @@ if (!function_exists('herozuzu_setup')) :
         register_nav_menu('global-nav', __('Header menu', 'herozuzu'));
         register_nav_menu('left-nav', __('Left menu', 'herozuzu'));
         register_nav_menu('right-nav', __('Right menu', 'herozuzu'));
+        register_nav_menu('footer-nav', __('Footer menu', 'herozuzu'));
         add_theme_support('post-thumbnails');
         add_image_size('large-thumbnail', 1118, 538, true);
         add_image_size('images_project', 1000, 440, true);
@@ -79,7 +80,7 @@ function manager_tours()
             'revisions',
             'custom-fields'
         ), //Các tính năng được hỗ trợ trong post type
-        // 'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
         'rewrite' => array(
             'slug'                  => 'tours',
             'with_front'            => false,
@@ -480,6 +481,51 @@ function getpostviews($postID)
 // =========================SET GET VIEW  END=============================
 // ======================================================================
 
+// =========================CUSTOM FIELD START=============================
+// =================================================================
+add_filter('admin_init', 'my_general_settings_register_phone');
+
+function my_general_settings_register_phone()
+{
+    register_setting('general', 'my_phone', 'esc_attr');
+    add_settings_field('my_phone', '<label for="my_phone">' . __('Phone', 'my_phone') . '</label>', 'my_general_settings_fields_html', 'general');
+}
+
+function my_general_settings_fields_html()
+{
+    $value_phone = get_option('my_phone', '');
+    echo '<input type="num" id="my_phone" name="my_phone" value="' . $value_phone . '" />';
+}
+
+add_filter('admin_init', 'my_general_settings_register_local');
+
+function my_general_settings_register_local()
+{
+    register_setting('general', 'my_local', 'esc_attr');
+    add_settings_field('my_local', '<label for="my_local">' . __('Địa chỉ', 'my_local') . '</label>', 'my_general_local_settings_fields_html', 'general');
+}
+
+function my_general_local_settings_fields_html()
+{
+    $value_local = get_option('my_local', '');
+    echo '<input type="text" id="my_local" name="my_local" value="' . $value_local . '" />';
+}
+
+add_filter('admin_init', 'my_general_settings_register_hotline');
+
+function my_general_settings_register_hotline()
+{
+    register_setting('general', 'my_hotline', 'esc_attr');
+    add_settings_field('my_hotline', '<label for="my_hotline">' . __('Hotline', 'my_hotline') . '</label>', 'my_general_hotline_settings_fields_html', 'general');
+}
+
+function my_general_hotline_settings_fields_html()
+{
+    $value_hotline = get_option('my_hotline', '');
+    echo '<input type="text" id="my_hotline" name="my_hotline" value="' . $value_hotline . '" />';
+}
+// =========================CUSTOM FIELD END=============================
+// =================================================================
 
 // =========================FUNCTION AJAX START===========================
 // =======================================================================
@@ -502,7 +548,6 @@ function get_diem_du_lich_init()
 }
 // =========================FUNCTION AJAX END=============================
 // =======================================================================
-
 
 // =========================SIDEBAR START=============================
 // ===================================================================

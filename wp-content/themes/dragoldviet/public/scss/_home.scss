@@ -787,25 +787,101 @@
         }
 
         .bodyfo {
+            &.company {
+                .list_bo {
+                    .list_li_bo {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        &::before {
+                            content: '';
+                            display: block;
+                            height: 24px;
+                            width: 24px;
+                            margin-right: 10px;
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            background-position: center;
+                        }
+
+                        &.local {
+                            &::before {
+                                background-image: url(public/images/icon/placeholder-point.png);
+                            }
+                        }
+
+                        &.email {
+                            &::before {
+                                background-image: url(public/images/icon/message.png);
+                            }
+                        }
+
+                        &.hotline {
+                            &::before {
+                                background-image: url(public/images/icon/speech-bubble.png);
+                            }
+                        }
+
+                        &.site {
+                            &::before {
+                                background-image: url(public/images/icon/web.png);
+                            }
+                        }
+                    }
+                }
+            }
+
             .title {
                 font-weight: 600;
                 font-size: px2em(14);
                 color: #000;
                 margin-bottom: 1em;
                 line-height: 1.4;
+
+                &.company {
+                    text-transform: uppercase;
+                }
             }
 
-            .list_bo {
+            .list_bo,
+            .menu {
                 display: flex;
                 flex-direction: column;
 
-                .list_li_bo {
+                .list_li_bo,
+                .menu-item {
                     margin-bottom: 1em;
+
 
                     &:last-child {
                         margin-bottom: 0;
                     }
                 }
+            }
+        }
+    }
+}
+
+.menu-menu-footer-container {
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+
+        .menu-item {
+            margin-bottom: 1em;
+
+            a {
+                @include tran_slow_03();
+
+                @include hofo() {
+                    color: $colA;
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
             }
         }
     }

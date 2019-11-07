@@ -217,6 +217,7 @@ get_header();
                             $local_tour = get_post_meta(get_the_ID(), '_diem_xuat_phat', TRUE);
                             $time_tour = get_post_meta(get_the_ID(), '_thoi_gian_tour', TRUE);
                             $diem_den = get_post_meta(get_the_ID(), '_diem_den', TRUE);
+                            $gia_tour = get_post_meta(get_the_ID(), '_gia_tour', TRUE);
                             ?>
                             <div class="item_list_tour">
                                 <figure class="tour_thumb">
@@ -237,7 +238,7 @@ get_header();
                                                 <li class="local_end"><?php echo $diem_den; ?></li>
                                             </ul>
                                         </li>
-                                        <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                                        <li class="price">Giá từ:<span> <?php  echo $gia_tour;?> VND</span></li>
                                     </ul>
                                     <div class="read_more">
                                         <a href="<?php echo the_permalink(); ?>" class="btn_read_more">Chi tiết</a>
@@ -273,6 +274,7 @@ get_header();
                             $local_tour = get_post_meta(get_the_ID(), '_diem_xuat_phat', TRUE);
                             $time_tour = get_post_meta(get_the_ID(), '_thoi_gian_tour', TRUE);
                             $diem_den = get_post_meta(get_the_ID(), '_diem_den', TRUE);
+                            $gia_tour = get_post_meta(get_the_ID(), '_gia_tour', TRUE);
                             ?>
                             <div class="item_list_tour">
                                 <figure class="tour_thumb">
@@ -293,7 +295,7 @@ get_header();
                                                 <li class="local_end"><?php echo $diem_den; ?></li>
                                             </ul>
                                         </li>
-                                        <li class="price">Già từ:<span> 1.0000.000 VND</span></li>
+                                        <li class="price">Giá từ:<span> <?php  echo $gia_tour;?> VND</span></li>
                                     </ul>
                                     <div class="read_more">
                                         <a href="<?php echo the_permalink(); ?>" class="btn_read_more">Chi tiết</a>
