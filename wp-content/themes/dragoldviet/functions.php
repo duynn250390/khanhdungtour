@@ -494,7 +494,7 @@ function my_general_settings_register_phone()
 function my_general_settings_fields_html()
 {
     $value_phone = get_option('my_phone', '');
-    echo '<input type="num" id="my_phone" name="my_phone" value="' . $value_phone . '" />';
+    echo '<input type="num" class="regular-text" id="my_phone" name="my_phone" value="' . $value_phone . '" />';
 }
 
 add_filter('admin_init', 'my_general_settings_register_local');
@@ -508,7 +508,7 @@ function my_general_settings_register_local()
 function my_general_local_settings_fields_html()
 {
     $value_local = get_option('my_local', '');
-    echo '<input type="text" id="my_local" name="my_local" value="' . $value_local . '" />';
+    echo '<input type="text" class="regular-text"  id="my_local" name="my_local" value="' . $value_local . '" />';
 }
 
 add_filter('admin_init', 'my_general_settings_register_hotline');
@@ -522,7 +522,7 @@ function my_general_settings_register_hotline()
 function my_general_hotline_settings_fields_html()
 {
     $value_hotline = get_option('my_hotline', '');
-    echo '<input type="text" id="my_hotline" name="my_hotline" value="' . $value_hotline . '" />';
+    echo '<input type="text" class="regular-text"  id="my_hotline" name="my_hotline" value="' . $value_hotline . '" />';
 }
 // =========================CUSTOM FIELD END=============================
 // =================================================================
