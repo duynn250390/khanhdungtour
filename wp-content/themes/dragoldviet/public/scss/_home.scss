@@ -16,16 +16,16 @@
     }
 
     @include maxWidth(1024px) {
-        max-width: 960px;
-    }
-
-    @include maxWidth(980px) {
-        max-width: 720px;
-    }
-
-    @include maxWidth(768px) {
         max-width: 100%;
     }
+
+    // @include maxWidth(980px) {
+    //     max-width: 720px;
+    // }
+
+    // @include maxWidth(768px) {
+    //     max-width: 100%;
+    // }
 
     // @include maxWidth(480px) {
     //     max-width: 100%;
@@ -383,7 +383,8 @@
             }
         }
     }
-    &.content_list_tour{
+
+    &.content_list_tour {
         padding-top: 4em;
 
         @include maxWidth(1024px) {
@@ -434,12 +435,16 @@
 .content_list_tour {
     .box_warap_content {
         .list_tour {
+            &.dailytour {
+                display: block;
+            }
+
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
 
             .item_list_tour {
-                // float: left;
+                float: left;
                 width: 33.33333333333%;
                 padding: 0 0.5em;
                 margin-bottom: 1em;
@@ -598,6 +603,88 @@
 
             &:after {
                 @include clear_fix();
+            }
+        }
+    }
+}
+
+.list_info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 0.5em;
+
+        &.local {
+            display: flex;
+
+            &::before {
+                content: '';
+                background-image: url(public/images/icon/local.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90%;
+                height: 18px;
+                margin-right: 5px;
+                width: 18px;
+                display: block;
+            }
+        }
+
+        &.date {
+            color: #212121;
+            font-weight: 600;
+
+            &::before {
+                content: '';
+                background-image: url(public/images/icon/bullet_time.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90%;
+                height: 18px;
+                width: 18px;
+                margin-right: 5px;
+                display: block;
+            }
+        }
+
+        &.fa_co {
+            &::before {
+                content: '';
+                background-image: url(public/images/icon/street.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 90%;
+                height: 18px;
+                width: 18px;
+                margin-right: 5px;
+                display: block;
+            }
+
+            .local_start_end {
+                display: flex;
+                flex-direction: row;
+
+                .local_start {
+                    &:after {
+                        content: '-';
+                    }
+                }
+            }
+        }
+
+        &.price {
+            font-size: px2em(12);
+
+            span {
+                color: $colB;
+                font-weight: 600;
+                margin-left: 5px;
+                font-size: px2em(18);
             }
         }
     }
@@ -782,25 +869,104 @@
         }
 
         .bodyfo {
+            &.company {
+                .list_bo {
+                    .list_li_bo {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        &::before {
+                            content: '';
+                            display: block;
+                            height: 24px;
+                            width: 24px;
+                            margin-right: 10px;
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            background-position: center;
+                        }
+
+                        &.local {
+                            &::before {
+                                background-image: url(public/images/icon/placeholder-point.png);
+                            }
+                        }
+
+                        &.email {
+                            &::before {
+                                background-image: url(public/images/icon/message.png);
+                            }
+                        }
+
+                        &.hotline {
+                            &::before {
+                                background-image: url(public/images/icon/speech-bubble.png);
+                            }
+                        }
+
+                        &.site {
+                            font-weight: 600;
+                            color: $colB;
+
+                            &::before {
+                                background-image: url(public/images/icon/web.png);
+                            }
+                        }
+                    }
+                }
+            }
+
             .title {
                 font-weight: 600;
                 font-size: px2em(14);
                 color: #000;
                 margin-bottom: 1em;
                 line-height: 1.4;
+
+                &.company {
+                    text-transform: uppercase;
+                }
             }
 
-            .list_bo {
+            .list_bo,
+            .menu {
                 display: flex;
                 flex-direction: column;
 
-                .list_li_bo {
+                .list_li_bo,
+                .menu-item {
                     margin-bottom: 1em;
+
 
                     &:last-child {
                         margin-bottom: 0;
                     }
                 }
+            }
+        }
+    }
+}
+
+.menu-menu-footer-container {
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+
+        .menu-item {
+            margin-bottom: 1em;
+
+            a {
+                @include tran_slow_03();
+
+                @include hofo() {
+                    color: $colA;
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
             }
         }
     }
@@ -854,4 +1020,12 @@
         padding-top: 1em;
         padding-bottom: 1em;
     }
+}
+
+.breakcrumm_ss {
+    background: #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2em;
 }

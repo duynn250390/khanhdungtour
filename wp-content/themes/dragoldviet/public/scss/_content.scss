@@ -4,12 +4,28 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+
+        @include maxWidth(480px) {
+            padding-top: 0;
+        }
+
         .breadcrumb {
             width: 100%;
         }
+
         .box_left {
             width: 70%;
             padding-right: 1em;
+            @include tran_slow_03();
+
+            @include maxWidth(480px) {
+                padding-right: 0;
+            }
+
+            @include maxWidth(980px) {
+                width: 100%;
+            }
+
             .entry-header {
                 .title {
                     font-size: px2em(26);
@@ -18,30 +34,36 @@
                     line-height: 1.3;
                 }
             }
+
             .entry-content {
                 p {
                     font-size: px2em(16);
                     line-height: 1.8;
                     margin-bottom: 1em;
                 }
+
                 .aligncenter {
                     display: block;
                     margin-left: auto;
                     margin-right: auto;
                 }
+
                 .alignright {
                     display: block;
                     margin-left: auto;
                 }
+
                 .alignleft {
                     display: block;
                     margin-right: auto;
                 }
+
                 *img {
                     margin-top: 0.5em;
                     max-width: 100%;
                     margin-bottom: 0.5em;
                 }
+
                 h2,
                 h3,
                 h4,
@@ -52,29 +74,37 @@
                     margin-bottom: 1em;
                     letter-spacing: 0;
                 }
+
                 h2 {
                     font-size: px2em(21);
                 }
+
                 h3 {
                     font-size: px2em(20);
                 }
+
                 h4 {
                     font-size: px2em(19);
                 }
+
                 h5 {
                     font-size: px2em(18);
                 }
+
                 h6 {
                     font-size: px2em(17);
                 }
+
                 strong {
                     font-weight: 600;
                 }
+
                 ul {
                     li {
                         display: flex;
                         flex-direction: row;
                         margin-bottom: 1em;
+
                         &::before {
                             content: '';
                             height: 10px;
@@ -88,10 +118,17 @@
                 }
             }
         }
+
         .box_right {
             border-left: 1px solid #f7f7f7;
             width: 30%;
             padding-left: 1em;
+            @include tran_slow_03();
+
+            @include maxWidth(980px) {
+                display: none;
+            }
+
             .wiget {
                 margin-bottom: 2em;
             }
@@ -100,18 +137,24 @@
 }
 
 .breadcrumbs {
-    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     span {
         color: #888888;
         font-size: px2em(13);
+
         a {
             color: #888888;
-            font-size: px2em(13);
+            font-size: px2em(14);
             letter-spacing: 0;
+
             @include hofo() {
                 color: $colA;
             }
         }
+
         .breadcrumb_last {
             color: #b7b7b7;
             font-size: px2em(14);
@@ -126,17 +169,20 @@
     flex-direction: column;
     margin-bottom: 3em;
     padding-top: 2em;
+
     .heading_news_more {
         margin-bottom: 1em;
         font-weight: 600;
         font-size: px2em(16);
     }
+
     .list_new_more {
         .item_news_more {
             display: flex;
             flex-direction: row;
             padding: 0.5em 0;
             border-bottom: 1px solid #f7f7f7;
+
             &::before {
                 content: '';
                 display: block;
@@ -148,10 +194,12 @@
                 background-size: 100%;
                 margin-right: 0.3em;
             }
+
             a {
                 text-decoration: none;
                 outline: none;
                 @include tran_slow_03();
+
                 @include hofo() {
                     color: $colB;
                 }

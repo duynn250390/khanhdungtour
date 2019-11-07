@@ -38,6 +38,7 @@ if (!function_exists('herozuzu_setup')) :
         register_nav_menu('global-nav', __('Header menu', 'herozuzu'));
         register_nav_menu('left-nav', __('Left menu', 'herozuzu'));
         register_nav_menu('right-nav', __('Right menu', 'herozuzu'));
+        register_nav_menu('footer-nav', __('Footer menu', 'herozuzu'));
         add_theme_support('post-thumbnails');
         add_image_size('large-thumbnail', 1118, 538, true);
         add_image_size('images_project', 1000, 440, true);
@@ -67,7 +68,7 @@ function manager_tours()
  */
     $args = array(
         'labels' => $label, //Gọi các label trong biến $label ở trên
-        'description' => 'Quản lý sản phẩm', //Mô tả của post type
+        'description' => 'Quản lý Tour', //Mô tả của post type
         'supports' => array(
             'title',
             'editor',
@@ -81,7 +82,7 @@ function manager_tours()
         ), //Các tính năng được hỗ trợ trong post type
         'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
         'rewrite' => array(
-            // 'slug'                  => 'references',
+            'slug'                  => 'tours',
             'with_front'            => false,
             'pages'                 => true,
             'feeds'                 => true,
@@ -98,13 +99,33 @@ function manager_tours()
         'has_archive' => true, //Cho phép lưu trữ (month, date, year)
         'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
         'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
-        'capability_type' => 'post' //
+        'capability_type' => 'post', //
+        'has_archive' => 'tours'
     );
     register_post_type('tours', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
 }
 /* Kích hoạt hàm tạo custom post type */
 add_action('init', 'manager_tours');
 
+function loai_tour_taxonomy()
+{
+    $labels = array(
+        'name' => 'Loại Tour',
+        'singular' => 'Loại tour',
+        'menu_name' => 'Loại tour'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('loai_tour', array('tours'), $args);
+}
+add_action('init', 'loai_tour_taxonomy', 0);
 
 function mien_taxonomy()
 {
@@ -147,28 +168,25 @@ function tinh_taxonomy()
 }
 add_action('init', 'tinh_taxonomy', 2);
 
-
-// function diem_du_lich_taxonomy()
-// {
-//     $labels = array(
-//         'name' => 'Điểm du lịch',
-//         'singular' => 'Điểm du lịch',
-//         'menu_name' => 'Điểm du lịch'
-//     );
-//     $args = array(
-//         'labels'                     => $labels,
-//         'hierarchical'               => true,
-//         'public'                     => true,
-//         'show_ui'                    => true,
-//         'show_admin_column'          => true,
-//         'show_in_nav_menus'          => true,
-//         'show_tagcloud'              => true,
-//     );
-//     register_taxonomy('diem-du-lich', array('tours'), $args);
-// }
-// add_action('init', 'diem_du_lich_taxonomy', 2);
-
-
+function daytour_taxonomy()
+{
+    $labels = array(
+        'name' => 'Daily tour',
+        'singular' => 'Daily tour',
+        'menu_name' => 'Daily tour'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('daytour', array('tours'), $args);
+}
+add_action('init', 'daytour_taxonomy', 3);
 function add_gallery_metabox($post_type)
 {
     $types = array('tours');
@@ -249,6 +267,8 @@ function info_tour_metabox_output($post)
     $diem_xuat_phat = get_post_meta($post->ID, '_diem_xuat_phat', true);
     $diem_den = get_post_meta($post->ID, '_diem_den', true);
     $phuong_tien_di_chuyen = get_post_meta($post->ID, '_phuong_tien_di_chuyen', true);
+    $vung_mien = get_post_meta($post->ID, '_vung_mien', true);
+    $loai_tour = get_post_meta($post->ID, '_loai_tour', true);
     ?>
     <div class="box_info_meta_box">
         <div class="item_list">
@@ -285,9 +305,9 @@ function info_tour_metabox_output($post)
                     'parent' => 0,
                 ));
                 echo '<select  name="diem_den" id="diem_den" class="code">';
-                echo '<option value="0">--Điểm xuất phát--</option>';
+                echo '<option value="0">--Điểm đến--</option>';
                 foreach ($terms as $term) { ?>
-                <option value="<?php echo $term->name ?>" data_id_tinh="<?php echo $term->term_id; ?>" <?php if ($diem_xuat_phat == $term->name) {
+                <option value="<?php echo $term->name ?>" data_id_tinh="<?php echo $term->term_id; ?>" <?php if ($diem_den == $term->name) {
                                                                                                                     echo 'selected';
                                                                                                                 } ?>><?php echo $term->name ?></option>
             <?php }
@@ -307,6 +327,41 @@ function info_tour_metabox_output($post)
                                             } ?>>Máy bay</option>
             </select>
         </div>
+        <!-- <div class="item_list"></div>
+        <div class="item_list">
+            <lable for="loai_tour">Loại tour</lable>
+            <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'loai_tour',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                ));
+                echo '<select  name="loai_tour" id="loai_tour" class="code">';
+                echo '<option value="0">--Chọn loại tour--</option>';
+                foreach ($terms as $term) { ?>
+                <option value="<?php echo $term->name ?>" <?php if ($loai_tour == $term->name) {
+                                                                        echo 'selected';
+                                                                    } ?>><?php echo $term->name ?></option>
+            <?php }
+                echo '</select>'; ?>
+        </div>
+        <div class="item_list">
+            <lable for="diem_den">Chọn vùng miền</lable>
+            <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'mien',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                ));
+                echo '<select  name="vung_mien" id="vung_mien" class="code">';
+                echo '<option value="0">--Vùng miền--</option>';
+                foreach ($terms as $term) { ?>
+                <option value="<?php echo $term->name ?>" <?php if ($vung_mien == $term->name) {
+                                                                        echo 'selected';
+                                                                    } ?>><?php echo $term->name ?></option>
+            <?php }
+                echo '</select>'; ?>
+        </div> -->
         <!-- <div class="item_list">
             <lable for="diem_den">Điểm đến</lable>
             <select name="diem_den_chinh" id="diem_den_chinh" class="code">
@@ -314,44 +369,48 @@ function info_tour_metabox_output($post)
             </select>
         </div>  -->
         <script type="text/javascript">
-            $(document).ready(function() {
-                // $('#diem_den').on('change', function() {
-                //     var id_tinh = $(this).find("option:selected").attr('data_id_tinh');
-                //     $.ajax({
-                //         type: "post", //Phương thức truyền post hoặc get
-                //         dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
-                //         url: '<?php echo admin_url('admin-ajax.php'); ?>', //Đường dẫn chứa hàm xử lý dữ liệu. Mặc định của WP như vậy
-                //         data: {
-                //             action: "get_diem_den_cua_tinh", //Tên action
-                //             'id_tinh': id_tinh
-                //         },
-                //         context: this,
-                //         beforeSend: function() {
-                //             //Làm gì đó trước khi gửi dữ liệu vào xử lý
-                //         },
-                //         success: function(response) {
-                //             //Làm gì đó khi dữ liệu đã được xử lý
-                //             if (response.success) {
-                //                 // alert(response.data);
-                //                 var data = response.data;
-                //                 console.log(data);
+            // $(document).ready(function() {
+            //     $('#loai_tourchecklist').on('change', function() {
+            //         var id_tinh = $(this).find("option:selected").attr('data_id_tinh');
+            //         $('#loai_tourchecklist li input').attr('checked','');
+            //     });
+            // $('#diem_den').on('change', function() {
+            //     var id_tinh = $(this).find("option:selected").attr('data_id_tinh');
+            //     $.ajax({
+            //         type: "post", //Phương thức truyền post hoặc get
+            //         dataType: "json", //Dạng dữ liệu trả về xml, json, script, or html
+            //         url: '<?php echo admin_url('admin-ajax.php'); ?>', //Đường dẫn chứa hàm xử lý dữ liệu. Mặc định của WP như vậy
+            //         data: {
+            //             action: "get_diem_den_cua_tinh", //Tên action
+            //             'id_tinh': id_tinh
+            //         },
+            //         context: this,
+            //         beforeSend: function() {
+            //             //Làm gì đó trước khi gửi dữ liệu vào xử lý
+            //         },
+            //         success: function(response) {
+            //             //Làm gì đó khi dữ liệu đã được xử lý
+            //             if (response.success) {
+            //                 // alert(response.data);
+            //                 var data = response.data;
+            //                 console.log(data);
 
-                //                 // var html = "<option value='0'>--Phường/xã--</option>";
-                //                 // data.forEach(function(item) {
-                //                 //     // html += "<option value='" + item.name + "' data_id_huyen ='" + item.term_id + "'>" + item.name + "</option>";
-                //                 // });
-                //                 $('#diem_den_chinh').html(data);
-                //             } else {
-                //                 alert('Đã có lỗi xảy ra');
-                //             }
-                //         },
-                //         error: function(jqXHR, textStatus, errorThrown) {
-                //             //Làm gì đó khi có lỗi xảy ra
-                //             console.log('The following error occured: ' + textStatus, errorThrown);
-                //         }
-                //     })
-                //     return false;
-                // });
+            //                 // var html = "<option value='0'>--Phường/xã--</option>";
+            //                 // data.forEach(function(item) {
+            //                 //     // html += "<option value='" + item.name + "' data_id_huyen ='" + item.term_id + "'>" + item.name + "</option>";
+            //                 // });
+            //                 $('#diem_den_chinh').html(data);
+            //             } else {
+            //                 alert('Đã có lỗi xảy ra');
+            //             }
+            //         },
+            //         error: function(jqXHR, textStatus, errorThrown) {
+            //             //Làm gì đó khi có lỗi xảy ra
+            //             console.log('The following error occured: ' + textStatus, errorThrown);
+            //         }
+            //     })
+            //     return false;
+            // });
             });
         </script>
     </div>
@@ -378,6 +437,14 @@ function info_tour_save($post_id)
     if (isset($_POST['phuong_tien_di_chuyen'])) {
         $phuong_tien_di_chuyen = sanitize_text_field($_POST['phuong_tien_di_chuyen']);
         update_post_meta($post_id, '_phuong_tien_di_chuyen', $phuong_tien_di_chuyen);
+    }
+    if (isset($_POST['vung_mien'])) {
+        $vung_mien = sanitize_text_field($_POST['vung_mien']);
+        update_post_meta($post_id, '_vung_mien', $vung_mien);
+    }
+    if (isset($_POST['loai_tour'])) {
+        $loai_tour = sanitize_text_field($_POST['loai_tour']);
+        update_post_meta($post_id, '_loai_tour', $loai_tour);
     }
 }
 add_action('save_post', 'info_tour_save');
@@ -414,6 +481,51 @@ function getpostviews($postID)
 // =========================SET GET VIEW  END=============================
 // ======================================================================
 
+// =========================CUSTOM FIELD START=============================
+// =================================================================
+add_filter('admin_init', 'my_general_settings_register_phone');
+
+function my_general_settings_register_phone()
+{
+    register_setting('general', 'my_phone', 'esc_attr');
+    add_settings_field('my_phone', '<label for="my_phone">' . __('Phone', 'my_phone') . '</label>', 'my_general_settings_fields_html', 'general');
+}
+
+function my_general_settings_fields_html()
+{
+    $value_phone = get_option('my_phone', '');
+    echo '<input type="num" id="my_phone" name="my_phone" value="' . $value_phone . '" />';
+}
+
+add_filter('admin_init', 'my_general_settings_register_local');
+
+function my_general_settings_register_local()
+{
+    register_setting('general', 'my_local', 'esc_attr');
+    add_settings_field('my_local', '<label for="my_local">' . __('Địa chỉ', 'my_local') . '</label>', 'my_general_local_settings_fields_html', 'general');
+}
+
+function my_general_local_settings_fields_html()
+{
+    $value_local = get_option('my_local', '');
+    echo '<input type="text" id="my_local" name="my_local" value="' . $value_local . '" />';
+}
+
+add_filter('admin_init', 'my_general_settings_register_hotline');
+
+function my_general_settings_register_hotline()
+{
+    register_setting('general', 'my_hotline', 'esc_attr');
+    add_settings_field('my_hotline', '<label for="my_hotline">' . __('Hotline', 'my_hotline') . '</label>', 'my_general_hotline_settings_fields_html', 'general');
+}
+
+function my_general_hotline_settings_fields_html()
+{
+    $value_hotline = get_option('my_hotline', '');
+    echo '<input type="text" id="my_hotline" name="my_hotline" value="' . $value_hotline . '" />';
+}
+// =========================CUSTOM FIELD END=============================
+// =================================================================
 
 // =========================FUNCTION AJAX START===========================
 // =======================================================================
@@ -436,7 +548,6 @@ function get_diem_du_lich_init()
 }
 // =========================FUNCTION AJAX END=============================
 // =======================================================================
-
 
 // =========================SIDEBAR START=============================
 // ===================================================================
