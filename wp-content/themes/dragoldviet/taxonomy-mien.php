@@ -2,9 +2,10 @@
 
 /**
  * Taxonomy template
+ * Template Post Type: tours
  * To create different taxonomy templates, copy
  * this file and create a new...
- * Ex: taxonomy-my_custom_tax.php
+ * Ex: taxonomy-tours.php
  */
 get_header(); ?>
 
@@ -12,7 +13,7 @@ get_header(); ?>
 // get some info about the term queried
 
 $queried_object = get_queried_object();
-
+$postTYPE = get_post_type(get_the_ID());
 $taxonomy = $queried_object->taxonomy;
 $term_id = $queried_object->term_id;
 $term_slug = $queried_object->slug;
@@ -36,7 +37,7 @@ $term_slug = $queried_object->slug;
                     <?php
                     // print_r($queried_object);
                     $al_tax_post_args = array(
-                        'post_type' => 'tours', // Your Post type Name that You Registered
+                        'post_type' => $postTYPE, // Your Post type Name that You Registered
                         'tax_query' => array(
                             array(
                                 'taxonomy' => $taxonomy,
@@ -85,24 +86,6 @@ $term_slug = $queried_object->slug;
                                     </div>
                                 </article>
                             </div>
-                            <!-- <div class="main_info_tour">
-                                <div class="slideshow_tour">
-                                    <a href="<?php echo get_permalink($post->ID); ?>">
-                                        <?php
-                                                if (has_post_thumbnail()) {
-                                                    echo get_the_post_thumbnail($post->ID, 'square_smallc_thumbnail');
-                                                } ?>
-                                    </a>
-                                </div>
-                                <div class="detail_tour">
-                                    <div class="infos">
-                                        <h1 class="heading"><a href="<?php echo get_permalink($post->ID); ?>"><?php echo get_the_title() ?></a></h1>
-                                        <div class="content">
-                                            <?php the_excerpt(); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                     <?php
                         endwhile;
                     endif;

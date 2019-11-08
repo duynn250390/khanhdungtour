@@ -259,7 +259,7 @@ get_header();
             <div class="box_warap_content ">
                 <div class="heading_wrapper">
                     <h2 class="main_title"><span><strong>Tour</strong> nổi bật</span></h2>
-                    <p class="main_des"><span>Homes highly rated for thoughtful design</span></p>
+                    <p class="main_des"><span>Những tour du lịch không thể bỏ qua trong thời điểm này</span></p>
                 </div>
                 <div class="list_tour row">
                     <?php

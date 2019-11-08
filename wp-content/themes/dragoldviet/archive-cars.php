@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Template Post Type: tours
+ * Template Post Type: cars
  * @package WordPress
  * @subpackage Twenty_Fourteen
  * @since Twenty Fourteen 1.0
@@ -21,20 +22,21 @@ get_header(); ?>
     <div class="container">
         <div class="box_main box_news">
             <div class="box_left">
-                <div class="list_tours_tours">
+                <div class="list_tours_tours list_cars_cars">
                     <?php
                     $args = array(
-                        'post_type' => 'tours',
+                        'post_type' => 'cars',
                         'showposts' => 20,
                         'order'    => 'DESC'
                     );
                     $the_query = new WP_Query($args);
                     while ($the_query->have_posts()) : $the_query->the_post();
                         $post_id = $post->ID;
-                        $local_tour = get_post_meta(get_the_ID(), '_diem_xuat_phat', TRUE);
-                        $time_tour = get_post_meta(get_the_ID(), '_thoi_gian_tour', TRUE);
-                        $diem_den = get_post_meta(get_the_ID(), '_diem_den', TRUE);
-                        $gia_tour = get_post_meta(get_the_ID(), '_gia_tour', TRUE);
+
+                        $loai_xe = get_post_meta(get_the_ID(), '_loai_xe', TRUE);
+                        $doi_xe = get_post_meta(get_the_ID(), '_doi_xe', TRUE);
+                        $hop_so = get_post_meta(get_the_ID(), '_hop_so', TRUE);
+                        $gia_xe = get_post_meta(get_the_ID(), '_gia_xe', TRUE);
                         ?>
                         <div class="post_post">
                             <article id="post-<?php the_ID(); ?>" class="post_item_cate_tour">
@@ -50,19 +52,15 @@ get_header(); ?>
                                         <h2 class="entry_title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
                                     </header>
                                     <ul class="list_info">
-                                        <li class="local"><?php echo $diem_den; ?></li>
-                                        <li class="date"><?php echo $time_tour; ?></li>
+                                        <li class="local"><?php echo $loai_xe; ?></li>
+                                        <li class="date"><?php echo $doi_xe; ?></li>
                                         <li class="fa_co">
                                             <ul class="local_start_end">
-                                                <li class="local_start"><?php echo $local_tour; ?></li>
-                                                <li class="local_end"><?php echo $diem_den; ?></li>
+                                                <li class="local_start"><?php echo $hop_so; ?></li>
                                             </ul>
                                         </li>
-                                        <li class="price">Già từ:<span><?php echo $gia_tour; ?> VND</span></li>
+                                        <li class="price">Già từ:<span><?php echo $gia_xe; ?> VND</span></li>
                                     </ul>
-                                    <div class="read_more">
-                                        <a href="<?php echo the_permalink(); ?>" class="btn_read_more">Chi tiết</a>
-                                    </div>
                                 </div>
                             </article>
                         </div>

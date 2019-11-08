@@ -80,7 +80,10 @@ function manager_tours()
             'revisions',
             'custom-fields'
         ), //Các tính năng được hỗ trợ trong post type
-        'taxonomies' => array('category', 'post_tag'), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'taxonomies' => array(
+            // 'category',
+            'post_tag'
+        ), //Các taxonomy được phép sử dụng để phân loại nội dung
         'rewrite' => array(
             'slug'                  => 'tours',
             'with_front'            => false,
@@ -187,6 +190,7 @@ function daytour_taxonomy()
     register_taxonomy('daytour', array('tours'), $args);
 }
 add_action('init', 'daytour_taxonomy', 3);
+
 function add_gallery_metabox($post_type)
 {
     $types = array('tours');
@@ -564,3 +568,251 @@ register_sidebar(array(
 
 // =========================SIDEBAR END=============================
 // =================================================================
+// =========================MANAGE THUE XE START===========================
+// ========================================================================
+function manager_car()
+{
+    /*
+ * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
+ */
+    $label = array(
+        'name' => 'Quản lý Xe', //Tên post type dạng số nhiều
+        'singular_name' => 'cars' //Tên post type dạng số ít
+    );
+    /*
+ * Biến $args là những tham số quan trọng trong Post Type
+ */
+    $args = array(
+        'labels' => $label, //Gọi các label trong biến $label ở trên
+        'description' => 'Quản lý xe cho thuê', //Mô tả của post type
+        'supports' => array(
+            'title',
+            'editor',
+            // 'excerpt',
+            // 'author',
+            'thumbnail',
+            // 'comments',
+            // 'trackbacks',
+            'revisions',
+            'custom-fields'
+        ), //Các tính năng được hỗ trợ trong post type
+        'taxonomies' => array(
+            // 'category',
+            'post_tag'
+        ), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'rewrite' => array(
+            'slug'                  => 'cars',
+            'with_front'            => false,
+            'pages'                 => true,
+            'feeds'                 => true,
+        ),
+        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
+        'public' => true, //Kích hoạt post type
+        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
+        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
+        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
+        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
+        'menu_position' => 5, //Thứ tự vị trí hiển thị trong menu (tay trái)
+        'menu_icon' => 'dashicons-admin-generic', //Đường dẫn tới icon sẽ hiển thị
+        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
+        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
+        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
+        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
+        'capability_type' => 'post', //
+        'capability_type' => 'post' //
+    );
+    register_post_type('cars', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
+}
+/* Kích hoạt hàm tạo custom post type */
+add_action('init', 'manager_car');
+
+
+function loai_xe_taxonomy()
+{
+    $labels = array(
+        'name' => 'Loại xe',
+        'singular' => 'Loại xe',
+        'menu_name' => 'Loại xe'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('loai_xe', array('cars'), $args);
+}
+add_action('init', 'loai_xe_taxonomy', 0);
+
+function hang_xe_taxonomy()
+{
+    $labels = array(
+        'name' => 'Hãng xe',
+        'singular' => 'Hãng xe',
+        'menu_name' => 'Hãng xe'
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    );
+    register_taxonomy('hang_xe', array('cars'), $args);
+}
+add_action('init', 'hang_xe_taxonomy', 0);
+
+
+function add_gallery_car_metabox($post_type)
+{
+    $types = array('cars');
+    if (in_array($post_type, $types)) {
+        add_meta_box(
+            'gallery-metabox',
+            'Thêm hình ảnh xe',
+            'gallery_car_meta_callback',
+            $post_type,
+            'normal',
+            'high'
+        );
+    }
+}
+add_action('add_meta_boxes', 'add_gallery_car_metabox');
+
+function gallery_car_meta_callback($post)
+{
+    wp_nonce_field(basename(__FILE__), 'gallery_meta_nonce');
+    $ids = get_post_meta($post->ID, 'tdc_gallery_id', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <td>
+                <a class="gallery-add button" href="#" data-uploader-title="Thêm hình ảnh" data-uploader-button-text="Thêm nhiều hình ảnh giới thiệu xe">Thêm nhiều hình ảnh</a>
+                <ul id="gallery-metabox-list">
+                    <?php if ($ids) : foreach ($ids as $key => $value) : $image = wp_get_attachment_image_src($value); ?>
+                            <li>
+                                <input type="hidden" name="tdc_gallery_id[<?php echo $key; ?>]" value="<?php echo $value; ?>">
+                                <img class="image-preview" src="<?php echo $image[0]; ?>">
+                                <div class="box_change">
+                                    <a class="change-image button button-small" href="#" data-uploader-title="Đổi hình" data-uploader-button-text="Đổi hình">Đổi hình</a>
+                                    <a class="remove-image  button button-small" href="#">Xóa</a>
+                                </div>
+                            </li>
+                    <?php endforeach;
+                        endif; ?>
+                </ul>
+            </td>
+        </tr>
+    </table>
+<?php }
+function gallery_car_meta_save($post_id)
+{
+    if (!isset($_POST['gallery_meta_nonce']) || !wp_verify_nonce($_POST['gallery_meta_nonce'], basename(__FILE__))) return;
+    if (!current_user_can('edit_post', $post_id)) return;
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    if (isset($_POST['tdc_gallery_id'])) {
+        update_post_meta($post_id, 'tdc_gallery_id', $_POST['tdc_gallery_id']);
+    } else {
+        delete_post_meta($post_id, 'tdc_gallery_id');
+    }
+}
+add_action('save_post', 'gallery_car_meta_save');
+
+function gallery_car_enqueue_hook($hook)
+{
+    wp_enqueue_script('gallery-metabox', get_template_directory_uri() . '/public/js/gallery-metabox.js', array('jquery', 'jquery-ui-sortable'));
+    wp_enqueue_style('gallery-metabox', get_template_directory_uri() . '/public/css/gallery_metabox.css');
+}
+add_action('admin_enqueue_scripts', 'gallery_car_enqueue_hook');
+
+function info_car_metabox()
+{
+    $id = 'info_car_metabox_input';
+    $title = 'Thông tin xe';
+    $callback = 'info_car_metabox_output';
+    $screen = 'cars';
+    add_meta_box($id, $title, $callback, $screen);
+}
+add_action('add_meta_boxes', 'info_car_metabox');
+
+function info_car_metabox_output($post)
+{
+    $gia_xe = get_post_meta($post->ID, '_gia_xe', true);
+    $hop_so = get_post_meta($post->ID, '_hop_so', true);
+    $loai_xe = get_post_meta($post->ID, '_loai_xe', true);
+    $doi_xe = get_post_meta($post->ID, '_doi_xe', true);
+    $hang_xe = get_post_meta($post->ID, '_hang_xe', true);
+    $vung_mien = get_post_meta($post->ID, '_vung_mien', true);
+    $loai_car = get_post_meta($post->ID, '_loai_car', true);
+    ?>
+    <div class="box_info_meta_box">
+        <div class="item_list">
+            <lable for="gia_xe">Giá thuê</lable>
+            <input name="gia_xe" class="code" id="gia_xe" type="text" value="<?php echo $gia_xe ?>">
+        </div>
+        <div class="item_list">
+            <lable for="phuong_tien">Loại xe</lable>
+            <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'loai_xe',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                ));
+                echo '<select  name="loai_xe" id="loai_xe" class="code">';
+                echo '<option value="0">--Chọn loại xe--</option>';
+                foreach ($terms as $term) { ?>
+                <option value="<?php echo $term->name ?>" <?php if ($loai_xe == $term->name) {
+                                                                        echo 'selected';
+                                                                    } ?>><?php echo $term->name ?></option>
+            <?php }
+                echo '</select>'; ?>
+        </div>
+        <div class="item_list">
+            <lable for="doi_xe">Đời xe</lable>
+            <input name="doi_xe" class="code" id="doi_xe" type="num" value="<?php echo $doi_xe ?>">
+            </select>
+        </div>
+        <div class="item_list">
+            <lable for="hop_so">Hộp số</lable>
+            <select name="hop_so" id="phuong_tien" class="code">
+                <option value="Số tay" <?php if (isset($hop_so) && $hop_so == 'Số tay') {
+                                                echo 'selected';
+                                            } ?>>Số tay</option>
+                <option value="Số sàn" <?php if (isset($hop_so) && $hop_so == 'Số sàn') {
+                                                echo 'selected';
+                                            } ?>>Số sàn</option>
+              
+            </select>
+        </div>
+    </div>
+<?php
+}
+function info_car_save($post_id)
+{
+    if (isset($_POST['gia_xe'])) {
+        $gia_xe = sanitize_text_field($_POST['gia_xe']);
+        update_post_meta($post_id, '_gia_xe', $gia_xe);
+    }
+    if (isset($_POST['doi_xe'])) {
+        $doi_xe = sanitize_text_field($_POST['doi_xe']);
+        update_post_meta($post_id, '_doi_xe', $doi_xe);
+    }
+    if (isset($_POST['hop_so'])) {
+        $hop_so = sanitize_text_field($_POST['hop_so']);
+        update_post_meta($post_id, '_hop_so', $hop_so);
+    }
+    if (isset($_POST['loai_xe'])) {
+        $loai_xe = sanitize_text_field($_POST['loai_xe']);
+        update_post_meta($post_id, '_loai_xe', $loai_xe);
+    }
+}
+add_action('save_post', 'info_car_save');
+// =========================MANAGE THUE XE END===========================
+// ======================================================================
+

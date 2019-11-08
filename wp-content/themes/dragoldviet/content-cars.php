@@ -13,7 +13,6 @@
                 <?php
                 $images = get_post_meta($post->ID, 'tdc_gallery_id', true);
                 foreach ($images as $image) {
-                    // $url_img =  wp_get_attachment_url($image, 'images_project');
                     $url_img =  wp_get_attachment_url($image, 'large');
                     $image_img = wp_get_attachment_image($image, 'large');
                     ?>
@@ -26,29 +25,24 @@
                 <div class="infos">
                     <div class="info_item">
                         <div class="info_group">
-                            <label>Xuất phát:</label>
-                            <span><?php echo get_post_meta(get_the_ID(), '_diem_xuat_phat', TRUE); ?></span>
+                            <label>Loại xe:</label>
+                            <span><?php echo get_post_meta(get_the_ID(), '_loai_xe', TRUE); ?></span>
                         </div>
-                        <div class="info_group">
-                            <label>Điểm đến:</label>
-                            <span><?php echo get_post_meta(get_the_ID(), '_diem_den', TRUE); ?></span>
-                        </div>
-
                     </div>
                     <div class="info_item">
                         <div class="info_group">
-                            <label>Phương tiện:</label>
-                            <span><?php echo get_post_meta(get_the_ID(), '_phuong_tien_di_chuyen', TRUE); ?></span>
+                            <label>Đời xe:</label>
+                            <span><?php echo get_post_meta(get_the_ID(), '_doi_xe', TRUE); ?></span>
                         </div>
                         <div class="info_group">
-                            <label>Thời gian:</label>
-                            <span><?php echo get_post_meta(get_the_ID(), '_thoi_gian_tour', TRUE); ?></span>
+                            <label>Hộp số:</label>
+                            <span><?php echo get_post_meta(get_the_ID(), '_hop_so', TRUE); ?></span>
                         </div>
                     </div>
                     <div class="info_item">
                         <div class="info_group full">
                             <label>Giá từ:</label>
-                            <span class="money"><?php echo get_post_meta(get_the_ID(), '_gia_tour', TRUE); ?> VND</span>
+                            <span class="money"><?php echo get_post_meta(get_the_ID(), '_gia_xe', TRUE); ?> VND</span>
                         </div>
                     </div>
                 </div>
@@ -57,15 +51,15 @@
                     <ul class="hotline">
                         <li>0869906080</li>
                         <li>-</li>
-                        <li>0905 345 069</li>
+                        <li>0906 434 432</li>
                     </ul>
                     <ul class="chat">
                         <li class="chat_facebook chat_item"><a href="http://m.me/khanhdungtour">Hổ trợ</a></li>
                         <li class="chat_zalo chat_item"><a href="https://zalo.me/0869906070">Hổ trợ</a></li>
                     </ul>
                     <p>để được tư vấn chi tiết về tour !</p>
-                    <p>Chúc quý khách có những trải nghiệm thú vị cùng khanhdungtour</p>
-                    <div class="control_boot_tours"><a href="" class="btn_book">Đặt tour</a></div>
+                    <p>Chúc quý khách có những trải nghiệm thú vị và an toàn cùng dịch vụ thuê xe oto tự lái Khánh Dung Tour</p>
+                    <div class="control_boot_tours"><a href="" class="btn_book">Đặt Xe</a></div>
                 </div>
             </div>
         </div>
@@ -73,7 +67,7 @@
             <div class="box_left article_content">
                 <article class="main_article">
                     <div class="heading_title">
-                        <h4>Lịch trình tour</h4>
+                        <h4>Thông tin</h4>
                     </div>
                     <section class="body_article">
                         <?php the_content(); ?>
@@ -112,21 +106,15 @@
         </div>
         <div class="read_more row">
             <div class="heading">
-                <span>Tour gợi ý</span>
+                <span>Xe gợi ý thuê</span>
             </div>
             <div class="box_tour_more">
                 <?php
                 $category_detail =  get_the_category($post->ID);
-                // if(count($category_detail)>0){
-                //     $cateID = $category_detail[0]->cat_ID;
-                //     return  $cateID;
-                // }else{
-                //     return '';
-                // }
                 $ID_Post = get_the_ID();
                 $args_my_query = array(
                     // 'cat' => $cateID,
-                    'post_type'    =>    'tours',
+                    'post_type'    =>    'cars',
                     'post_status' => 'publish',
                     'posts_per_page' => '6',
                     'order' => 'DESC',

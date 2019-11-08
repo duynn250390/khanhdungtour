@@ -14,8 +14,11 @@ get_header();
     <!-- <?php the_title(); ?> -->
     <?php echo get_post_format(); ?>
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-			<?php get_template_part('content', 'news'); ?>
-			<?php setpostview(get_the_ID()); ?>
+			<?php 
+			get_template_part('content', 'news');
+			// get_template_part( 'content', get_post_format());
+			setpostview(get_the_ID());
+			 ?> 
 		<?php endwhile ?>
 	<?php else : ?>
 		<?php get_template_part('content', 'none'); ?>
