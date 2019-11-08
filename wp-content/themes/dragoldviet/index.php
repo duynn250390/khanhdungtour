@@ -18,82 +18,7 @@ get_header();
         <div class="main_search">
             <div class="content_ner_sear">
                 <div class="container">
-                    <div class="main_search">
-                        <div class="tabs_search">
-                            <div class="item_tab tab_sty_03 active" data-tab="1">Tìm Tour</div>
-                            <div class="item_tab tab_sty_03" data-tab="2">Thuê xe</div>
-                        </div>
-                        <div class="content_form_search">
-                            <div class="content_form active" id="tabs_1">
-                                <form role="search" method="get" class="search-form" action="<?php echo home_url('/'); ?>">
-                                    <input name="post-type" type="hidden" value="tours">
-                                    <div class="form_group control_list_form">
-                                        <div class="item_form_group select_control item_form_group03">
-                                            <?php
-                                            $term_diem_dens = get_terms(array(
-                                                'taxonomy' => 'mien',
-                                                'hide_empty' => false,
-                                                'parent' => 0,
-                                            ));
-                                            echo '<select name="vung-mien" id="vung-mien">';
-                                            echo ' <option value="">Tìm kiếm theo vùng miền</option>';
-                                            foreach ($term_diem_dens as $term_diem_den) { ?>
-                                                <option value="<?php echo $term_diem_den->name ?>" ><?php echo $term_diem_den->name ?></option>
-                                            <?php }
-                                            echo '</select>'; ?>
-                                        </div>
-                                        <div class="item_form_group select_control item_form_group03" id="item_form_group_home">
-                                            <?php
-                                            $term_diem_dens = get_terms(array(
-                                                'taxonomy' => 'tinh',
-                                                'hide_empty' => false,
-                                                'parent' => 0,
-                                            ));
-                                            echo '<select  name="diem-den" id="diem-den" class="code">';
-                                            echo '<option value="0">--Chọn điểm đến--</option>';
-                                            foreach ($term_diem_dens as $term_diem_den) { ?>
-                                                <option value="<?php echo $term_diem_den->name ?>"><?php echo $term_diem_den->name ?></option>
-                                            <?php }
-                                            echo '</select>'; ?>
-                                        </div>
-                                        <div class="item_form_group">
-                                            <input name="s" type="text" placeholder="Nhập địa điểm muốn đến...">
-
-                                        </div>
-                                    </div>
-                                    <div class="form_group control_btn_from">
-                                        <button class="btn_submit btn btn01">Tìm kiếm</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="content_form" id="tabs_2">
-                                <div class="form_group control_list_form">
-                                    <div class="item_form_group select_control item_form_group03">
-                                        <select>
-                                            <option value="0">Loại xe</option>
-                                            <option value="0">Xe 4 chỗ</option>
-                                            <option value="0">Xe 6 chỗ</option>
-                                            <option value="0">Xe 45 chỗ</option>
-                                        </select>
-                                    </div>
-                                    <div class="item_form_group select_control item_form_group03">
-                                        <select>
-                                            <option value="0">Chọn hãng xe</option>
-                                            <option value="0">Yamaha</option>
-                                            <option value="0">Vinfast</option>
-                                            <option value="0">Khác</option>
-                                        </select>
-                                    </div>
-                                    <div class="item_form_group">
-                                        <input type="text" placeholder="Nhập tên xe...">
-                                    </div>
-                                </div>
-                                <div class="form_group control_btn_from">
-                                    <button class="btn_submit btn btn01">Tìm kiếm</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php include plugin_dir_path( __FILE__ ) . 'subdir/search-index.php';?>
                 </div>
             </div>
         </div>
@@ -159,7 +84,7 @@ get_header();
                         </a>
                     </div>
                     <div class="item_list">
-                    <a href="<?php bloginfo('url') ?>/mien/du-lich-mien-trung/">
+                        <a href="<?php bloginfo('url') ?>/mien/du-lich-mien-trung/">
                             <div class="heading_service">
                                 Du lịch miền Trung
                             </div>
@@ -173,7 +98,7 @@ get_header();
                         </a>
                     </div>
                     <div class="item_list">
-                    <a href="<?php bloginfo('url') ?>/mien/du-lich-mien-nam/">
+                        <a href="<?php bloginfo('url') ?>/mien/du-lich-mien-nam/">
                             <div class="heading_service">
                                 Du lịch miền Nam
                             </div>
@@ -238,7 +163,7 @@ get_header();
                                                 <li class="local_end"><?php echo $diem_den; ?></li>
                                             </ul>
                                         </li>
-                                        <li class="price">Giá từ:<span> <?php  echo $gia_tour;?> VND</span></li>
+                                        <li class="price">Giá từ:<span> <?php echo $gia_tour; ?> VND</span></li>
                                     </ul>
                                     <div class="read_more">
                                         <a href="<?php echo the_permalink(); ?>" class="btn_read_more">Chi tiết</a>
@@ -295,7 +220,67 @@ get_header();
                                                 <li class="local_end"><?php echo $diem_den; ?></li>
                                             </ul>
                                         </li>
-                                        <li class="price">Giá từ:<span> <?php  echo $gia_tour;?> VND</span></li>
+                                        <li class="price">Giá từ:<span> <?php echo $gia_tour; ?> VND</span></li>
+                                    </ul>
+                                    <div class="read_more">
+                                        <a href="<?php echo the_permalink(); ?>" class="btn_read_more">Chi tiết</a>
+                                    </div>
+                                </figcaption>
+                            </div><!-- item_list_tour -->
+                        <?php endwhile;
+                        else : ?>
+                        <p>Không có tin nào !</p>
+                    <?php endif;
+                    wp_reset_postdata(); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content content_home content_list_tour dailytour rent_car">
+        <div class="container">
+            <div class="box_warap_content ">
+                <div class="heading_wrapper">
+                    <h2 class="main_title"><span><strong>Xe cho thuê</strong> tự lái</span></h2>
+                    <p class="main_des"><span>Dịch vụ cho thuê xe tự lái và đón tiển sân bay </span></p>
+                </div>
+                <div class="list_tour row rent_car_list dailytour" id="rent_car">
+                    <?php
+                    $args = array(
+                        'post_type' => 'cars',
+                        'showposts' => 6,
+                        'orderby' => 'rand',
+                        'order'    => 'ASC'
+
+                    );
+                    $the_query = new WP_Query($args);
+                    if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post();
+                            $post_id = $post->ID;
+                            $loai_xe = get_post_meta(get_the_ID(), '_loai_xe', TRUE);
+                            $doi_xe = get_post_meta(get_the_ID(), '_doi_xe', TRUE);
+                            $hop_so = get_post_meta(get_the_ID(), '_hop_so', TRUE);
+                            $gia_xe = get_post_meta(get_the_ID(), '_gia_xe', TRUE);
+                            ?>
+                            <div class="item_list_tour">
+                                <figure class="tour_thumb">
+                                    <a href="<?php echo the_permalink(); ?>">
+                                        <div class="image">
+                                            <img src="<?php echo get_the_post_thumbnail_url($post_id, 'full'); ?>" alt="<?php the_title(); ?>" />
+                                        </div>
+                                    </a>
+                                </figure>
+                                <figcaption class="content_tour">
+                                    <h5 class="title"><?php the_title(); ?></h5>
+                                    <ul class="list_info">
+                                        <li class="local loai_xe">
+                                            <span>Loại xe:</span>
+                                            <?php echo $loai_xe; ?></li>
+                                        <li class="local doi_xe">
+                                            <span>Đời xe:</span>
+                                            <?php echo $doi_xe; ?></li>
+                                        <li class="local shop_so">
+                                            <span>Hộp số:</span>
+                                            <?php echo $hop_so; ?></li>
+                                        <li class="price">Giá từ:<span><?php echo $gia_xe; ?> VND</span></li>
                                     </ul>
                                     <div class="read_more">
                                         <a href="<?php echo the_permalink(); ?>" class="btn_read_more">Chi tiết</a>

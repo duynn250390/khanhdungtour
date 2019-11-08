@@ -52,14 +52,16 @@ get_header(); ?>
                                         <h2 class="entry_title"><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></h2>
                                     </header>
                                     <ul class="list_info">
-                                        <li class="local"><?php echo $loai_xe; ?></li>
-                                        <li class="date"><?php echo $doi_xe; ?></li>
-                                        <li class="fa_co">
-                                            <ul class="local_start_end">
-                                                <li class="local_start"><?php echo $hop_so; ?></li>
-                                            </ul>
-                                        </li>
-                                        <li class="price">Già từ:<span><?php echo $gia_xe; ?> VND</span></li>
+                                        <li class="local loai_xe">
+                                            <span>Loại xe:</span>
+                                            <?php echo $loai_xe; ?></li>
+                                        <li class="local doi_xe">
+                                            <span>Đời xe:</span>
+                                            <?php echo $doi_xe; ?></li>
+                                        <li class="local shop_so">
+                                            <span>Hộp số:</span>
+                                            <?php echo $hop_so; ?></li>
+                                        <li class="price">Giá từ:<span><?php echo $gia_xe; ?> VND</span></li>
                                     </ul>
                                 </div>
                             </article>

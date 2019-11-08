@@ -371,6 +371,12 @@
                 &:after {
                     background-image: url(public/images/icon/select_icon03.png);
                 }
+
+                @include maxWidth(768px) {
+                    &:after {
+                        right: 0;
+                    }
+                }
             }
         }
 
@@ -384,6 +390,30 @@
 
             @include maxWidth(768px) {
                 flex-direction: column;
+            }
+
+            &.thue_xe {
+                .item_form_group {
+                    width: 50%;
+                    @include tran_slow_03();
+
+                    @include maxWidth(768px) {
+                        .select_control {
+                            &:after {
+                                right: 0;
+                            }
+                        }
+
+                        width: 100%;
+                        padding-right: 0;
+                    }
+
+                    &:nth-child(2) {
+                        &:after {
+                            right: 0;
+                        }
+                    }
+                }
             }
         }
 

@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="contact_tour">
-                    <div class="call_now">Gọi ngay</div>
+                    <div class="call_now">Đặt xe ngay qua</div>
                     <ul class="hotline">
                         <li>0869906080</li>
                         <li>-</li>
@@ -57,9 +57,7 @@
                         <li class="chat_facebook chat_item"><a href="http://m.me/khanhdungtour">Hổ trợ</a></li>
                         <li class="chat_zalo chat_item"><a href="https://zalo.me/0869906070">Hổ trợ</a></li>
                     </ul>
-                    <p>để được tư vấn chi tiết về tour !</p>
                     <p>Chúc quý khách có những trải nghiệm thú vị và an toàn cùng dịch vụ thuê xe oto tự lái Khánh Dung Tour</p>
-                    <div class="control_boot_tours"><a href="" class="btn_book">Đặt Xe</a></div>
                 </div>
             </div>
         </div>
@@ -101,10 +99,7 @@
                         <li class="_socila_zalo"><a href=""></a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="box_right sidebar"><?php get_sidebar('tours'); ?></div>
-        </div>
-        <div class="read_more row">
+                <div class="read_more row">
             <div class="heading">
                 <span>Xe gợi ý thuê</span>
             </div>
@@ -140,5 +135,9 @@
                 wp_reset_postdata(); ?>
             </div>
         </div>
+            </div>
+            <div class="box_right sidebar"><?php get_sidebar('news'); ?></div>
+        </div>
+      
     </div>
 </section>

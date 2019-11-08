@@ -3,6 +3,42 @@
     flex-direction: row;
     flex-wrap: wrap;
 
+    &.list_cars_cars {
+        .list_info {
+            li {
+                &.local {
+                    span {
+                        display: block;
+                        min-width: 60px;
+                        color: #888;
+                    }
+                }
+
+                &.price {
+                    justify-content: flex-end;
+                }
+
+                &.loai_xe {
+                    &::before {
+                        background-image: url(public/images/icon/sports-car.png);
+                    }
+                }
+
+                &.doi_xe {
+                    &::before {
+                        background-image: url(public/images/icon/car.png);
+                    }
+                }
+
+                &.shop_so {
+                    &::before {
+                        background-image: url(public/images/icon/pistons.png);
+                    }
+                }
+            }
+        }
+    }
+
     .post_post {
         width: 33.33333333333%;
         margin-bottom: 1em;
@@ -56,6 +92,40 @@
                     margin: 0;
                     padding: 10px;
                 }
+            }
+        }
+    }
+}
+
+.list_info {
+    li {
+        &.local {
+            span {
+                display: block;
+                min-width: 60px;
+                color: #888;
+            }
+        }
+
+        &.price {
+            justify-content: flex-end;
+        }
+
+        &.loai_xe {
+            &::before {
+                background-image: url(public/images/icon/sports-car.png);
+            }
+        }
+
+        &.doi_xe {
+            &::before {
+                background-image: url(public/images/icon/car.png);
+            }
+        }
+
+        &.shop_so {
+            &::before {
+                background-image: url(public/images/icon/pistons.png);
             }
         }
     }

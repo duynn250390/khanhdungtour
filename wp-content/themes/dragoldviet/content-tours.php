@@ -107,50 +107,51 @@
                         <li class="_socila_zalo"><a href=""></a></li>
                     </ul>
                 </div>
+                <div class="read_more row">
+                    <div class="heading">
+                        <span>Tour gợi ý</span>
+                    </div>
+                    <div class="box_tour_more">
+                        <?php
+                        $category_detail =  get_the_category($post->ID);
+                        // if(count($category_detail)>0){
+                        //     $cateID = $category_detail[0]->cat_ID;
+                        //     return  $cateID;
+                        // }else{
+                        //     return '';
+                        // }
+                        $ID_Post = get_the_ID();
+                        $args_my_query = array(
+                            // 'cat' => $cateID,
+                            'post_type'    =>    'tours',
+                            'post_status' => 'publish',
+                            'posts_per_page' => '6',
+                            'order' => 'DESC',
+                            'orderby' => 'date',
+                            'post__not_in'         => array($ID_Post)
+                        );
+                        $more_news = new WP_Query($args_my_query);
+                        while ($more_news->have_posts()) : $more_news->the_post();
+                            $post_id = $post->ID; ?>
+                            <article class="item_tour_more">
+                                <figure class="main_thum">
+                                    <a href="<?php echo get_permalink(); ?>">
+                                        <img class="img_thumb" src="<?php echo get_the_post_thumbnail_url($post_id, 'full'); ?>" alt="<?php the_title(); ?>" />
+                                    </a>
+                                </figure>
+                                <div class="detail_tour_more">
+                                    <div class="title_tour_more">
+                                        <h3 class="title"><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+                                    </div>
+                                </div>
+                            </article>
+                        <?php endwhile;
+                        wp_reset_postdata(); ?>
+                    </div>
+                </div>
             </div>
             <div class="box_right sidebar"><?php get_sidebar('tours'); ?></div>
         </div>
-        <div class="read_more row">
-            <div class="heading">
-                <span>Tour gợi ý</span>
-            </div>
-            <div class="box_tour_more">
-                <?php
-                $category_detail =  get_the_category($post->ID);
-                // if(count($category_detail)>0){
-                //     $cateID = $category_detail[0]->cat_ID;
-                //     return  $cateID;
-                // }else{
-                //     return '';
-                // }
-                $ID_Post = get_the_ID();
-                $args_my_query = array(
-                    // 'cat' => $cateID,
-                    'post_type'    =>    'tours',
-                    'post_status' => 'publish',
-                    'posts_per_page' => '6',
-                    'order' => 'DESC',
-                    'orderby' => 'date',
-                    'post__not_in'         => array($ID_Post)
-                );
-                $more_news = new WP_Query($args_my_query);
-                while ($more_news->have_posts()) : $more_news->the_post();
-                    $post_id = $post->ID; ?>
-                    <article class="item_tour_more">
-                        <figure class="main_thum">
-                            <a href="<?php echo get_permalink(); ?>">
-                                <img class="img_thumb" src="<?php echo get_the_post_thumbnail_url($post_id, 'full'); ?>" alt="<?php the_title(); ?>" />
-                            </a>
-                        </figure>
-                        <div class="detail_tour_more">
-                            <div class="title_tour_more">
-                                <h3 class="title"><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-                            </div>
-                        </div>
-                    </article>
-                <?php endwhile;
-                wp_reset_postdata(); ?>
-            </div>
-        </div>
+
     </div>
 </section>

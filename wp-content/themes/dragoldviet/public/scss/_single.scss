@@ -232,8 +232,8 @@
 
 .read_more {
     border-top: 1px solid $colBorder;
-    margin-top: 3em;
-    margin-bottom: 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 
     .heading {
         display: block;
@@ -271,6 +271,10 @@
             margin-bottom: 2em;
             @include tran_slow_03();
 
+            @include maxWidth(768px) {
+                width: 50%;
+            }
+            
             @include maxWidth(480px) {
                 width: 100%;
                 margin-bottom: 1em;
@@ -503,7 +507,11 @@
     padding: 0.5em;
     margin-top: 1em;
 
-    .call_now {}
+    .call_now {
+        font-weight: 600;
+        letter-spacing: 0;
+        font-size: px2em(20);
+    }
 
     .hotline {
         display: flex;

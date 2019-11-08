@@ -483,6 +483,7 @@
                         font-size: px2em(16);
                         color: #333;
                         line-height: 1.4;
+                        min-height: 60px;
                     }
 
                     .list_info {
@@ -816,7 +817,7 @@
 
                     .title {
                         margin-bottom: 1em;
-
+                        min-height: 60px;
                         a {
                             line-height: 1.4;
                             font-size: px2em(16);
@@ -1028,4 +1029,35 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 2em;
+}
+
+.dailytour {
+    .slick-dots {
+        position: absolute;
+        bottom: -1.5em;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+
+        li {
+            margin-left: 0.5em;
+
+            &.slick-active {
+                button {
+                    background: $colA;
+                }
+            }
+
+            button {
+                cursor: pointer;
+                border: none;
+                background: #c1c1c1;
+                outline: none;
+                text-indent: -9999px;
+                width: 30px;
+                height: 10px;
+                @include borderRadius(4px);
+            }
+        }
+    }
 }
