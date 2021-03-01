@@ -818,6 +818,7 @@
                     .title {
                         margin-bottom: 1em;
                         min-height: 60px;
+
                         a {
                             line-height: 1.4;
                             font-size: px2em(16);
@@ -1058,6 +1059,18 @@
                 height: 10px;
                 @include borderRadius(4px);
             }
+        }
+    }
+}
+
+.more_div {
+    .hiaha {
+        max-height: 200px !important;
+        width: 960px;
+        margin: 0 auto;
+
+        @include maxWidth(960px) {
+            width: 100%;
         }
     }
 }

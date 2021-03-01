@@ -781,13 +781,13 @@ function info_car_metabox_output($post)
         <div class="item_list">
             <lable for="hop_so">Hộp số</lable>
             <select name="hop_so" id="phuong_tien" class="code">
-                <option value="Số tay" <?php if (isset($hop_so) && $hop_so == 'Số tay') {
-                                                echo 'selected';
-                                            } ?>>Số tay</option>
+                <option value="Số tự động" <?php if (isset($hop_so) && $hop_so == 'Số tự động') {
+                                                    echo 'selected';
+                                                } ?>>Số tự động</option>
                 <option value="Số sàn" <?php if (isset($hop_so) && $hop_so == 'Số sàn') {
                                                 echo 'selected';
                                             } ?>>Số sàn</option>
-              
+
             </select>
         </div>
     </div>
@@ -816,3 +816,92 @@ add_action('save_post', 'info_car_save');
 // =========================MANAGE THUE XE END===========================
 // ======================================================================
 
+
+
+// =========================MANAGE BANNER =============================
+// ========================================================================
+function manager_banners()
+{
+    /*
+ * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
+ */
+    $label = array(
+        'name' => 'Quản lý Banner', //Tên post type dạng số nhiều
+        'singular_name' => 'banners' //Tên post type dạng số ít
+    );
+    /*
+ * Biến $args là những tham số quan trọng trong Post Type
+ */
+    $args = array(
+        'labels' => $label, //Gọi các label trong biến $label ở trên
+        'description' => 'Quản lý Banner', //Mô tả của post type
+        'supports' => array(
+            'title',
+            // 'editor',
+            // 'excerpt',
+            // 'author',
+            'thumbnail',
+            // 'comments',
+            // 'trackbacks',
+            // 'revisions',
+            // 'custom-fields'
+        ), //Các tính năng được hỗ trợ trong post type
+        'taxonomies' => array(
+            // 'category',
+            // 'post_tag'
+        ), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'rewrite' => array(
+            'slug'                  => 'banners',
+            'with_front'            => false,
+            'pages'                 => true,
+            'feeds'                 => true,
+        ),
+        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
+        'public' => true, //Kích hoạt post type
+        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
+        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
+        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
+        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
+        'menu_position' => 5, //Thứ tự vị trí hiển thị trong menu (tay trái)
+        'menu_icon' => 'dashicons-cart', //Đường dẫn tới icon sẽ hiển thị
+        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
+        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
+        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
+        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
+        'capability_type' => 'post', //
+        'has_archive' => 'banners'
+    );
+    register_post_type('banners', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
+}
+/* Kích hoạt hàm tạo custom post type */
+add_action('init', 'manager_banners');
+
+function info_banner_metabox()
+{
+    $id = 'info_banner_metabox';
+    $title = 'Link go to';
+    $callback = 'info_banner_metabox_output';
+    $screen = 'banners';
+    add_meta_box($id, $title, $callback, $screen);
+}
+add_action('add_meta_boxes', 'info_banner_metabox');
+
+function info_banner_metabox_output($post)
+{
+    $link_to = get_post_meta($post->ID, '_link_to', true);
+    ?>
+    <div class="box_info_meta_box">
+        <div class="item_list">
+            <lable for="link_to">Link</lable>
+            <input name="link_to" class="code" id="link_to" type="text" value="<?php echo $link_to ?>">
+        </div>
+    <?php
+    }
+    function info_banner_save($post_id)
+    {
+        if (isset($_POST['link_to'])) {
+            $gia_tour = sanitize_text_field($_POST['link_to']);
+            update_post_meta($post_id, '_link_to', $gia_tour);
+        }
+    }
+    add_action('save_post', 'info_banner_save');

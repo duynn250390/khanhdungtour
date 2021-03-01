@@ -274,7 +274,7 @@
             @include maxWidth(768px) {
                 width: 50%;
             }
-            
+
             @include maxWidth(480px) {
                 width: 100%;
                 margin-bottom: 1em;
@@ -428,6 +428,10 @@
     background-color: #f9f9f9;
     padding: 2em 1em;
     margin-top: 2em;
+
+    &.no_padding {
+        padding: 0;
+    }
 
     &.tags {
         flex-direction: row;

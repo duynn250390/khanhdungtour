@@ -49,9 +49,9 @@
                 <div class="contact_tour">
                     <div class="call_now">Đặt xe ngay qua</div>
                     <ul class="hotline">
-                        <li>0869906080</li>
+                        <li>0869 906 070</li>
                         <li>-</li>
-                        <li>0906 434 432</li>
+                        <li>0905 345 069</li>
                     </ul>
                     <ul class="chat">
                         <li class="chat_facebook chat_item"><a href="http://m.me/khanhdungtour">Hổ trợ</a></li>
@@ -84,6 +84,14 @@
                         }
                     } ?>
                 </div>
+                <div class="tags entry_tags">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- quangcaotrongbaivietkhanhdung -->
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2471616157718830" data-ad-slot="1742069699" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
                 <div class="box_social">
                     <div class="title">Share:</div>
                     <ul class="main_sharing">
@@ -100,44 +108,44 @@
                     </ul>
                 </div>
                 <div class="read_more row">
-            <div class="heading">
-                <span>Xe gợi ý thuê</span>
-            </div>
-            <div class="box_tour_more">
-                <?php
-                $category_detail =  get_the_category($post->ID);
-                $ID_Post = get_the_ID();
-                $args_my_query = array(
-                    // 'cat' => $cateID,
-                    'post_type'    =>    'cars',
-                    'post_status' => 'publish',
-                    'posts_per_page' => '6',
-                    'order' => 'DESC',
-                    'orderby' => 'date',
-                    'post__not_in'         => array($ID_Post)
-                );
-                $more_news = new WP_Query($args_my_query);
-                while ($more_news->have_posts()) : $more_news->the_post();
-                    $post_id = $post->ID; ?>
-                    <article class="item_tour_more">
-                        <figure class="main_thum">
-                            <a href="<?php echo get_permalink(); ?>">
-                                <img class="img_thumb" src="<?php echo get_the_post_thumbnail_url($post_id, 'full'); ?>" alt="<?php the_title(); ?>" />
-                            </a>
-                        </figure>
-                        <div class="detail_tour_more">
-                            <div class="title_tour_more">
-                                <h3 class="title"><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
-                            </div>
-                        </div>
-                    </article>
-                <?php endwhile;
-                wp_reset_postdata(); ?>
-            </div>
-        </div>
+                    <div class="heading">
+                        <span>Xe gợi ý thuê</span>
+                    </div>
+                    <div class="box_tour_more">
+                        <?php
+                        $category_detail =  get_the_category($post->ID);
+                        $ID_Post = get_the_ID();
+                        $args_my_query = array(
+                            // 'cat' => $cateID,
+                            'post_type'    =>    'cars',
+                            'post_status' => 'publish',
+                            'posts_per_page' => '6',
+                            'order' => 'DESC',
+                            'orderby' => 'date',
+                            'post__not_in'         => array($ID_Post)
+                        );
+                        $more_news = new WP_Query($args_my_query);
+                        while ($more_news->have_posts()) : $more_news->the_post();
+                            $post_id = $post->ID; ?>
+                            <article class="item_tour_more">
+                                <figure class="main_thum">
+                                    <a href="<?php echo get_permalink(); ?>">
+                                        <img class="img_thumb" src="<?php echo get_the_post_thumbnail_url($post_id, 'full'); ?>" alt="<?php the_title(); ?>" />
+                                    </a>
+                                </figure>
+                                <div class="detail_tour_more">
+                                    <div class="title_tour_more">
+                                        <h3 class="title"><a href="<?php echo get_permalink(); ?>"><?php echo get_the_title(); ?></a></h3>
+                                    </div>
+                                </div>
+                            </article>
+                        <?php endwhile;
+                        wp_reset_postdata(); ?>
+                    </div>
+                </div>
             </div>
             <div class="box_right sidebar"><?php get_sidebar('news'); ?></div>
         </div>
-      
+
     </div>
 </section>

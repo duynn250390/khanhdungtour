@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	console.log('Hello');
     $('#list_news').slick({
         dots: true,
         infinite: false,

@@ -67,6 +67,7 @@
 
     });
 </script>
+
 <aside class="wiget wiget-searc-tours">
     <header>
         <h1 class="widget-title">Gợi ý tour du lịch</h1>
@@ -109,4 +110,12 @@
             wp_reset_postdata(); ?>
         </ul>
     </section>
+</aside>
+<aside class="wiget wiget-searc-tours">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- sidebar -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2471616157718830" data-ad-slot="9784211247" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </aside>

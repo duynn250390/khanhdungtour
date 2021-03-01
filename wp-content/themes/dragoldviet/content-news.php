@@ -18,6 +18,14 @@
                     <?php the_content(); ?>
                 </div>
             </article>
+            <div class="tags entry_tags">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- quangcaotrongbaivietkhanhdung -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2471616157718830" data-ad-slot="1742069699" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
             <div class="box_news_more">
                 <div class="heading_news_more">Bài viết liên quan</div>
                 <ul class="list_new_more">

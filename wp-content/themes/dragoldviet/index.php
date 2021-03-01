@@ -18,7 +18,7 @@ get_header();
         <div class="main_search">
             <div class="content_ner_sear">
                 <div class="container">
-                    <?php include plugin_dir_path( __FILE__ ) . 'subdir/search-index.php';?>
+                    <?php include plugin_dir_path(__FILE__) . 'subdir/search-index.php'; ?>
                 </div>
             </div>
         </div>
@@ -26,34 +26,51 @@ get_header();
     <section class="content_home content content_event">
         <div class="container">
             <div class="show_event " id="show_event">
+                <?php
+                $args = array(
+                    'post_type' => 'banners',
+                    'showposts' => 6,
+                    'order'    => 'DESC',
+                );
+                $the_query = new WP_Query($args);
+                if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post();
+                        $post_id = $post->ID;
+                        $link_to = get_post_meta(get_the_ID(), '_link_to', TRUE);
+                        ?>
+                        <div class="listEvent">
+                            <a href="<?php echo $link_to; ?>">
+                                <img src="<?php echo get_the_post_thumbnail_url($post_id, 'full'); ?>" alt="<?php the_title(); ?>" />
+                            </a>
+                        </div>
+                    <?php endwhile;
+                    else : ?>
+                    <p>Không có tin nào !</p>
+                <?php endif;
+                wp_reset_postdata(); ?>
+            </div>
+        </div>
+    </section>
+    <!-- <section class="content_home content content_event">
+        <div class="container">
+            <div class="show_event " id="show_event">
                 <div class="listEvent">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/1.png" alt="slideshow" />
+                    <a href="https://khanhdungtour.com/tours/tour-da-nang-cu-lao-cham-1-ngay/">
+                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/cu-lao-cham-tour.png" alt="tour cù lao chàm" />
                     </a>
                 </div>
                 <div class="listEvent">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/2.png" alt="slideshow" />
+                    <a href="https://khanhdungtour.com/tours/tour-da-nang-hoi-an-1-ngay/">
+                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/hoi-an-tour.png" alt="tour du lịch hội an" />
                     </a>
                 </div>
                 <div class="listEvent">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/3.png" alt="slideshow" />
-                    </a>
-                </div>
-                <div class="listEvent">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/4.png" alt="slideshow" />
-                    </a>
-                </div>
-                <div class="listEvent">
-                    <a href="">
-                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/5.png" alt="slideshow" />
+                    <a href="https://khanhdungtour.com/tours/tour-da-nang-hue-1-ngay/">
+                        <img src="<?php echo get_template_directory_uri() ?>/public/images/share/hue-tour.png" alt="tour du lịch Huế" />
                     </a>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <section class="content_home content_service content">
         <div class="container">
             <div class="service_mycom">
@@ -233,6 +250,18 @@ get_header();
                     <?php endif;
                     wp_reset_postdata(); ?>
                 </div>
+            </div>
+        </div>
+    </section>
+    <section class="more_div">
+        <div class="container">
+            <div class="hiaha">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- quangcaotrangchukhanhdung -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2471616157718830" data-ad-slot="3884677998" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </section>

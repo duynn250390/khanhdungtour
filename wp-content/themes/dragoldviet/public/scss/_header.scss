@@ -18,28 +18,79 @@
 
             &::before {
                 display: block;
-                height: 40px;
-                width: 40px;
+                height: 30px;
+                width: 30px;
                 content: '';
                 background-image: url(public/images/icon/menu1.png);
                 background-repeat: no-repeat;
                 background-size: 100%;
                 background-position: center;
                 position: absolute;
-                top: 20px;
+                top: 15px;
                 left: 10px;
                 cursor: pointer;
 
+                @include maxWidth(980px) {
+                    height: 28px;
+                    width: 28px;
+                }
+
                 @include maxWidth(480px) {
-                    height: 30px;
-                    width: 30px;
-                    top: 25px;
+                    height: 26px;
+                    width: 26px;
                 }
             }
 
             @include hofo() {
                 &::before {
                     background-image: url(public/images/icon/menu.png);
+                }
+            }
+        }
+
+        @include maxWidth(1024px) {
+            .menu_respo {
+                display: flex;
+                flex-direction: column;
+
+                .menu-item {
+                    list-style: none;
+                    position: relative;
+
+                    a {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        text-decoration: none;
+                        outline: none;
+                        padding: 10px;
+
+                        &::before {
+                            content: "";
+                            display: block;
+                            margin-right: 4px;
+                            pointer-events: none;
+                            width: 10px;
+                            height: 10px;
+                            background-image: url(public/images/icon/next.png);
+                            background-repeat: no-repeat;
+                            background-size: 70%;
+                            background-position: center;
+                        }
+                    }
+
+                    .sub-menu {
+                        display: flex;
+                        flex-direction: column;
+
+                        li {
+                            list-style: none;
+
+                            a {
+                                padding: 10px 20px;
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -80,6 +80,14 @@
                     </section>
                 </article>
                 <div class="tags entry_tags">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- baivietkhanhdung -->
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2471616157718830" data-ad-slot="1122783284" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <div class="tags entry_tags">
                     <span class="title_tags">Từ khóa:</span>
                     <?php
                     $tags = wp_get_post_tags($post->ID);
