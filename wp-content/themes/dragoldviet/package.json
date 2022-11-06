@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "browser-sync": "^2.26.7",
-        "gulp": "^3.9.1"
+        "gulp": "^4.0.2"
     },
     "bugs": {
         "url": "https://github.com/duynn250390/khanhdungtour/issues"
